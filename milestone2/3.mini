@@ -2,6 +2,9 @@ struct A {
    int j;
 };
 
+int h;
+struct A me;
+
 fun test(bool x) int {
     {
     }

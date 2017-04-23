@@ -355,7 +355,7 @@ def analyze_function(st, func):
     if func["return_type"] not in symbol_table["types"]:
         fail_with_message(func["line"], "return type '{}' invalid".format(func["return_type"]))
 
-    st[func["id"]] = {"_ast": func, "_return": func["return_type"], "_params": []}
+    st[func["id"]] = {"_name": func["id"], "_ast": func, "_return": func["return_type"], "_params": []}
     analyze_function_params(st[func["id"]], func["parameters"])
     analyze_declarations(st[func["id"]], func["declarations"])
     analyze_statements(st[func["id"]], func["body"])

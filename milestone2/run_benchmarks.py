@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 import time
 
 class bcolors:
@@ -26,5 +27,5 @@ if __name__ == "__main__":
             print()
             print_color("====== {} ======".format(dir), bcolors.OKBLUE)
             start = time.time()
-            subprocess.call(["python", "MiniCompiler.py", "{}/{}/{}.mini".format(path, dir, dir)])
+            subprocess.call([sys.executable, "MiniCompiler.py", "{}/{}/{}.mini".format(path, dir, dir)])
             print("compile time: {:.5f}".format(time.time() - start))
