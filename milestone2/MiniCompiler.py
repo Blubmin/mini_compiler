@@ -4,9 +4,11 @@ import os
 import subprocess
 import sys
 
-import ControlFlowGraphConstructor
-import LLVMWriter
+from cfg import ControlFlowGraphConstructor
+
 import StaticSemanticAnalyzer
+from cfg import LLVMWriter
+
 
 def cleanup(filename):
     os.remove(filename)
@@ -33,7 +35,7 @@ if __name__ == "__main__":
     try:
         symbol_table = StaticSemanticAnalyzer.analyze_tree(tree)
         cfg = ControlFlowGraphConstructor.create_cfg(symbol_table)
-        LLVMWriter.write_to_file("{}.ll".format(args.filename.split(".")[0]), symbol_table, cfg);
+        LLVMWriter.write_to_file("{}.ll".format(args.filename.split(".mini")[0]), symbol_table, cfg);
     except StaticSemanticAnalyzer.SemanticError:
         code = 1
     finally:

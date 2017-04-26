@@ -20,7 +20,7 @@ def print_bold_color(msg, color):
     print("{}{}{}{}".format(bcolors.BOLD, color, msg, bcolors.ENDC))
 
 if __name__ == "__main__":
-    print_bold_color("Benchmarks Milestone1", bcolors.HEADER)
+    print_bold_color("Benchmarks Milestone2", bcolors.HEADER)
     for (path, dirs, files) in os.walk("../benchmarks"):
         for dir in dirs:
             benchmark = dir;
@@ -28,4 +28,13 @@ if __name__ == "__main__":
             print_color("====== {} ======".format(dir), bcolors.OKBLUE)
             start = time.time()
             subprocess.call([sys.executable, "MiniCompiler.py", "{}/{}/{}.mini".format(path, dir, dir)])
+            subprocess.call(["clang", "{}/{}/{}.ll".format(path, dir, dir), "-o", "{}/{}/{}".format(path, dir, dir)])
             print("compile time: {:.5f}".format(time.time() - start))
+            start = time.time()
+            with open("{}/{}/input".format(path, dir)) as filein:
+                with open("{}/{}/test".format(path, dir), "w") as fileout:
+                    print_color("Running:", bcolors.OKGREEN)
+                    print_color("{} < input > test".format(dir), bcolors.OKGREEN)
+                    subprocess.call(["{}/{}/{}".format(path, dir, dir)], stdin=filein, stdout=fileout)
+            print("run time: {:.5f}".format(time.time() - start))
+            subprocess.call(["diff", "{}/{}/output".format(path, dir), "{}/{}/test".format(path, dir)])

@@ -1,4 +1,7 @@
+%struct.simple = type {i64}
+
 @g = common global i64 0, align 8
+@thing = common global %struct.simple* null, align 8
 
 define void @other()
 {
@@ -20,6 +23,7 @@ define i64 @main()
 {
 START:
     %r0 = add i64 0, 0
+    store i8* null, %struct.simple** @thing
     br label %LOOP
 LOOP:
     %r1 = phi i64 [%r0, %START], [%r3, %LOOP]

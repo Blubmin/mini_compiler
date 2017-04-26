@@ -1,13 +1,6 @@
-import sys
+from cfg import utils
 
 llvm_file = None
-
-def get_type(typ):
-    if typ in ["int", "bool"]:
-        typ = "i64"
-    elif typ != "void":
-        typ = "%struct.{}".format(typ)
-    return typ
 
 def write_alloca(alloca):
     line = "\t{} = alloca {}\n".format(alloca["target"], alloca["type"])
@@ -49,12 +42,14 @@ def write_function(function):
 
 def write_functions(cfg):
     for f in cfg:
-        write_function(cfg[f])
+        llvm_file.write(str(cfg[f]))
+        llvm_file.write("\n")
 
 
 def write_globals(st):
     for g in st["global"]:
-        line  = "@{} = common global {} 0, align 8\n".format(g, get_type(st["global"][g]))
+        default = "0" if utils.get_type(st["global"][g])[0] == "i" else "null"
+        line  = "@{} = common global {} {}, align 8\n".format(g, utils.get_type(st["global"][g]), default)
         llvm_file.write(line)
     llvm_file.write("\n")
 
@@ -67,10 +62,7 @@ def write_type_declarations(st):
         line += " = type {"
         for field in st["types"][type]:
             field_type = st["types"][type][field]
-            if field_type in ["int", "bool"]:
-                line += "i64, "
-            else:
-                line += "i8*, "
+            line += "{}, ".format(utils.get_type(field_type))
 
         line = line[:-2]
         line += "}\n"
