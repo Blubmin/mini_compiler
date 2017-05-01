@@ -36,6 +36,15 @@ class Block:
     def add_local(self, local):
         self.locals[local.id] = local
 
+    @staticmethod
+    def convert_boolean(value, block):
+        if value.type != "i1":
+            cast = Register("i1", block)
+            inst = TruncInstruction(cast, value, value.type, cast.type)
+            block.add_instruction(inst)
+            value = cast
+        return value
+
     def handle_store(self, source, target):
         if target.type == "i64" and source.type == "i1":
             cast = Register(target.type, self)
@@ -268,7 +277,7 @@ class Block:
             else_ret = false_block.traverse_statement(iff["else"])
             after_block.predecessors += [true_block, false_block]
             if if_ret is None and else_ret is None:
-                guard = utils.convert_boolean(guard, self)
+                guard = Block.convert_boolean(guard, self)
                 inst = BrInstruction(guard, true_block, false_block)
                 self.add_instruction(inst)
                 return None
@@ -277,7 +286,7 @@ class Block:
             after_block.predecessors += [self]
         self.func.blocks += [after_block]
 
-        guard = utils.convert_boolean(guard, self)
+        guard = Block.convert_boolean(guard, self)
         inst = BrInstruction(guard, true_block, false_block)
         self.add_instruction(inst)
         return after_block
@@ -314,7 +323,7 @@ class Block:
         header.predecessors += [self]
 
         res = header.traverse_expression(whle["guard"])
-        res = utils.convert_boolean(res, header)
+        res = Block.convert_boolean(res, header)
         inst = BrInstruction(res, body, after)
         header.add_instruction(inst)
         header.successors += [after, body]

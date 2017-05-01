@@ -30,7 +30,7 @@ LU0:
 
 define i64 @add(i64 %x, i64 %y)
 {
-LU10:
+LU10:vim
 	%_retval_ = alloca i64
 	%_P_x = alloca i64
 	%_P_y = alloca i64

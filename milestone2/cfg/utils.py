@@ -1,16 +1,6 @@
 from cfg.Global import Global
-from cfg.Instruction import *
-from cfg.Register import Register
 
 from functools import reduce
-
-def convert_boolean(value, block):
-    if value.type != "i1":
-        cast = Register("i1", block)
-        inst = TruncInstruction(cast, value, value.type, cast.type)
-        block.add_instruction(inst)
-        value = cast
-    return value
 
 def get_scratch():
     return Global(".read_scratch", "i64")

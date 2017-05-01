@@ -3,6 +3,7 @@ declare void @free(i8*)
 declare i32 @printf(i8*, ...)
 declare i32 @scanf(i8*, ...)
 @.println = private unnamed_addr constant [5 x i8] c"%ld\0A\00", align 1
+@.printhex = private unnamed_addr constant [9 x i8] c"0x%016X\0A\00", align 1
 @.print = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @.read = private unnamed_addr constant [4 x i8] c"%ld\00", align 1
 @.read_scratch = common global i64 0, align 8
@@ -266,6 +267,7 @@ LU21:
 	%r125 = load %struct.node** %list
 	%r126 = call i64 @recurseList(%struct.node* %r125)
 	%r127 = add i64 %r124, %r126
+    call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([9 x i8]*@.printhex, i32 0, i32 0), i64 %r127)
 	store i64 %r127, i64* %bigProduct
 	%r128 = load i64* %i
 	%r129 = add i64 %r128, 1
