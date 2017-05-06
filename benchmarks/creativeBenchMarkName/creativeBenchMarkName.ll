@@ -1,3 +1,4 @@
+target triple="x86_64"
 declare i8* @malloc(i64)
 declare void @free(i8*)
 declare i32 @printf(i8*, ...)
@@ -141,96 +142,100 @@ LU6:
 	%r69 = load i64* %i
 	%r70 = add i64 %r69, 1
 	store i64 %r70, i64* %i
-	br label %LU5
+	%r71 = load i64* %i
+	%r72 = icmp slt i64 %r71, 5
+	br i1 %r72, label %LU6, label %LU4
 LU4:
-	%r71 = load i64* %product
-	store i64 %r71, i64* %.ret
+	%r73 = load i64* %product
+	store i64 %r73, i64* %.ret
 	br label %LU3
 LU3:
 	%r50 = load i64* %.ret
 	ret i64 %r50
 }
 
-define i64 @add (%struct.node* %r72) {
+define i64 @add (%struct.node* %r74) {
 LU7:
 	%i = alloca i64
 	%sum = alloca i64
 	%cur = alloca %struct.node*
 	%.ret = alloca i64
 	%list = alloca %struct.node*
-	store %struct.node* %r72, %struct.node** %list
+	store %struct.node* %r74, %struct.node** %list
 	store i64 0, i64* %i
-	%r74 = load %struct.node** %list
-	store %struct.node* %r74, %struct.node** %cur
-	%r75 = load %struct.node** %cur
-	%r76 = getelementptr inbounds %struct.node* %r75, i1 0, i32 0
-	%r77 = load i64* %r76
-	store i64 %r77, i64* %sum
-	%r78 = load %struct.node** %cur
-	%r79 = getelementptr inbounds %struct.node* %r78, i1 0, i32 1
-	%r80 = load %struct.node** %r79
-	store %struct.node* %r80, %struct.node** %cur
+	%r76 = load %struct.node** %list
+	store %struct.node* %r76, %struct.node** %cur
+	%r77 = load %struct.node** %cur
+	%r78 = getelementptr inbounds %struct.node* %r77, i1 0, i32 0
+	%r79 = load i64* %r78
+	store i64 %r79, i64* %sum
+	%r80 = load %struct.node** %cur
+	%r81 = getelementptr inbounds %struct.node* %r80, i1 0, i32 1
+	%r82 = load %struct.node** %r81
+	store %struct.node* %r82, %struct.node** %cur
 	br label %LU10
 LU10:
-	%r81 = load i64* %i
-	%r82 = icmp slt i64 %r81, 5
-	br i1 %r82, label %LU11, label %LU9
+	%r83 = load i64* %i
+	%r84 = icmp slt i64 %r83, 5
+	br i1 %r84, label %LU11, label %LU9
 LU11:
-	%r83 = load i64* %sum
-	%r84 = load %struct.node** %cur
-	%r85 = getelementptr inbounds %struct.node* %r84, i1 0, i32 0
-	%r86 = load i64* %r85
-	%r87 = add i64 %r83, %r86
-	store i64 %r87, i64* %sum
-	%r88 = load %struct.node** %cur
-	%r89 = getelementptr inbounds %struct.node* %r88, i1 0, i32 1
-	%r90 = load %struct.node** %r89
-	store %struct.node* %r90, %struct.node** %cur
-	%r91 = load i64* %sum
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r91)
-	%r92 = load i64* %i
-	%r93 = add i64 %r92, 1
-	store i64 %r93, i64* %i
-	br label %LU10
+	%r85 = load i64* %sum
+	%r86 = load %struct.node** %cur
+	%r87 = getelementptr inbounds %struct.node* %r86, i1 0, i32 0
+	%r88 = load i64* %r87
+	%r89 = add i64 %r85, %r88
+	store i64 %r89, i64* %sum
+	%r90 = load %struct.node** %cur
+	%r91 = getelementptr inbounds %struct.node* %r90, i1 0, i32 1
+	%r92 = load %struct.node** %r91
+	store %struct.node* %r92, %struct.node** %cur
+	%r93 = load i64* %sum
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r93)
+	%r94 = load i64* %i
+	%r95 = add i64 %r94, 1
+	store i64 %r95, i64* %i
+	%r96 = load i64* %i
+	%r97 = icmp slt i64 %r96, 5
+	br i1 %r97, label %LU11, label %LU9
 LU9:
-	%r94 = load i64* %sum
-	store i64 %r94, i64* %.ret
+	%r98 = load i64* %sum
+	store i64 %r98, i64* %.ret
 	br label %LU8
 LU8:
-	%r73 = load i64* %.ret
-	ret i64 %r73
+	%r75 = load i64* %.ret
+	ret i64 %r75
 }
 
-define i64 @recurseList (%struct.node* %r95) {
+define i64 @recurseList (%struct.node* %r99) {
 LU12:
 	%.ret = alloca i64
 	%list = alloca %struct.node*
-	store %struct.node* %r95, %struct.node** %list
-	%r97 = load %struct.node** %list
-	%r98 = getelementptr inbounds %struct.node* %r97, i1 0, i32 1
-	%r99 = load %struct.node** %r98
-	%r100 = icmp eq %struct.node* %r99, null
-	br i1 %r100, label %LU15, label %LU16
-LU15:
+	store %struct.node* %r99, %struct.node** %list
 	%r101 = load %struct.node** %list
-	%r102 = getelementptr inbounds %struct.node* %r101, i1 0, i32 0
-	%r103 = load i64* %r102
-	store i64 %r103, i64* %.ret
+	%r102 = getelementptr inbounds %struct.node* %r101, i1 0, i32 1
+	%r103 = load %struct.node** %r102
+	%r104 = icmp eq %struct.node* %r103, null
+	br i1 %r104, label %LU15, label %LU16
+LU15:
+	%r105 = load %struct.node** %list
+	%r106 = getelementptr inbounds %struct.node* %r105, i1 0, i32 0
+	%r107 = load i64* %r106
+	store i64 %r107, i64* %.ret
 	br label %LU13
 LU16:
-	%r104 = load %struct.node** %list
-	%r105 = getelementptr inbounds %struct.node* %r104, i1 0, i32 0
-	%r106 = load i64* %r105
-	%r107 = load %struct.node** %list
-	%r108 = getelementptr inbounds %struct.node* %r107, i1 0, i32 1
-	%r109 = load %struct.node** %r108
-	%r110 = call i64 @recurseList(%struct.node* %r109)
-	%r111 = mul i64 %r106, %r110
-	store i64 %r111, i64* %.ret
+	%r108 = load %struct.node** %list
+	%r109 = getelementptr inbounds %struct.node* %r108, i1 0, i32 0
+	%r110 = load i64* %r109
+	%r111 = load %struct.node** %list
+	%r112 = getelementptr inbounds %struct.node* %r111, i1 0, i32 1
+	%r113 = load %struct.node** %r112
+	%r114 = call i64 @recurseList(%struct.node* %r113)
+	%r115 = mul i64 %r110, %r114
+	store i64 %r115, i64* %.ret
 	br label %LU13
 LU13:
-	%r96 = load i64* %.ret
-	ret i64 %r96
+	%r100 = load i64* %.ret
+	ret i64 %r100
 }
 
 define i64 @main () {
@@ -244,57 +249,60 @@ LU17:
 	%.ret = alloca i64
 	store i64 0, i64* %i
 	store i64 0, i64* %bigProduct
-	%r113 = call %struct.node* @buildList()
-	store %struct.node* %r113, %struct.node** %list
-	%r114 = load %struct.node** %list
-	%r115 = call i64 @multiple(%struct.node* %r114)
-	store i64 %r115, i64* %product
-	%r116 = load %struct.node** %list
-	%r117 = call i64 @add(%struct.node* %r116)
-	store i64 %r117, i64* %sum
-	%r118 = load i64* %product
-	%r119 = load i64* %sum
-	%r120 = sdiv i64 %r119, 2
-	%r121 = sub i64 %r118, %r120
-	store i64 %r121, i64* %result
+	%r117 = call %struct.node* @buildList()
+	store %struct.node* %r117, %struct.node** %list
+	%r118 = load %struct.node** %list
+	%r119 = call i64 @multiple(%struct.node* %r118)
+	store i64 %r119, i64* %product
+	%r120 = load %struct.node** %list
+	%r121 = call i64 @add(%struct.node* %r120)
+	store i64 %r121, i64* %sum
+	%r122 = load i64* %product
+	%r123 = load i64* %sum
+	%r124 = sdiv i64 %r123, 2
+	%r125 = sub i64 %r122, %r124
+	store i64 %r125, i64* %result
 	br label %LU20
 LU20:
-	%r122 = load i64* %i
-	%r123 = icmp slt i64 %r122, 10
-	br i1 %r123, label %LU21, label %LU19
+	%r126 = load i64* %i
+	%r127 = icmp slt i64 %r126, 10
+	br i1 %r127, label %LU21, label %LU19
 LU21:
-	%r124 = load i64* %bigProduct
-	%r125 = load %struct.node** %list
-	%r126 = call i64 @recurseList(%struct.node* %r125)
-	%r127 = add i64 %r124, %r126
-    call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([9 x i8]*@.printhex, i32 0, i32 0), i64 %r127)
-	store i64 %r127, i64* %bigProduct
-	%r128 = load i64* %i
-	%r129 = add i64 %r128, 1
-	store i64 %r129, i64* %i
-	br label %LU20
+	%r128 = load i64* %bigProduct
+	%r129 = load %struct.node** %list
+	%r130 = call i64 @recurseList(%struct.node* %r129)
+	%r131 = add i64 %r128, %r130
+	store i64 %r131, i64* %bigProduct
+	%r132 = load i64* %i
+	%r133 = add i64 %r132, 1
+	store i64 %r133, i64* %i
+	%r134 = load i64* %i
+	%r135 = icmp slt i64 %r134, 10
+	br i1 %r135, label %LU21, label %LU19
 LU19:
-	%r130 = load i64* %bigProduct
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r130)
-	br label %LU23
-LU23:
-	%r131 = load i64* %bigProduct
-	%r132 = icmp ne i64 %r131, 0
-	br i1 %r132, label %LU24, label %LU22
-LU24:
-	%r133 = load i64* %bigProduct
-	%r134 = sub i64 %r133, 1
-	store i64 %r134, i64* %bigProduct
-	br label %LU23
-LU22:
-	%r135 = load i64* %result
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r135)
 	%r136 = load i64* %bigProduct
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r136)
+	br label %LU23
+LU23:
+	%r137 = load i64* %bigProduct
+	%r138 = icmp ne i64 %r137, 0
+	br i1 %r138, label %LU24, label %LU22
+LU24:
+	%r139 = load i64* %bigProduct
+	%r140 = sub i64 %r139, 1
+	store i64 %r140, i64* %bigProduct
+	%r141 = load i64* %bigProduct
+	%r142 = icmp ne i64 %r141, 0
+	br i1 %r142, label %LU24, label %LU22
+LU22:
+	%r143 = load i64* %result
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r143)
+	%r144 = load i64* %bigProduct
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r144)
 	store i64 0, i64* %.ret
 	br label %LU18
 LU18:
-	%r112 = load i64* %.ret
-	ret i64 %r112
+	%r116 = load i64* %.ret
+	ret i64 %r116
 }
 

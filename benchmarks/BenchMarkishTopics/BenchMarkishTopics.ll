@@ -139,34 +139,39 @@ LU16:
 	%r52 = load i64* @intList
 	%r53 = sub i64 %r52, 1
 	store i64 %r53, i64* @intList
-	br label %LU15
+	%r54 = load i64* @intList
+	%r55 = icmp sgt i64 %r54, 0
+	br i1 %r55, label %LU16, label %LU14
 LU14:
-	%r54 = load %struct.intList** %list
-	%r55 = call i64 @length(%struct.intList* %r54)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r55)
-	br label %LU18
-LU18:
 	%r56 = load %struct.intList** %list
 	%r57 = call i64 @length(%struct.intList* %r56)
-	%r58 = icmp sgt i64 %r57, 0
-	br i1 %r58, label %LU19, label %LU17
-LU19:
-	%r59 = load i64* %sum
-	%r60 = load %struct.intList** %list
-	%r61 = getelementptr inbounds %struct.intList* %r60, i1 0, i32 0
-	%r62 = load i64* %r61
-	%r63 = add i64 %r59, %r62
-	store i64 %r63, i64* %sum
-	%r64 = load %struct.intList** %list
-	%r65 = call i64 @length(%struct.intList* %r64)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r65)
-	%r66 = load %struct.intList** %list
-	%r67 = call %struct.intList* @deleteFirst(%struct.intList* %r66)
-	store %struct.intList* %r67, %struct.intList** %list
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r57)
 	br label %LU18
+LU18:
+	%r58 = load %struct.intList** %list
+	%r59 = call i64 @length(%struct.intList* %r58)
+	%r60 = icmp sgt i64 %r59, 0
+	br i1 %r60, label %LU19, label %LU17
+LU19:
+	%r61 = load i64* %sum
+	%r62 = load %struct.intList** %list
+	%r63 = getelementptr inbounds %struct.intList* %r62, i1 0, i32 0
+	%r64 = load i64* %r63
+	%r65 = add i64 %r61, %r64
+	store i64 %r65, i64* %sum
+	%r66 = load %struct.intList** %list
+	%r67 = call i64 @length(%struct.intList* %r66)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r67)
+	%r68 = load %struct.intList** %list
+	%r69 = call %struct.intList* @deleteFirst(%struct.intList* %r68)
+	store %struct.intList* %r69, %struct.intList** %list
+	%r70 = load %struct.intList** %list
+	%r71 = call i64 @length(%struct.intList* %r70)
+	%r72 = icmp sgt i64 %r71, 0
+	br i1 %r72, label %LU19, label %LU17
 LU17:
-	%r68 = load i64* %sum
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r68)
+	%r73 = load i64* %sum
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r73)
 	store i64 0, i64* %.ret
 	br label %LU13
 LU13:

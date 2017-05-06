@@ -1,9 +1,10 @@
+target triple="x86_64"
 declare i8* @malloc(i64)
 declare void @free(i8*)
 declare i32 @printf(i8*, ...)
 declare i32 @scanf(i8*, ...)
 @.println = private unnamed_addr constant [5 x i8] c"%ld\0A\00", align 1
-@.printhex = private unnamed_addr constant [6 x i8] c"0x%X\0A\00", align 1
+@.printhex = private unnamed_addr constant [9 x i8] c"0x%016X\0A\00", align 1
 @.print = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @.read = private unnamed_addr constant [4 x i8] c"%ld\00", align 1
 @.read_scratch = common global i64 0, align 8
@@ -92,53 +93,63 @@ LU10:
 	%r42 = getelementptr inbounds %struct.Node* %r41, i1 0, i32 2
 	%r43 = load %struct.Node** %r42
 	store %struct.Node* %r43, %struct.Node** %currNode
-	br label %LU8
+	%r44 = load %struct.Node** %currNode
+	%r45 = getelementptr inbounds %struct.Node* %r44, i1 0, i32 2
+	%r46 = load %struct.Node** %r45
+	%r47 = load %struct.Node** %head
+	%r48 = icmp ne %struct.Node* %r46, %r47
+	br i1 %r48, label %LU9, label %LU7
 LU7:
-	br label %LU5
+	%r49 = load i64* %swapped
+	%r50 = icmp eq i64 %r49, 1
+	br i1 %r50, label %LU6, label %LU4
 LU4:
 	br label %LU3
 LU3:
 	ret void
 }
 
-define void @printEVILList (%struct.Node* %r44) {
+define void @printEVILList (%struct.Node* %r51) {
 LU12:
 	%currNode = alloca %struct.Node*
 	%toFree = alloca %struct.Node*
 	%head = alloca %struct.Node*
-	store %struct.Node* %r44, %struct.Node** %head
-	%r46 = load %struct.Node** %head
-	%r47 = getelementptr inbounds %struct.Node* %r46, i1 0, i32 2
-	%r48 = load %struct.Node** %r47
-	store %struct.Node* %r48, %struct.Node** %currNode
-	%r49 = load %struct.Node** %head
-	%r50 = getelementptr inbounds %struct.Node* %r49, i1 0, i32 0
-	%r51 = load i64* %r50
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r51)
-	%r52 = load %struct.Node** %head
-	%r53 = bitcast %struct.Node* %r52 to i8*
-	call void @free(i8* %r53)
+	store %struct.Node* %r51, %struct.Node** %head
+	%r53 = load %struct.Node** %head
+	%r54 = getelementptr inbounds %struct.Node* %r53, i1 0, i32 2
+	%r55 = load %struct.Node** %r54
+	store %struct.Node* %r55, %struct.Node** %currNode
+	%r56 = load %struct.Node** %head
+	%r57 = getelementptr inbounds %struct.Node* %r56, i1 0, i32 0
+	%r58 = load i64* %r57
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r58)
+	%r59 = load %struct.Node** %head
+	%r60 = bitcast %struct.Node* %r59 to i8*
+	call void @free(i8* %r60)
 	br label %LU15
 LU15:
-	%r54 = load %struct.Node** %currNode
-	%r55 = load %struct.Node** %head
-	%r56 = icmp ne %struct.Node* %r54, %r55
-	br i1 %r56, label %LU16, label %LU14
-LU16:
-	%r57 = load %struct.Node** %currNode
-	store %struct.Node* %r57, %struct.Node** %toFree
-	%r58 = load %struct.Node** %currNode
-	%r59 = getelementptr inbounds %struct.Node* %r58, i1 0, i32 0
-	%r60 = load i64* %r59
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r60)
 	%r61 = load %struct.Node** %currNode
-	%r62 = getelementptr inbounds %struct.Node* %r61, i1 0, i32 2
-	%r63 = load %struct.Node** %r62
-	store %struct.Node* %r63, %struct.Node** %currNode
-	%r64 = load %struct.Node** %toFree
-	%r65 = bitcast %struct.Node* %r64 to i8*
-	call void @free(i8* %r65)
-	br label %LU15
+	%r62 = load %struct.Node** %head
+	%r63 = icmp ne %struct.Node* %r61, %r62
+	br i1 %r63, label %LU16, label %LU14
+LU16:
+	%r64 = load %struct.Node** %currNode
+	store %struct.Node* %r64, %struct.Node** %toFree
+	%r65 = load %struct.Node** %currNode
+	%r66 = getelementptr inbounds %struct.Node* %r65, i1 0, i32 0
+	%r67 = load i64* %r66
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r67)
+	%r68 = load %struct.Node** %currNode
+	%r69 = getelementptr inbounds %struct.Node* %r68, i1 0, i32 2
+	%r70 = load %struct.Node** %r69
+	store %struct.Node* %r70, %struct.Node** %currNode
+	%r71 = load %struct.Node** %toFree
+	%r72 = bitcast %struct.Node* %r71 to i8*
+	call void @free(i8* %r72)
+	%r73 = load %struct.Node** %currNode
+	%r74 = load %struct.Node** %head
+	%r75 = icmp ne %struct.Node* %r73, %r74
+	br i1 %r75, label %LU16, label %LU14
 LU14:
 	br label %LU13
 LU13:
@@ -155,83 +166,85 @@ LU17:
 	%.ret = alloca i64
 	store i64 666, i64* @swapped
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r67 = load i64* @.read_scratch
-	store i64 %r67, i64* %numNodes
-	%r68 = load i64* %numNodes
-	%r69 = icmp sle i64 %r68, 0
-	br i1 %r69, label %LU20, label %LU19
+	%r77 = load i64* @.read_scratch
+	store i64 %r77, i64* %numNodes
+	%r78 = load i64* %numNodes
+	%r79 = icmp sle i64 %r78, 0
+	br i1 %r79, label %LU20, label %LU19
 LU20:
-	%r70 = sub i64 0, 1
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r70)
-	%r71 = sub i64 0, 1
-	store i64 %r71, i64* %.ret
+	%r80 = sub i64 0, 1
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r80)
+	%r81 = sub i64 0, 1
+	store i64 %r81, i64* %.ret
 	br label %LU18
 LU19:
-	%r72 = load i64* %numNodes
-	%r73 = mul i64 %r72, 1000
-	store i64 %r73, i64* %numNodes
-	%r74 = load i64* %numNodes
-	store i64 %r74, i64* %counter
-	%r75 = call i8* @malloc(i64 24)
-	%r76 = bitcast i8* %r75 to %struct.Node*
-	store %struct.Node* %r76, %struct.Node** %head
-	%r77 = load i64* %counter
-	%r78 = load %struct.Node** %head
-	%r79 = getelementptr inbounds %struct.Node* %r78, i1 0, i32 0
-	store i64 %r77, i64* %r79
-	%r80 = load %struct.Node** %head
-	%r81 = load %struct.Node** %head
-	%r82 = getelementptr inbounds %struct.Node* %r81, i1 0, i32 1
-	store %struct.Node* %r80, %struct.Node** %r82
-	%r83 = load %struct.Node** %head
-	%r84 = load %struct.Node** %head
-	%r85 = getelementptr inbounds %struct.Node* %r84, i1 0, i32 2
-	store %struct.Node* %r83, %struct.Node** %r85
-	%r86 = load i64* %counter
-	%r87 = sub i64 %r86, 1
-	store i64 %r87, i64* %counter
+	%r82 = load i64* %numNodes
+	%r83 = mul i64 %r82, 1000
+	store i64 %r83, i64* %numNodes
+	%r84 = load i64* %numNodes
+	store i64 %r84, i64* %counter
+	%r85 = call i8* @malloc(i64 24)
+	%r86 = bitcast i8* %r85 to %struct.Node*
+	store %struct.Node* %r86, %struct.Node** %head
+	%r87 = load i64* %counter
 	%r88 = load %struct.Node** %head
-	store %struct.Node* %r88, %struct.Node** %previous
+	%r89 = getelementptr inbounds %struct.Node* %r88, i1 0, i32 0
+	store i64 %r87, i64* %r89
+	%r90 = load %struct.Node** %head
+	%r91 = load %struct.Node** %head
+	%r92 = getelementptr inbounds %struct.Node* %r91, i1 0, i32 1
+	store %struct.Node* %r90, %struct.Node** %r92
+	%r93 = load %struct.Node** %head
+	%r94 = load %struct.Node** %head
+	%r95 = getelementptr inbounds %struct.Node* %r94, i1 0, i32 2
+	store %struct.Node* %r93, %struct.Node** %r95
+	%r96 = load i64* %counter
+	%r97 = sub i64 %r96, 1
+	store i64 %r97, i64* %counter
+	%r98 = load %struct.Node** %head
+	store %struct.Node* %r98, %struct.Node** %previous
 	br label %LU22
 LU22:
-	%r89 = load i64* %counter
-	%r90 = icmp sgt i64 %r89, 0
-	br i1 %r90, label %LU23, label %LU21
+	%r99 = load i64* %counter
+	%r100 = icmp sgt i64 %r99, 0
+	br i1 %r100, label %LU23, label %LU21
 LU23:
-	%r91 = call i8* @malloc(i64 24)
-	%r92 = bitcast i8* %r91 to %struct.Node*
-	store %struct.Node* %r92, %struct.Node** %currNode
-	%r93 = load i64* %counter
-	%r94 = load %struct.Node** %currNode
-	%r95 = getelementptr inbounds %struct.Node* %r94, i1 0, i32 0
-	store i64 %r93, i64* %r95
-	%r96 = load %struct.Node** %previous
-	%r97 = load %struct.Node** %currNode
-	%r98 = getelementptr inbounds %struct.Node* %r97, i1 0, i32 1
-	store %struct.Node* %r96, %struct.Node** %r98
-	%r99 = load %struct.Node** %head
-	%r100 = load %struct.Node** %currNode
-	%r101 = getelementptr inbounds %struct.Node* %r100, i1 0, i32 2
-	store %struct.Node* %r99, %struct.Node** %r101
-	%r102 = load %struct.Node** %currNode
-	%r103 = load %struct.Node** %previous
-	%r104 = getelementptr inbounds %struct.Node* %r103, i1 0, i32 2
-	store %struct.Node* %r102, %struct.Node** %r104
-	%r105 = load %struct.Node** %currNode
-	store %struct.Node* %r105, %struct.Node** %previous
-	%r106 = load i64* %counter
-	%r107 = sub i64 %r106, 1
-	store i64 %r107, i64* %counter
-	br label %LU22
-LU21:
-	%r108 = load %struct.Node** %head
-	call void @deathSort(%struct.Node* %r108)
+	%r101 = call i8* @malloc(i64 24)
+	%r102 = bitcast i8* %r101 to %struct.Node*
+	store %struct.Node* %r102, %struct.Node** %currNode
+	%r103 = load i64* %counter
+	%r104 = load %struct.Node** %currNode
+	%r105 = getelementptr inbounds %struct.Node* %r104, i1 0, i32 0
+	store i64 %r103, i64* %r105
+	%r106 = load %struct.Node** %previous
+	%r107 = load %struct.Node** %currNode
+	%r108 = getelementptr inbounds %struct.Node* %r107, i1 0, i32 1
+	store %struct.Node* %r106, %struct.Node** %r108
 	%r109 = load %struct.Node** %head
-	call void @printEVILList(%struct.Node* %r109)
+	%r110 = load %struct.Node** %currNode
+	%r111 = getelementptr inbounds %struct.Node* %r110, i1 0, i32 2
+	store %struct.Node* %r109, %struct.Node** %r111
+	%r112 = load %struct.Node** %currNode
+	%r113 = load %struct.Node** %previous
+	%r114 = getelementptr inbounds %struct.Node* %r113, i1 0, i32 2
+	store %struct.Node* %r112, %struct.Node** %r114
+	%r115 = load %struct.Node** %currNode
+	store %struct.Node* %r115, %struct.Node** %previous
+	%r116 = load i64* %counter
+	%r117 = sub i64 %r116, 1
+	store i64 %r117, i64* %counter
+	%r118 = load i64* %counter
+	%r119 = icmp sgt i64 %r118, 0
+	br i1 %r119, label %LU23, label %LU21
+LU21:
+	%r120 = load %struct.Node** %head
+	call void @deathSort(%struct.Node* %r120)
+	%r121 = load %struct.Node** %head
+	call void @printEVILList(%struct.Node* %r121)
 	store i64 0, i64* %.ret
 	br label %LU18
 LU18:
-	%r66 = load i64* %.ret
-	ret i64 %r66
+	%r76 = load i64* %.ret
+	ret i64 %r76
 }
 

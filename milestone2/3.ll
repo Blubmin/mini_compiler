@@ -32,7 +32,9 @@ LU4:
 	%r6 = load i64* %i
 	%r7 = add i64 %r6, 1
 	store i64 %r7, i64* %i
-	br label %LU3
+	br label %LU4
+	%r8 = load i64* %i
+	%r9 = icmp slt i64 %r8, 64
 LU2:
 	store i64 0, i64* %.ret
 	br label %LU1

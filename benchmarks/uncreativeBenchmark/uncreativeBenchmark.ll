@@ -1,9 +1,10 @@
+target triple="x86_64"
 declare i8* @malloc(i64)
 declare void @free(i8*)
 declare i32 @printf(i8*, ...)
 declare i32 @scanf(i8*, ...)
 @.println = private unnamed_addr constant [5 x i8] c"%ld\0A\00", align 1
-@.printhex = private unnamed_addr constant [6 x i8] c"0x%X\0A\00", align 1
+@.printhex = private unnamed_addr constant [9 x i8] c"0x%016X\0A\00", align 1
 @.print = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @.read = private unnamed_addr constant [4 x i8] c"%ld\00", align 1
 @.read_scratch = common global i64 0, align 8
@@ -344,56 +345,58 @@ LU41:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r164 = load i64* @.read_scratch
 	store i64 %r164, i64* %current
-	br label %LU39
+	%r165 = load i64* %current
+	%r166 = icmp ne i64 %r165, 0
+	br i1 %r166, label %LU40, label %LU38
 LU38:
-	%r165 = load %struct.LameStruct** %digits
-	%r166 = call i64 @countTotal(%struct.LameStruct* %r165)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r166)
-	%r167 = call i64 @convertBinary(i64 1)
-	%r168 = load %struct.LameStruct** %digits
-	%r169 = getelementptr inbounds %struct.LameStruct* %r168, i1 0, i32 0
-	%r170 = load i64* %r169
-	call i64 @printRecursive(i64 %r167, i64 %r170)
-	%r171 = call i64 @convertBinary(i64 2)
-	%r172 = load %struct.LameStruct** %digits
-	%r173 = getelementptr inbounds %struct.LameStruct* %r172, i1 0, i32 1
-	%r174 = load i64* %r173
-	call i64 @printRecursive(i64 %r171, i64 %r174)
-	%r175 = call i64 @convertBinary(i64 3)
-	%r176 = load %struct.LameStruct** %digits
-	%r177 = getelementptr inbounds %struct.LameStruct* %r176, i1 0, i32 2
-	%r178 = load i64* %r177
-	call i64 @printRecursive(i64 %r175, i64 %r178)
-	%r179 = call i64 @convertBinary(i64 4)
-	%r180 = load %struct.LameStruct** %digits
-	%r181 = getelementptr inbounds %struct.LameStruct* %r180, i1 0, i32 3
-	%r182 = load i64* %r181
-	call i64 @printRecursive(i64 %r179, i64 %r182)
-	%r183 = call i64 @convertBinary(i64 5)
-	%r184 = load %struct.LameStruct** %digits
-	%r185 = getelementptr inbounds %struct.LameStruct* %r184, i1 0, i32 4
-	%r186 = load i64* %r185
-	call i64 @printRecursive(i64 %r183, i64 %r186)
-	%r187 = call i64 @convertBinary(i64 6)
-	%r188 = load %struct.LameStruct** %digits
-	%r189 = getelementptr inbounds %struct.LameStruct* %r188, i1 0, i32 5
-	%r190 = load i64* %r189
-	call i64 @printRecursive(i64 %r187, i64 %r190)
-	%r191 = call i64 @convertBinary(i64 7)
-	%r192 = load %struct.LameStruct** %digits
-	%r193 = getelementptr inbounds %struct.LameStruct* %r192, i1 0, i32 6
-	%r194 = load i64* %r193
-	call i64 @printRecursive(i64 %r191, i64 %r194)
-	%r195 = call i64 @convertBinary(i64 8)
-	%r196 = load %struct.LameStruct** %digits
-	%r197 = getelementptr inbounds %struct.LameStruct* %r196, i1 0, i32 7
-	%r198 = load i64* %r197
-	call i64 @printRecursive(i64 %r195, i64 %r198)
-	%r199 = call i64 @convertBinary(i64 9)
-	%r200 = load %struct.LameStruct** %digits
-	%r201 = getelementptr inbounds %struct.LameStruct* %r200, i1 0, i32 8
-	%r202 = load i64* %r201
-	call i64 @printRecursive(i64 %r199, i64 %r202)
+	%r167 = load %struct.LameStruct** %digits
+	%r168 = call i64 @countTotal(%struct.LameStruct* %r167)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r168)
+	%r169 = call i64 @convertBinary(i64 1)
+	%r170 = load %struct.LameStruct** %digits
+	%r171 = getelementptr inbounds %struct.LameStruct* %r170, i1 0, i32 0
+	%r172 = load i64* %r171
+	call i64 @printRecursive(i64 %r169, i64 %r172)
+	%r173 = call i64 @convertBinary(i64 2)
+	%r174 = load %struct.LameStruct** %digits
+	%r175 = getelementptr inbounds %struct.LameStruct* %r174, i1 0, i32 1
+	%r176 = load i64* %r175
+	call i64 @printRecursive(i64 %r173, i64 %r176)
+	%r177 = call i64 @convertBinary(i64 3)
+	%r178 = load %struct.LameStruct** %digits
+	%r179 = getelementptr inbounds %struct.LameStruct* %r178, i1 0, i32 2
+	%r180 = load i64* %r179
+	call i64 @printRecursive(i64 %r177, i64 %r180)
+	%r181 = call i64 @convertBinary(i64 4)
+	%r182 = load %struct.LameStruct** %digits
+	%r183 = getelementptr inbounds %struct.LameStruct* %r182, i1 0, i32 3
+	%r184 = load i64* %r183
+	call i64 @printRecursive(i64 %r181, i64 %r184)
+	%r185 = call i64 @convertBinary(i64 5)
+	%r186 = load %struct.LameStruct** %digits
+	%r187 = getelementptr inbounds %struct.LameStruct* %r186, i1 0, i32 4
+	%r188 = load i64* %r187
+	call i64 @printRecursive(i64 %r185, i64 %r188)
+	%r189 = call i64 @convertBinary(i64 6)
+	%r190 = load %struct.LameStruct** %digits
+	%r191 = getelementptr inbounds %struct.LameStruct* %r190, i1 0, i32 5
+	%r192 = load i64* %r191
+	call i64 @printRecursive(i64 %r189, i64 %r192)
+	%r193 = call i64 @convertBinary(i64 7)
+	%r194 = load %struct.LameStruct** %digits
+	%r195 = getelementptr inbounds %struct.LameStruct* %r194, i1 0, i32 6
+	%r196 = load i64* %r195
+	call i64 @printRecursive(i64 %r193, i64 %r196)
+	%r197 = call i64 @convertBinary(i64 8)
+	%r198 = load %struct.LameStruct** %digits
+	%r199 = getelementptr inbounds %struct.LameStruct* %r198, i1 0, i32 7
+	%r200 = load i64* %r199
+	call i64 @printRecursive(i64 %r197, i64 %r200)
+	%r201 = call i64 @convertBinary(i64 9)
+	%r202 = load %struct.LameStruct** %digits
+	%r203 = getelementptr inbounds %struct.LameStruct* %r202, i1 0, i32 8
+	%r204 = load i64* %r203
+	call i64 @printRecursive(i64 %r201, i64 %r204)
 	store i64 0, i64* %.ret
 	br label %LU37
 LU37:

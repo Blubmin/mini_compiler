@@ -314,7 +314,8 @@ class Block:
     def handle_while(self, whle):
         after = Block(self.func, self.next)
         header = Block(self.func, after)
-        body = Block(self.func, header)
+        body = Block(self.func, None)
+        body.next = body
         self.func.blocks += [header, body]
 
         inst = JumpInstruction(header)
@@ -330,8 +331,15 @@ class Block:
 
         body.predecessors += [header]
         body.traverse_statement(whle["body"])
+        last = self.func.blocks[-1]
+        last.instructions.pop()
+        res = last.traverse_expression(whle["guard"])
+        res = Block.convert_boolean(res, last)
+        inst = BrInstruction(res, body, after)
+        last.add_instruction(inst)
+        last.successors += [body, after]
 
-        after.predecessors += [header]
+        after.predecessors += [header, last]
         self.func.blocks += [after]
         return after
 

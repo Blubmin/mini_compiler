@@ -1,9 +1,10 @@
+target triple="x86_64"
 declare i8* @malloc(i64)
 declare void @free(i8*)
 declare i32 @printf(i8*, ...)
 declare i32 @scanf(i8*, ...)
 @.println = private unnamed_addr constant [5 x i8] c"%ld\0A\00", align 1
-@.printhex = private unnamed_addr constant [6 x i8] c"0x%X\0A\00", align 1
+@.printhex = private unnamed_addr constant [9 x i8] c"0x%016X\0A\00", align 1
 @.print = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @.read = private unnamed_addr constant [4 x i8] c"%ld\00", align 1
 @.read_scratch = common global i64 0, align 8
@@ -597,11 +598,16 @@ LU113:
 	%r271 = load i64* %i
 	%r272 = add i64 %r271, 1
 	store i64 %r272, i64* %i
-	br label %LU111
-LU110:
 	%r273 = load i64* %winner
-	%r274 = add i64 %r273, 1
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r274)
+	%r274 = icmp slt i64 %r273, 0
+	%r275 = load i64* %i
+	%r276 = icmp ne i64 %r275, 8
+	%r277 = and i1 %r274, %r276
+	br i1 %r277, label %LU112, label %LU110
+LU110:
+	%r278 = load i64* %winner
+	%r279 = add i64 %r278, 1
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r279)
 	store i64 0, i64* %.ret
 	br label %LU109
 LU109:

@@ -1,9 +1,10 @@
+target triple="x86_64"
 declare i8* @malloc(i64)
 declare void @free(i8*)
 declare i32 @printf(i8*, ...)
 declare i32 @scanf(i8*, ...)
 @.println = private unnamed_addr constant [5 x i8] c"%ld\0A\00", align 1
-@.printhex = private unnamed_addr constant [6 x i8] c"0x%X\0A\00", align 1
+@.printhex = private unnamed_addr constant [9 x i8] c"0x%016X\0A\00", align 1
 @.print = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @.read = private unnamed_addr constant [4 x i8] c"%ld\00", align 1
 @.read_scratch = common global i64 0, align 8
@@ -112,7 +113,9 @@ LU16:
 	%r44 = load i64* %i
 	%r45 = add i64 %r44, 1
 	store i64 %r45, i64* %i
-	br label %LU15
+	%r46 = load i64* %i
+	%r47 = icmp slt i64 %r46, 10000
+	br i1 %r47, label %LU16, label %LU14
 LU14:
 	store i64 0, i64* %.ret
 	br label %LU13

@@ -1,9 +1,10 @@
+target triple="x86_64"
 declare i8* @malloc(i64)
 declare void @free(i8*)
 declare i32 @printf(i8*, ...)
 declare i32 @scanf(i8*, ...)
 @.println = private unnamed_addr constant [5 x i8] c"%ld\0A\00", align 1
-@.printhex = private unnamed_addr constant [6 x i8] c"0x%X\0A\00", align 1
+@.printhex = private unnamed_addr constant [9 x i8] c"0x%016X\0A\00", align 1
 @.print = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @.read = private unnamed_addr constant [4 x i8] c"%ld\00", align 1
 @.read_scratch = common global i64 0, align 8
@@ -106,10 +107,14 @@ LU14:
 	%r43 = getelementptr inbounds %struct.IntList* %r42, i1 0, i32 1
 	%r44 = load %struct.IntList** %r43
 	store %struct.IntList* %r44, %struct.IntList** %list
-	br label %LU13
+	%r45 = load %struct.IntList** %list
+	%r46 = getelementptr inbounds %struct.IntList* %r45, i1 0, i32 1
+	%r47 = load %struct.IntList** %r46
+	%r48 = icmp ne %struct.IntList* %r47, null
+	br i1 %r48, label %LU14, label %LU12
 LU12:
-	%r45 = load i64* %big
-	store i64 %r45, i64* %.ret
+	%r49 = load i64* %big
+	store i64 %r49, i64* %.ret
 	br label %LU11
 LU11:
 	%r29 = load i64* %.ret
@@ -120,15 +125,15 @@ define i64 @main () {
 LU15:
 	%list = alloca %struct.IntList*
 	%.ret = alloca i64
-	%r47 = call %struct.IntList* @getIntList()
-	store %struct.IntList* %r47, %struct.IntList** %list
-	%r48 = load %struct.IntList** %list
-	%r49 = call i64 @biggestInList(%struct.IntList* %r48)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r49)
+	%r51 = call %struct.IntList* @getIntList()
+	store %struct.IntList* %r51, %struct.IntList** %list
+	%r52 = load %struct.IntList** %list
+	%r53 = call i64 @biggestInList(%struct.IntList* %r52)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r53)
 	store i64 0, i64* %.ret
 	br label %LU16
 LU16:
-	%r46 = load i64* %.ret
-	ret i64 %r46
+	%r50 = load i64* %.ret
+	ret i64 %r50
 }
 

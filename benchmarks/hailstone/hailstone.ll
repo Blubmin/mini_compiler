@@ -1,9 +1,10 @@
+target triple="x86_64"
 declare i8* @malloc(i64)
 declare void @free(i8*)
 declare i32 @printf(i8*, ...)
 declare i32 @scanf(i8*, ...)
 @.println = private unnamed_addr constant [5 x i8] c"%ld\0A\00", align 1
-@.printhex = private unnamed_addr constant [6 x i8] c"0x%X\0A\00", align 1
+@.printhex = private unnamed_addr constant [9 x i8] c"0x%016X\0A\00", align 1
 @.print = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @.read = private unnamed_addr constant [4 x i8] c"%ld\00", align 1
 @.read_scratch = common global i64 0, align 8
@@ -66,7 +67,8 @@ LU11:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r24)
 	br label %LU3
 LU10:
-	br label %LU5
+	%r25 = trunc i64 1 to i1
+	br i1 %r25, label %LU6, label %LU4
 LU4:
 	br label %LU3
 LU3:
@@ -78,14 +80,14 @@ LU12:
 	%num = alloca i64
 	%.ret = alloca i64
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r26 = load i64* @.read_scratch
-	store i64 %r26, i64* %num
-	%r27 = load i64* %num
-	call void @hailstone(i64 %r27)
+	%r27 = load i64* @.read_scratch
+	store i64 %r27, i64* %num
+	%r28 = load i64* %num
+	call void @hailstone(i64 %r28)
 	store i64 0, i64* %.ret
 	br label %LU13
 LU13:
-	%r25 = load i64* %.ret
-	ret i64 %r25
+	%r26 = load i64* %.ret
+	ret i64 %r26
 }
 

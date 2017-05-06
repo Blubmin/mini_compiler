@@ -1,8 +1,10 @@
+target triple="x86_64"
 declare i8* @malloc(i64)
 declare void @free(i8*)
 declare i32 @printf(i8*, ...)
 declare i32 @scanf(i8*, ...)
 @.println = private unnamed_addr constant [5 x i8] c"%ld\0A\00", align 1
+@.printhex = private unnamed_addr constant [9 x i8] c"0x%016X\0A\00", align 1
 @.print = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @.read = private unnamed_addr constant [4 x i8] c"%ld\00", align 1
 @.read_scratch = common global i64 0, align 8
@@ -136,34 +138,36 @@ LU17:
 LU15:
 	br label %LU19
 LU19:
-	br i1 1, label %LU20, label %LU18
+	%r42 = trunc i64 1 to i1
+	br i1 %r42, label %LU20, label %LU18
 LU20:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 7)
-	br label %LU19
+	br label %LU20
+	%r43 = trunc i64 1 to i1
 LU18:
-	%r42 = call i8* @malloc(i64 8)
-	%r43 = bitcast i8* %r42 to %struct.B*
-	%r44 = call i64 @g(i64 1, %struct.B* %r43)
-	%r45 = call i8* @malloc(i64 8)
-	%r46 = bitcast i8* %r45 to %struct.B*
-	call %struct.A* @f(i64 %r44, %struct.B* %r46)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 1)
+	%r44 = call i8* @malloc(i64 8)
+	%r45 = bitcast i8* %r44 to %struct.B*
+	%r46 = call i64 @g(i64 1, %struct.B* %r45)
 	%r47 = call i8* @malloc(i64 8)
 	%r48 = bitcast i8* %r47 to %struct.B*
+	call %struct.A* @f(i64 %r46, %struct.B* %r48)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 1)
 	%r49 = call i8* @malloc(i64 8)
 	%r50 = bitcast i8* %r49 to %struct.B*
-	%r51 = call i64 @g(i64 1, %struct.B* %r50)
-	call void @bar(%struct.B* %r48, i64 %r51)
+	%r51 = call i8* @malloc(i64 8)
+	%r52 = bitcast i8* %r51 to %struct.B*
+	%r53 = call i64 @g(i64 1, %struct.B* %r52)
+	call void @bar(%struct.B* %r50, i64 %r53)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 2)
-	%r52 = call i8* @malloc(i64 8)
-	%r53 = bitcast i8* %r52 to %struct.B*
-	%r54 = call i64 @g(i64 1, %struct.B* %r53)
-	%r55 = call i8* @malloc(i64 8)
-	%r56 = bitcast i8* %r55 to %struct.B*
-	%r57 = call %struct.A* @f(i64 %r54, %struct.B* %r56)
-	%r58 = getelementptr inbounds %struct.A* %r57, i1 0, i32 0
-	%r59 = load i64* %r58
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r59)
+	%r54 = call i8* @malloc(i64 8)
+	%r55 = bitcast i8* %r54 to %struct.B*
+	%r56 = call i64 @g(i64 1, %struct.B* %r55)
+	%r57 = call i8* @malloc(i64 8)
+	%r58 = bitcast i8* %r57 to %struct.B*
+	%r59 = call %struct.A* @f(i64 %r56, %struct.B* %r58)
+	%r60 = getelementptr inbounds %struct.A* %r59, i1 0, i32 0
+	%r61 = load i64* %r60
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r61)
 	store i64 0, i64* %.ret
 	br label %LU12
 LU12:

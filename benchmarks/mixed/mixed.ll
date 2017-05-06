@@ -1,9 +1,10 @@
+target triple="x86_64"
 declare i8* @malloc(i64)
 declare void @free(i8*)
 declare i32 @printf(i8*, ...)
 declare i32 @scanf(i8*, ...)
 @.println = private unnamed_addr constant [5 x i8] c"%ld\0A\00", align 1
-@.printhex = private unnamed_addr constant [6 x i8] c"0x%X\0A\00", align 1
+@.printhex = private unnamed_addr constant [9 x i8] c"0x%016X\0A\00", align 1
 @.print = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
 @.read = private unnamed_addr constant [4 x i8] c"%ld\00", align 1
 @.read_scratch = common global i64 0, align 8
@@ -145,84 +146,88 @@ LU10:
 	%r83 = load i64* %num
 	%r84 = sub i64 %r83, 1
 	store i64 %r84, i64* %num
-	br label %LU9
+	%r85 = load i64* %num
+	%r86 = icmp sgt i64 %r85, 0
+	br i1 %r86, label %LU10, label %LU8
 LU8:
-	%r85 = load %struct.foo** %math1
-	%r86 = bitcast %struct.foo* %r85 to i8*
-	call void @free(i8* %r86)
-	%r87 = load %struct.foo** %math2
+	%r87 = load %struct.foo** %math1
 	%r88 = bitcast %struct.foo* %r87 to i8*
 	call void @free(i8* %r88)
+	%r89 = load %struct.foo** %math2
+	%r90 = bitcast %struct.foo* %r89 to i8*
+	call void @free(i8* %r90)
 	br label %LU7
 LU7:
 	ret void
 }
 
-define void @objinstantiation (i64 %r89) {
+define void @objinstantiation (i64 %r91) {
 LU11:
 	%tmp = alloca %struct.foo*
 	%num = alloca i64
-	store i64 %r89, i64* %num
+	store i64 %r91, i64* %num
 	br label %LU14
 LU14:
-	%r91 = load i64* %num
-	%r92 = icmp sgt i64 %r91, 0
-	br i1 %r92, label %LU15, label %LU13
+	%r93 = load i64* %num
+	%r94 = icmp sgt i64 %r93, 0
+	br i1 %r94, label %LU15, label %LU13
 LU15:
-	%r93 = call i8* @malloc(i64 24)
-	%r94 = bitcast i8* %r93 to %struct.foo*
-	store %struct.foo* %r94, %struct.foo** %tmp
-	%r95 = load %struct.foo** %tmp
-	%r96 = bitcast %struct.foo* %r95 to i8*
-	call void @free(i8* %r96)
-	%r97 = load i64* %num
-	%r98 = sub i64 %r97, 1
-	store i64 %r98, i64* %num
-	br label %LU14
+	%r95 = call i8* @malloc(i64 24)
+	%r96 = bitcast i8* %r95 to %struct.foo*
+	store %struct.foo* %r96, %struct.foo** %tmp
+	%r97 = load %struct.foo** %tmp
+	%r98 = bitcast %struct.foo* %r97 to i8*
+	call void @free(i8* %r98)
+	%r99 = load i64* %num
+	%r100 = sub i64 %r99, 1
+	store i64 %r100, i64* %num
+	%r101 = load i64* %num
+	%r102 = icmp sgt i64 %r101, 0
+	br i1 %r102, label %LU15, label %LU13
 LU13:
 	br label %LU12
 LU12:
 	ret void
 }
 
-define i64 @ackermann (i64 %r99, i64 %r100) {
+define i64 @ackermann (i64 %r103, i64 %r104) {
 LU16:
 	%.ret = alloca i64
 	%m = alloca i64
-	store i64 %r99, i64* %m
+	store i64 %r103, i64* %m
 	%n = alloca i64
-	store i64 %r100, i64* %n
-	%r102 = load i64* %m
-	%r103 = icmp eq i64 %r102, 0
-	br i1 %r103, label %LU19, label %LU18
+	store i64 %r104, i64* %n
+	%r106 = load i64* %m
+	%r107 = icmp eq i64 %r106, 0
+	br i1 %r107, label %LU19, label %LU18
 LU19:
-	%r104 = load i64* %n
-	%r105 = add i64 %r104, 1
-	store i64 %r105, i64* %.ret
+	%r108 = load i64* %n
+	%r109 = add i64 %r108, 1
+	store i64 %r109, i64* %.ret
 	br label %LU17
 LU18:
-	%r106 = load i64* %n
-	%r107 = icmp eq i64 %r106, 0
-	br i1 %r107, label %LU21, label %LU22
+	%r110 = load i64* %n
+	%r111 = icmp eq i64 %r110, 0
+	br i1 %r111, label %LU21, label %LU22
 LU21:
-	%r108 = load i64* %m
-	%r109 = sub i64 %r108, 1
-	%r110 = call i64 @ackermann(i64 %r109, i64 1)
-	store i64 %r110, i64* %.ret
+	%r112 = load i64* %m
+	%r113 = sub i64 %r112, 1
+	%r114 = call i64 @ackermann(i64 %r113, i64 1)
+	store i64 %r114, i64* %.ret
 	br label %LU17
 LU22:
-	%r111 = load i64* %m
-	%r112 = sub i64 %r111, 1
-	%r113 = load i64* %m
-	%r114 = load i64* %n
-	%r115 = sub i64 %r114, 1
-	%r116 = call i64 @ackermann(i64 %r113, i64 %r115)
-	%r117 = call i64 @ackermann(i64 %r112, i64 %r116)
-	store i64 %r117, i64* %.ret
+	%r115 = load i64* %m
+	%r116 = sub i64 %r115, 1
+	%r117 = load i64* %m
+	%r118 = load i64* %n
+	%r119 = sub i64 %r118, 1
+	%r120 = call i64 @ackermann(i64 %r117, i64 %r119)
+	%r121 = call i64 @ackermann(i64 %r116, i64 %r120)
+	store i64 %r121, i64* %.ret
 	br label %LU17
 LU17:
-	%r101 = load i64* %.ret
-	ret i64 %r101
+	%r105 = load i64* %.ret
+	ret i64 %r105
 }
 
 define i64 @main () {
@@ -234,40 +239,40 @@ LU23:
 	%e = alloca i64
 	%.ret = alloca i64
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r119 = load i64* @.read_scratch
-	store i64 %r119, i64* %a
-	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r120 = load i64* @.read_scratch
-	store i64 %r120, i64* %b
-	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r121 = load i64* @.read_scratch
-	store i64 %r121, i64* %c
-	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r122 = load i64* @.read_scratch
-	store i64 %r122, i64* %d
-	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r123 = load i64* @.read_scratch
-	store i64 %r123, i64* %e
-	%r124 = load i64* %a
-	call void @tailrecursive(i64 %r124)
-	%r125 = load i64* %a
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r125)
-	%r126 = load i64* %b
-	call void @domath(i64 %r126)
-	%r127 = load i64* %b
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r127)
-	%r128 = load i64* %c
-	call void @objinstantiation(i64 %r128)
-	%r129 = load i64* %c
+	store i64 %r123, i64* %a
+	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
+	%r124 = load i64* @.read_scratch
+	store i64 %r124, i64* %b
+	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
+	%r125 = load i64* @.read_scratch
+	store i64 %r125, i64* %c
+	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
+	%r126 = load i64* @.read_scratch
+	store i64 %r126, i64* %d
+	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
+	%r127 = load i64* @.read_scratch
+	store i64 %r127, i64* %e
+	%r128 = load i64* %a
+	call void @tailrecursive(i64 %r128)
+	%r129 = load i64* %a
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r129)
-	%r130 = load i64* %d
-	%r131 = load i64* %e
-	%r132 = call i64 @ackermann(i64 %r130, i64 %r131)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r132)
+	%r130 = load i64* %b
+	call void @domath(i64 %r130)
+	%r131 = load i64* %b
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r131)
+	%r132 = load i64* %c
+	call void @objinstantiation(i64 %r132)
+	%r133 = load i64* %c
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r133)
+	%r134 = load i64* %d
+	%r135 = load i64* %e
+	%r136 = call i64 @ackermann(i64 %r134, i64 %r135)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r136)
 	store i64 0, i64* %.ret
 	br label %LU24
 LU24:
-	%r118 = load i64* %.ret
-	ret i64 %r118
+	%r122 = load i64* %.ret
+	ret i64 %r122
 }
 
