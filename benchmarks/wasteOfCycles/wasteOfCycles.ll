@@ -13,68 +13,42 @@ declare i32 @scanf(i8*, ...)
 
 define i64 @function (i64 %r0) {
 LU0:
-	%i = alloca i64
-	%j = alloca i64
-	%.ret = alloca i64
-	%n = alloca i64
-	store i64 %r0, i64* %n
-	%r2 = load i64* %n
-	%r3 = icmp sle i64 %r2, 0
-	br i1 %r3, label %LU3, label %LU2
+	%r1 = icmp sle i64 %r0, 0
+	br i1 %r1, label %LU3, label %LU2
 LU3:
-	store i64 0, i64* %.ret
 	br label %LU1
 LU2:
-	store i64 0, i64* %i
 	br label %LU5
 LU5:
-	%r4 = load i64* %i
-	%r5 = load i64* %n
-	%r6 = load i64* %n
-	%r7 = mul i64 %r5, %r6
-	%r8 = icmp slt i64 %r4, %r7
-	br i1 %r8, label %LU6, label %LU4
+	%r2 = mul i64 %r0, %r0
+	%r3 = icmp slt i64 0, %r2
+	br i1 %r3, label %LU6, label %LU4
 LU6:
-	%r9 = load i64* %i
-	%r10 = load i64* %n
-	%r11 = add i64 %r9, %r10
-	store i64 %r11, i64* %j
-	%r12 = load i64* %j
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r12)
-	%r13 = load i64* %i
-	%r14 = add i64 %r13, 1
-	store i64 %r14, i64* %i
-	%r15 = load i64* %i
-	%r16 = load i64* %n
-	%r17 = load i64* %n
-	%r18 = mul i64 %r16, %r17
-	%r19 = icmp slt i64 %r15, %r18
-	br i1 %r19, label %LU6, label %LU4
+	%r7 = phi i64 [ 0, %LU5 ], [ %r6, %LU6 ]
+	%r4 = phi i64 [ 0, %LU5 ], [ %r8, %LU6 ]
+	%r6 = add i64 %r4, %r0
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r6)
+	%r8 = add i64 %r4, 1
+	%r9 = mul i64 %r0, %r0
+	%r10 = icmp slt i64 %r8, %r9
+	br i1 %r10, label %LU6, label %LU4
 LU4:
-	%r20 = load i64* %n
-	%r21 = sub i64 %r20, 1
-	%r22 = call i64 @function(i64 %r21)
-	store i64 %r22, i64* %.ret
+	%r12 = sub i64 %r0, 1
+	%r13 = call i64 @function(i64 %r12)
 	br label %LU1
 LU1:
-	%r1 = load i64* %.ret
-	ret i64 %r1
+	%r15 = phi i64 [ 0, %LU3 ], [ %r13, %LU4 ]
+	ret i64 %r15
 }
 
 define i64 @main () {
 LU7:
-	%num = alloca i64
-	%.ret = alloca i64
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r24 = load i64* @.read_scratch
-	store i64 %r24, i64* %num
-	%r25 = load i64* %num
-	call i64 @function(i64 %r25)
+	%r16 = load i64* @.read_scratch
+	call i64 @function(i64 %r16)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 0)
-	store i64 0, i64* %.ret
 	br label %LU8
 LU8:
-	%r23 = load i64* %.ret
-	ret i64 %r23
+	ret i64 0
 }
 

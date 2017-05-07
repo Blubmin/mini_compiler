@@ -16,263 +16,172 @@ declare i32 @scanf(i8*, ...)
 
 define void @tailrecursive (i64 %r0) {
 LU0:
-	%unused = alloca %struct.foo*
-	%num = alloca i64
-	store i64 %r0, i64* %num
-	%r2 = load i64* %num
-	%r3 = icmp sle i64 %r2, 0
-	br i1 %r3, label %LU3, label %LU2
+	%r1 = icmp sle i64 %r0, 0
+	br i1 %r1, label %LU3, label %LU2
 LU3:
 	br label %LU1
 LU2:
-	%r4 = call i8* @malloc(i64 24)
-	%r5 = bitcast i8* %r4 to %struct.foo*
-	store %struct.foo* %r5, %struct.foo** %unused
-	%r6 = load i64* %num
-	%r7 = sub i64 %r6, 1
-	call void @tailrecursive(i64 %r7)
+	%r2 = call i8* @malloc(i64 24)
+	%r3 = bitcast i8* %r2 to %struct.foo*
+	%r4 = sub i64 %r0, 1
+	call void @tailrecursive(i64 %r4)
 	br label %LU1
 LU1:
 	ret void
 }
 
-define i64 @add (i64 %r8, i64 %r9) {
+define i64 @add (i64 %r6, i64 %r7) {
 LU4:
-	%.ret = alloca i64
-	%x = alloca i64
-	store i64 %r8, i64* %x
-	%y = alloca i64
-	store i64 %r9, i64* %y
-	%r11 = load i64* %x
-	%r12 = load i64* %y
-	%r13 = add i64 %r11, %r12
-	store i64 %r13, i64* %.ret
+	%r8 = add i64 %r6, %r7
 	br label %LU5
 LU5:
-	%r10 = load i64* %.ret
-	ret i64 %r10
+	ret i64 %r8
 }
 
-define void @domath (i64 %r14) {
+define void @domath (i64 %r10) {
 LU6:
-	%math1 = alloca %struct.foo*
-	%math2 = alloca %struct.foo*
-	%tmp = alloca i64
-	%num = alloca i64
-	store i64 %r14, i64* %num
+	%r11 = call i8* @malloc(i64 24)
+	%r12 = bitcast i8* %r11 to %struct.foo*
+	%r13 = call i8* @malloc(i64 8)
+	%r14 = bitcast i8* %r13 to %struct.simple*
+	%r15 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 2
+	store %struct.simple* %r14, %struct.simple** %r15
 	%r16 = call i8* @malloc(i64 24)
 	%r17 = bitcast i8* %r16 to %struct.foo*
-	store %struct.foo* %r17, %struct.foo** %math1
 	%r18 = call i8* @malloc(i64 8)
 	%r19 = bitcast i8* %r18 to %struct.simple*
-	%r20 = load %struct.foo** %math1
-	%r21 = getelementptr inbounds %struct.foo* %r20, i1 0, i32 2
-	store %struct.simple* %r19, %struct.simple** %r21
-	%r22 = call i8* @malloc(i64 24)
-	%r23 = bitcast i8* %r22 to %struct.foo*
-	store %struct.foo* %r23, %struct.foo** %math2
-	%r24 = call i8* @malloc(i64 8)
-	%r25 = bitcast i8* %r24 to %struct.simple*
-	%r26 = load %struct.foo** %math2
-	%r27 = getelementptr inbounds %struct.foo* %r26, i1 0, i32 2
-	store %struct.simple* %r25, %struct.simple** %r27
-	%r28 = load i64* %num
-	%r29 = load %struct.foo** %math1
-	%r30 = getelementptr inbounds %struct.foo* %r29, i1 0, i32 0
-	store i64 %r28, i64* %r30
-	%r31 = load %struct.foo** %math2
-	%r32 = getelementptr inbounds %struct.foo* %r31, i1 0, i32 0
-	store i64 3, i64* %r32
-	%r33 = load %struct.foo** %math1
-	%r34 = getelementptr inbounds %struct.foo* %r33, i1 0, i32 0
-	%r35 = load i64* %r34
-	%r36 = load %struct.foo** %math1
-	%r37 = getelementptr inbounds %struct.foo* %r36, i1 0, i32 2
-	%r38 = load %struct.simple** %r37
-	%r39 = getelementptr inbounds %struct.simple* %r38, i1 0, i32 0
-	store i64 %r35, i64* %r39
-	%r40 = load %struct.foo** %math2
-	%r41 = getelementptr inbounds %struct.foo* %r40, i1 0, i32 0
-	%r42 = load i64* %r41
-	%r43 = load %struct.foo** %math2
-	%r44 = getelementptr inbounds %struct.foo* %r43, i1 0, i32 2
-	%r45 = load %struct.simple** %r44
-	%r46 = getelementptr inbounds %struct.simple* %r45, i1 0, i32 0
-	store i64 %r42, i64* %r46
+	%r20 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 2
+	store %struct.simple* %r19, %struct.simple** %r20
+	%r21 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 0
+	store i64 %r10, i64* %r21
+	%r22 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 0
+	store i64 3, i64* %r22
+	%r23 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 0
+	%r24 = load i64* %r23
+	%r25 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 2
+	%r26 = load %struct.simple** %r25
+	%r27 = getelementptr inbounds %struct.simple* %r26, i1 0, i32 0
+	store i64 %r24, i64* %r27
+	%r28 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 0
+	%r29 = load i64* %r28
+	%r30 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 2
+	%r31 = load %struct.simple** %r30
+	%r32 = getelementptr inbounds %struct.simple* %r31, i1 0, i32 0
+	store i64 %r29, i64* %r32
 	br label %LU9
 LU9:
-	%r47 = load i64* %num
-	%r48 = icmp sgt i64 %r47, 0
-	br i1 %r48, label %LU10, label %LU8
+	%r33 = icmp sgt i64 %r10, 0
+	br i1 %r33, label %LU10, label %LU8
 LU10:
-	%r49 = load %struct.foo** %math1
-	%r50 = getelementptr inbounds %struct.foo* %r49, i1 0, i32 0
-	%r51 = load i64* %r50
-	%r52 = load %struct.foo** %math2
-	%r53 = getelementptr inbounds %struct.foo* %r52, i1 0, i32 0
-	%r54 = load i64* %r53
-	%r55 = mul i64 %r51, %r54
-	store i64 %r55, i64* %tmp
-	%r56 = load i64* %tmp
-	%r57 = load %struct.foo** %math1
-	%r58 = getelementptr inbounds %struct.foo* %r57, i1 0, i32 2
-	%r59 = load %struct.simple** %r58
-	%r60 = getelementptr inbounds %struct.simple* %r59, i1 0, i32 0
-	%r61 = load i64* %r60
-	%r62 = mul i64 %r56, %r61
-	%r63 = load %struct.foo** %math2
-	%r64 = getelementptr inbounds %struct.foo* %r63, i1 0, i32 0
-	%r65 = load i64* %r64
-	%r66 = sdiv i64 %r62, %r65
-	store i64 %r66, i64* %tmp
-	%r67 = load %struct.foo** %math2
-	%r68 = getelementptr inbounds %struct.foo* %r67, i1 0, i32 2
-	%r69 = load %struct.simple** %r68
-	%r70 = getelementptr inbounds %struct.simple* %r69, i1 0, i32 0
-	%r71 = load i64* %r70
-	%r72 = load %struct.foo** %math1
-	%r73 = getelementptr inbounds %struct.foo* %r72, i1 0, i32 0
-	%r74 = load i64* %r73
-	%r75 = call i64 @add(i64 %r71, i64 %r74)
-	store i64 %r75, i64* %tmp
-	%r76 = load %struct.foo** %math2
-	%r77 = getelementptr inbounds %struct.foo* %r76, i1 0, i32 0
-	%r78 = load i64* %r77
-	%r79 = load %struct.foo** %math1
-	%r80 = getelementptr inbounds %struct.foo* %r79, i1 0, i32 0
-	%r81 = load i64* %r80
-	%r82 = sub i64 %r78, %r81
-	store i64 %r82, i64* %tmp
-	%r83 = load i64* %num
-	%r84 = sub i64 %r83, 1
-	store i64 %r84, i64* %num
-	%r85 = load i64* %num
-	%r86 = icmp sgt i64 %r85, 0
-	br i1 %r86, label %LU10, label %LU8
+	%r62 = phi i64 [ %r10, %LU9 ], [ %r63, %LU10 ]
+	%r41 = phi i64 [ 0, %LU9 ], [ %r61, %LU10 ]
+	%r35 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 0
+	%r36 = load i64* %r35
+	%r38 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 0
+	%r39 = load i64* %r38
+	%r40 = mul i64 %r36, %r39
+	%r42 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 2
+	%r43 = load %struct.simple** %r42
+	%r44 = getelementptr inbounds %struct.simple* %r43, i1 0, i32 0
+	%r45 = load i64* %r44
+	%r46 = mul i64 %r40, %r45
+	%r47 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 0
+	%r48 = load i64* %r47
+	%r49 = sdiv i64 %r46, %r48
+	%r50 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 2
+	%r51 = load %struct.simple** %r50
+	%r52 = getelementptr inbounds %struct.simple* %r51, i1 0, i32 0
+	%r53 = load i64* %r52
+	%r54 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 0
+	%r55 = load i64* %r54
+	%r56 = call i64 @add(i64 %r53, i64 %r55)
+	%r57 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 0
+	%r58 = load i64* %r57
+	%r59 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 0
+	%r60 = load i64* %r59
+	%r61 = sub i64 %r58, %r60
+	%r63 = sub i64 %r62, 1
+	%r64 = icmp sgt i64 %r63, 0
+	br i1 %r64, label %LU10, label %LU8
 LU8:
-	%r87 = load %struct.foo** %math1
-	%r88 = bitcast %struct.foo* %r87 to i8*
-	call void @free(i8* %r88)
-	%r89 = load %struct.foo** %math2
-	%r90 = bitcast %struct.foo* %r89 to i8*
-	call void @free(i8* %r90)
+	%r66 = bitcast %struct.foo* %r12 to i8*
+	call void @free(i8* %r66)
+	%r68 = bitcast %struct.foo* %r17 to i8*
+	call void @free(i8* %r68)
 	br label %LU7
 LU7:
 	ret void
 }
 
-define void @objinstantiation (i64 %r91) {
+define void @objinstantiation (i64 %r70) {
 LU11:
-	%tmp = alloca %struct.foo*
-	%num = alloca i64
-	store i64 %r91, i64* %num
 	br label %LU14
 LU14:
-	%r93 = load i64* %num
-	%r94 = icmp sgt i64 %r93, 0
-	br i1 %r94, label %LU15, label %LU13
+	%r71 = icmp sgt i64 %r70, 0
+	br i1 %r71, label %LU15, label %LU13
 LU15:
-	%r95 = call i8* @malloc(i64 24)
-	%r96 = bitcast i8* %r95 to %struct.foo*
-	store %struct.foo* %r96, %struct.foo** %tmp
-	%r97 = load %struct.foo** %tmp
-	%r98 = bitcast %struct.foo* %r97 to i8*
-	call void @free(i8* %r98)
-	%r99 = load i64* %num
-	%r100 = sub i64 %r99, 1
-	store i64 %r100, i64* %num
-	%r101 = load i64* %num
-	%r102 = icmp sgt i64 %r101, 0
-	br i1 %r102, label %LU15, label %LU13
+	%r76 = phi i64 [ %r70, %LU14 ], [ %r77, %LU15 ]
+	%r74 = phi %struct.foo* [ null, %LU14 ], [ %r73, %LU15 ]
+	%r72 = call i8* @malloc(i64 24)
+	%r73 = bitcast i8* %r72 to %struct.foo*
+	%r75 = bitcast %struct.foo* %r73 to i8*
+	call void @free(i8* %r75)
+	%r77 = sub i64 %r76, 1
+	%r78 = icmp sgt i64 %r77, 0
+	br i1 %r78, label %LU15, label %LU13
 LU13:
 	br label %LU12
 LU12:
 	ret void
 }
 
-define i64 @ackermann (i64 %r103, i64 %r104) {
+define i64 @ackermann (i64 %r80, i64 %r81) {
 LU16:
-	%.ret = alloca i64
-	%m = alloca i64
-	store i64 %r103, i64* %m
-	%n = alloca i64
-	store i64 %r104, i64* %n
-	%r106 = load i64* %m
-	%r107 = icmp eq i64 %r106, 0
-	br i1 %r107, label %LU19, label %LU18
+	%r82 = icmp eq i64 %r80, 0
+	br i1 %r82, label %LU19, label %LU18
 LU19:
-	%r108 = load i64* %n
-	%r109 = add i64 %r108, 1
-	store i64 %r109, i64* %.ret
+	%r83 = add i64 %r81, 1
 	br label %LU17
 LU18:
-	%r110 = load i64* %n
-	%r111 = icmp eq i64 %r110, 0
-	br i1 %r111, label %LU21, label %LU22
+	%r84 = icmp eq i64 %r81, 0
+	br i1 %r84, label %LU21, label %LU22
 LU21:
-	%r112 = load i64* %m
-	%r113 = sub i64 %r112, 1
-	%r114 = call i64 @ackermann(i64 %r113, i64 1)
-	store i64 %r114, i64* %.ret
+	%r85 = sub i64 %r80, 1
+	%r86 = call i64 @ackermann(i64 %r85, i64 1)
 	br label %LU17
 LU22:
-	%r115 = load i64* %m
-	%r116 = sub i64 %r115, 1
-	%r117 = load i64* %m
-	%r118 = load i64* %n
-	%r119 = sub i64 %r118, 1
-	%r120 = call i64 @ackermann(i64 %r117, i64 %r119)
-	%r121 = call i64 @ackermann(i64 %r116, i64 %r120)
-	store i64 %r121, i64* %.ret
+	%r87 = sub i64 %r80, 1
+	%r88 = sub i64 %r81, 1
+	%r89 = call i64 @ackermann(i64 %r80, i64 %r88)
+	%r90 = call i64 @ackermann(i64 %r87, i64 %r89)
 	br label %LU17
 LU17:
-	%r105 = load i64* %.ret
-	ret i64 %r105
+	%r92 = phi i64 [ %r83, %LU19 ], [ %r86, %LU21 ], [ %r90, %LU22 ]
+	ret i64 %r92
 }
 
 define i64 @main () {
 LU23:
-	%a = alloca i64
-	%b = alloca i64
-	%c = alloca i64
-	%d = alloca i64
-	%e = alloca i64
-	%.ret = alloca i64
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r123 = load i64* @.read_scratch
-	store i64 %r123, i64* %a
+	%r93 = load i64* @.read_scratch
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r124 = load i64* @.read_scratch
-	store i64 %r124, i64* %b
+	%r94 = load i64* @.read_scratch
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r125 = load i64* @.read_scratch
-	store i64 %r125, i64* %c
+	%r95 = load i64* @.read_scratch
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r126 = load i64* @.read_scratch
-	store i64 %r126, i64* %d
+	%r96 = load i64* @.read_scratch
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r127 = load i64* @.read_scratch
-	store i64 %r127, i64* %e
-	%r128 = load i64* %a
-	call void @tailrecursive(i64 %r128)
-	%r129 = load i64* %a
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r129)
-	%r130 = load i64* %b
-	call void @domath(i64 %r130)
-	%r131 = load i64* %b
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r131)
-	%r132 = load i64* %c
-	call void @objinstantiation(i64 %r132)
-	%r133 = load i64* %c
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r133)
-	%r134 = load i64* %d
-	%r135 = load i64* %e
-	%r136 = call i64 @ackermann(i64 %r134, i64 %r135)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r136)
-	store i64 0, i64* %.ret
+	%r97 = load i64* @.read_scratch
+	call void @tailrecursive(i64 %r93)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r93)
+	call void @domath(i64 %r94)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r94)
+	call void @objinstantiation(i64 %r95)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r95)
+	%r98 = call i64 @ackermann(i64 %r96, i64 %r97)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r98)
 	br label %LU24
 LU24:
-	%r122 = load i64* %.ret
-	ret i64 %r122
+	ret i64 0
 }
 

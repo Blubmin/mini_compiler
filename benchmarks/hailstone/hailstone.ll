@@ -13,62 +13,43 @@ declare i32 @scanf(i8*, ...)
 
 define i64 @mod (i64 %r0, i64 %r1) {
 LU0:
-	%.ret = alloca i64
-	%a = alloca i64
-	store i64 %r0, i64* %a
-	%b = alloca i64
-	store i64 %r1, i64* %b
-	%r3 = load i64* %a
-	%r4 = load i64* %a
-	%r5 = load i64* %b
-	%r6 = sdiv i64 %r4, %r5
-	%r7 = load i64* %b
-	%r8 = mul i64 %r6, %r7
-	%r9 = sub i64 %r3, %r8
-	store i64 %r9, i64* %.ret
+	%r2 = sdiv i64 %r0, %r1
+	%r3 = mul i64 %r2, %r1
+	%r4 = sub i64 %r0, %r3
 	br label %LU1
 LU1:
-	%r2 = load i64* %.ret
-	ret i64 %r2
+	ret i64 %r4
 }
 
-define void @hailstone (i64 %r10) {
+define void @hailstone (i64 %r6) {
 LU2:
-	%n = alloca i64
-	store i64 %r10, i64* %n
 	br label %LU5
 LU5:
-	%r12 = trunc i64 1 to i1
-	br i1 %r12, label %LU6, label %LU4
+	%r7 = trunc i64 1 to i1
+	br i1 %r7, label %LU6, label %LU4
 LU6:
-	%r13 = load i64* %n
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r13)
-	%r14 = load i64* %n
-	%r15 = call i64 @mod(i64 %r14, i64 2)
-	%r16 = icmp eq i64 %r15, 1
-	br i1 %r16, label %LU8, label %LU9
+	%r8 = phi i64 [ %r6, %LU5 ], [ %r14, %LU10 ]
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r8)
+	%r9 = call i64 @mod(i64 %r8, i64 2)
+	%r10 = icmp eq i64 %r9, 1
+	br i1 %r10, label %LU8, label %LU9
 LU8:
-	%r17 = load i64* %n
-	%r18 = mul i64 3, %r17
-	%r19 = add i64 %r18, 1
-	store i64 %r19, i64* %n
+	%r11 = mul i64 3, %r8
+	%r12 = add i64 %r11, 1
 	br label %LU7
 LU9:
-	%r20 = load i64* %n
-	%r21 = sdiv i64 %r20, 2
-	store i64 %r21, i64* %n
+	%r13 = sdiv i64 %r8, 2
 	br label %LU7
 LU7:
-	%r22 = load i64* %n
-	%r23 = icmp sle i64 %r22, 1
-	br i1 %r23, label %LU11, label %LU10
+	%r14 = phi i64 [ %r12, %LU8 ], [ %r13, %LU9 ]
+	%r15 = icmp sle i64 %r14, 1
+	br i1 %r15, label %LU11, label %LU10
 LU11:
-	%r24 = load i64* %n
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r24)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r14)
 	br label %LU3
 LU10:
-	%r25 = trunc i64 1 to i1
-	br i1 %r25, label %LU6, label %LU4
+	%r16 = trunc i64 1 to i1
+	br i1 %r16, label %LU6, label %LU4
 LU4:
 	br label %LU3
 LU3:
@@ -77,17 +58,11 @@ LU3:
 
 define i64 @main () {
 LU12:
-	%num = alloca i64
-	%.ret = alloca i64
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r27 = load i64* @.read_scratch
-	store i64 %r27, i64* %num
-	%r28 = load i64* %num
-	call void @hailstone(i64 %r28)
-	store i64 0, i64* %.ret
+	%r18 = load i64* @.read_scratch
+	call void @hailstone(i64 %r18)
 	br label %LU13
 LU13:
-	%r26 = load i64* %.ret
-	ret i64 %r26
+	ret i64 0
 }
 
