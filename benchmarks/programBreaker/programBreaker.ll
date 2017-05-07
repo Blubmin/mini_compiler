@@ -54,25 +54,25 @@ LU10:
 LU7:
 	br label %LU6
 LU6:
-	%r24 = phi i64 [ %r17, %LU8 ], [ %r21, %LU11 ], [ %r15, %LU7 ]
-	ret i64 %r24
+	%r23 = phi i64 [ %r17, %LU8 ], [ %r21, %LU11 ], [ %r15, %LU7 ]
+	ret i64 %r23
 }
 
 define i64 @main () {
 LU12:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r25 = load i64* @.read_scratch
+	%r24 = load i64* @.read_scratch
 	br label %LU15
 LU15:
-	%r26 = icmp slt i64 %r25, 10000
-	br i1 %r26, label %LU16, label %LU14
+	%r25 = icmp slt i64 %r24, 10000
+	br i1 %r25, label %LU16, label %LU14
 LU16:
-	%r27 = phi i64 [ %r25, %LU15 ], [ %r29, %LU16 ]
-	%r28 = call i64 @fun1(i64 3, i64 %r27, i64 5)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r28)
-	%r29 = add i64 %r27, 1
-	%r30 = icmp slt i64 %r29, 10000
-	br i1 %r30, label %LU16, label %LU14
+	%r26 = phi i64 [ %r24, %LU15 ], [ %r28, %LU16 ]
+	%r27 = call i64 @fun1(i64 3, i64 %r26, i64 5)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r27)
+	%r28 = add i64 %r26, 1
+	%r29 = icmp slt i64 %r28, 10000
+	br i1 %r29, label %LU16, label %LU14
 LU14:
 	br label %LU13
 LU13:

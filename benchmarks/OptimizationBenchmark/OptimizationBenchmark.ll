@@ -159,6 +159,7 @@ LU19:
 	%r93 = call i64 @sum(i64 20000)
 	br label %LU18
 LU18:
+	%r97 = phi i64 [ %r93, %LU19 ], [ %r87, %LU17 ]
 	%r94 = load i64* @global3
 	%r95 = icmp eq i64 %r94, 3
 	br i1 %r95, label %LU21, label %LU20
@@ -166,163 +167,164 @@ LU21:
 	%r96 = call i64 @sum(i64 30000)
 	br label %LU20
 LU20:
+	%r98 = phi i64 [ %r96, %LU21 ], [ %r97, %LU18 ]
 	br label %LU15
 LU15:
-	%r97 = phi i64 [ %r90, %LU16 ], [ %r87, %LU17 ]
+	%r99 = phi i64 [ %r90, %LU16 ], [ %r98, %LU20 ]
 	br label %LU14
 LU14:
-	ret i64 %r97
+	ret i64 %r99
 }
 
 define i64 @commonSubexpressionElimination () {
 LU22:
-	%r99 = mul i64 11, 22
-	%r100 = sdiv i64 33, 44
-	%r101 = mul i64 55, 66
-	%r102 = mul i64 11, 22
-	%r103 = sdiv i64 33, 44
-	%r104 = add i64 %r102, %r103
-	%r105 = mul i64 55, 66
-	%r106 = sub i64 %r104, %r105
-	%r107 = add i64 %r106, 77
-	%r108 = mul i64 11, 22
-	%r109 = sdiv i64 33, 44
-	%r110 = add i64 %r108, %r109
-	%r111 = mul i64 55, 66
-	%r112 = sub i64 %r110, %r111
-	%r113 = add i64 %r112, 77
-	%r114 = mul i64 11, 22
-	%r115 = sdiv i64 33, 44
-	%r116 = add i64 %r114, %r115
-	%r117 = mul i64 55, 66
-	%r118 = sub i64 %r116, %r117
-	%r119 = add i64 %r118, 77
-	%r120 = mul i64 11, 22
-	%r121 = sdiv i64 33, 44
-	%r122 = add i64 %r120, %r121
-	%r123 = mul i64 55, 66
-	%r124 = sub i64 %r122, %r123
-	%r125 = add i64 %r124, 77
-	%r126 = mul i64 11, 22
-	%r127 = sdiv i64 33, 44
-	%r128 = add i64 %r126, %r127
-	%r129 = mul i64 55, 66
-	%r130 = sub i64 %r128, %r129
-	%r131 = add i64 %r130, 77
-	%r132 = mul i64 11, 22
-	%r133 = sdiv i64 33, 44
-	%r134 = add i64 %r132, %r133
-	%r135 = mul i64 55, 66
-	%r136 = sub i64 %r134, %r135
-	%r137 = add i64 %r136, 77
-	%r138 = mul i64 11, 22
-	%r139 = sdiv i64 33, 44
-	%r140 = add i64 %r138, %r139
-	%r141 = mul i64 55, 66
-	%r142 = sub i64 %r140, %r141
-	%r143 = add i64 %r142, 77
-	%r144 = mul i64 11, 22
-	%r145 = sdiv i64 33, 44
-	%r146 = add i64 %r144, %r145
-	%r147 = mul i64 55, 66
-	%r148 = sub i64 %r146, %r147
-	%r149 = add i64 %r148, 77
-	%r150 = mul i64 11, 22
-	%r151 = sdiv i64 33, 44
-	%r152 = add i64 %r150, %r151
-	%r153 = mul i64 55, 66
-	%r154 = sub i64 %r152, %r153
-	%r155 = add i64 %r154, 77
-	%r156 = mul i64 11, 22
-	%r157 = sdiv i64 33, 44
-	%r158 = add i64 %r156, %r157
-	%r159 = mul i64 55, 66
-	%r160 = sub i64 %r158, %r159
-	%r161 = add i64 %r160, 77
-	%r162 = mul i64 11, 22
-	%r163 = sdiv i64 33, 44
-	%r164 = add i64 %r162, %r163
-	%r165 = mul i64 55, 66
-	%r166 = sub i64 %r164, %r165
-	%r167 = add i64 %r166, 77
-	%r168 = mul i64 22, 11
-	%r169 = sdiv i64 33, 44
-	%r170 = add i64 %r168, %r169
-	%r171 = mul i64 55, 66
-	%r172 = sub i64 %r170, %r171
-	%r173 = add i64 %r172, 77
-	%r174 = mul i64 11, 22
-	%r175 = sdiv i64 33, 44
-	%r176 = add i64 %r174, %r175
-	%r177 = mul i64 66, 55
-	%r178 = sub i64 %r176, %r177
-	%r179 = add i64 %r178, 77
-	%r180 = mul i64 11, 22
-	%r181 = add i64 77, %r180
-	%r182 = sdiv i64 33, 44
-	%r183 = add i64 %r181, %r182
-	%r184 = mul i64 55, 66
-	%r185 = sub i64 %r183, %r184
-	%r186 = mul i64 11, 22
-	%r187 = sdiv i64 33, 44
-	%r188 = add i64 %r186, %r187
-	%r189 = mul i64 55, 66
-	%r190 = sub i64 %r188, %r189
-	%r191 = add i64 %r190, 77
-	%r192 = sdiv i64 33, 44
-	%r193 = mul i64 11, 22
-	%r194 = add i64 %r192, %r193
-	%r195 = mul i64 55, 66
-	%r196 = sub i64 %r194, %r195
-	%r197 = add i64 %r196, 77
-	%r198 = add i64 11, 22
-	%r199 = add i64 %r198, 33
-	%r200 = add i64 %r199, 44
-	%r201 = add i64 %r200, 55
-	%r202 = add i64 %r201, 66
-	%r203 = add i64 %r202, 77
-	%r204 = add i64 %r203, %r99
-	%r205 = add i64 %r204, %r100
+	%r101 = mul i64 11, 22
+	%r102 = sdiv i64 33, 44
+	%r103 = mul i64 55, 66
+	%r104 = mul i64 11, 22
+	%r105 = sdiv i64 33, 44
+	%r106 = add i64 %r104, %r105
+	%r107 = mul i64 55, 66
+	%r108 = sub i64 %r106, %r107
+	%r109 = add i64 %r108, 77
+	%r110 = mul i64 11, 22
+	%r111 = sdiv i64 33, 44
+	%r112 = add i64 %r110, %r111
+	%r113 = mul i64 55, 66
+	%r114 = sub i64 %r112, %r113
+	%r115 = add i64 %r114, 77
+	%r116 = mul i64 11, 22
+	%r117 = sdiv i64 33, 44
+	%r118 = add i64 %r116, %r117
+	%r119 = mul i64 55, 66
+	%r120 = sub i64 %r118, %r119
+	%r121 = add i64 %r120, 77
+	%r122 = mul i64 11, 22
+	%r123 = sdiv i64 33, 44
+	%r124 = add i64 %r122, %r123
+	%r125 = mul i64 55, 66
+	%r126 = sub i64 %r124, %r125
+	%r127 = add i64 %r126, 77
+	%r128 = mul i64 11, 22
+	%r129 = sdiv i64 33, 44
+	%r130 = add i64 %r128, %r129
+	%r131 = mul i64 55, 66
+	%r132 = sub i64 %r130, %r131
+	%r133 = add i64 %r132, 77
+	%r134 = mul i64 11, 22
+	%r135 = sdiv i64 33, 44
+	%r136 = add i64 %r134, %r135
+	%r137 = mul i64 55, 66
+	%r138 = sub i64 %r136, %r137
+	%r139 = add i64 %r138, 77
+	%r140 = mul i64 11, 22
+	%r141 = sdiv i64 33, 44
+	%r142 = add i64 %r140, %r141
+	%r143 = mul i64 55, 66
+	%r144 = sub i64 %r142, %r143
+	%r145 = add i64 %r144, 77
+	%r146 = mul i64 11, 22
+	%r147 = sdiv i64 33, 44
+	%r148 = add i64 %r146, %r147
+	%r149 = mul i64 55, 66
+	%r150 = sub i64 %r148, %r149
+	%r151 = add i64 %r150, 77
+	%r152 = mul i64 11, 22
+	%r153 = sdiv i64 33, 44
+	%r154 = add i64 %r152, %r153
+	%r155 = mul i64 55, 66
+	%r156 = sub i64 %r154, %r155
+	%r157 = add i64 %r156, 77
+	%r158 = mul i64 11, 22
+	%r159 = sdiv i64 33, 44
+	%r160 = add i64 %r158, %r159
+	%r161 = mul i64 55, 66
+	%r162 = sub i64 %r160, %r161
+	%r163 = add i64 %r162, 77
+	%r164 = mul i64 11, 22
+	%r165 = sdiv i64 33, 44
+	%r166 = add i64 %r164, %r165
+	%r167 = mul i64 55, 66
+	%r168 = sub i64 %r166, %r167
+	%r169 = add i64 %r168, 77
+	%r170 = mul i64 22, 11
+	%r171 = sdiv i64 33, 44
+	%r172 = add i64 %r170, %r171
+	%r173 = mul i64 55, 66
+	%r174 = sub i64 %r172, %r173
+	%r175 = add i64 %r174, 77
+	%r176 = mul i64 11, 22
+	%r177 = sdiv i64 33, 44
+	%r178 = add i64 %r176, %r177
+	%r179 = mul i64 66, 55
+	%r180 = sub i64 %r178, %r179
+	%r181 = add i64 %r180, 77
+	%r182 = mul i64 11, 22
+	%r183 = add i64 77, %r182
+	%r184 = sdiv i64 33, 44
+	%r185 = add i64 %r183, %r184
+	%r186 = mul i64 55, 66
+	%r187 = sub i64 %r185, %r186
+	%r188 = mul i64 11, 22
+	%r189 = sdiv i64 33, 44
+	%r190 = add i64 %r188, %r189
+	%r191 = mul i64 55, 66
+	%r192 = sub i64 %r190, %r191
+	%r193 = add i64 %r192, 77
+	%r194 = sdiv i64 33, 44
+	%r195 = mul i64 11, 22
+	%r196 = add i64 %r194, %r195
+	%r197 = mul i64 55, 66
+	%r198 = sub i64 %r196, %r197
+	%r199 = add i64 %r198, 77
+	%r200 = add i64 11, 22
+	%r201 = add i64 %r200, 33
+	%r202 = add i64 %r201, 44
+	%r203 = add i64 %r202, 55
+	%r204 = add i64 %r203, 66
+	%r205 = add i64 %r204, 77
 	%r206 = add i64 %r205, %r101
-	%r207 = add i64 %r206, %r107
-	%r208 = add i64 %r207, %r113
-	%r209 = add i64 %r208, %r119
-	%r210 = add i64 %r209, %r125
-	%r211 = add i64 %r210, %r131
-	%r212 = add i64 %r211, %r137
-	%r213 = add i64 %r212, %r143
-	%r214 = add i64 %r213, %r149
-	%r215 = add i64 %r214, %r155
-	%r216 = add i64 %r215, %r161
-	%r217 = add i64 %r216, %r167
-	%r218 = add i64 %r217, %r173
-	%r219 = add i64 %r218, %r179
-	%r220 = add i64 %r219, %r185
-	%r221 = add i64 %r220, %r191
-	%r222 = add i64 %r221, %r197
+	%r207 = add i64 %r206, %r102
+	%r208 = add i64 %r207, %r103
+	%r209 = add i64 %r208, %r109
+	%r210 = add i64 %r209, %r115
+	%r211 = add i64 %r210, %r121
+	%r212 = add i64 %r211, %r127
+	%r213 = add i64 %r212, %r133
+	%r214 = add i64 %r213, %r139
+	%r215 = add i64 %r214, %r145
+	%r216 = add i64 %r215, %r151
+	%r217 = add i64 %r216, %r157
+	%r218 = add i64 %r217, %r163
+	%r219 = add i64 %r218, %r169
+	%r220 = add i64 %r219, %r175
+	%r221 = add i64 %r220, %r181
+	%r222 = add i64 %r221, %r187
+	%r223 = add i64 %r222, %r193
+	%r224 = add i64 %r223, %r199
 	br label %LU23
 LU23:
-	ret i64 %r222
+	ret i64 %r224
 }
 
 define i64 @hoisting () {
 LU24:
 	br label %LU27
 LU27:
-	%r224 = icmp slt i64 0, 1000000
-	br i1 %r224, label %LU28, label %LU26
+	%r226 = icmp slt i64 0, 1000000
+	br i1 %r226, label %LU28, label %LU26
 LU28:
-	%r236 = phi i64 [ 0, %LU27 ], [ %r237, %LU28 ]
-	%r235 = phi i64 [ 0, %LU27 ], [ %r234, %LU28 ]
-	%r231 = phi i64 [ 0, %LU27 ], [ %r230, %LU28 ]
-	%r225 = phi i64 [ 0, %LU27 ], [ 5, %LU28 ]
-	%r228 = add i64 1, 2
-	%r230 = add i64 %r228, 3
-	%r233 = add i64 3, 4
-	%r234 = add i64 %r233, %r230
-	%r237 = add i64 %r236, 1
-	%r238 = icmp slt i64 %r237, 1000000
-	br i1 %r238, label %LU28, label %LU26
+	%r238 = phi i64 [ 0, %LU27 ], [ %r239, %LU28 ]
+	%r237 = phi i64 [ 0, %LU27 ], [ %r236, %LU28 ]
+	%r233 = phi i64 [ 0, %LU27 ], [ %r232, %LU28 ]
+	%r227 = phi i64 [ 0, %LU27 ], [ 5, %LU28 ]
+	%r230 = add i64 1, 2
+	%r232 = add i64 %r230, 3
+	%r235 = add i64 3, 4
+	%r236 = add i64 %r235, %r232
+	%r239 = add i64 %r238, 1
+	%r240 = icmp slt i64 %r239, 1000000
+	br i1 %r240, label %LU28, label %LU26
 LU26:
 	br label %LU25
 LU25:
@@ -331,11 +333,11 @@ LU25:
 
 define i64 @doubleIf () {
 LU29:
-	%r241 = icmp eq i64 1, 1
-	br i1 %r241, label %LU32, label %LU31
+	%r243 = icmp eq i64 1, 1
+	br i1 %r243, label %LU32, label %LU31
 LU32:
-	%r242 = icmp eq i64 1, 1
-	br i1 %r242, label %LU34, label %LU35
+	%r244 = icmp eq i64 1, 1
+	br i1 %r244, label %LU34, label %LU35
 LU34:
 	br label %LU33
 LU35:
@@ -343,216 +345,217 @@ LU35:
 LU33:
 	br label %LU31
 LU31:
+	%r246 = phi i64 [ 50, %LU33 ], [ 0, %LU29 ]
 	br label %LU30
 LU30:
-	ret i64 0
+	ret i64 %r246
 }
 
 define i64 @integerDivide () {
 LU36:
-	%r245 = sdiv i64 3000, 2
-	%r246 = mul i64 %r245, 4
-	%r247 = sdiv i64 %r246, 8
-	%r248 = sdiv i64 %r247, 16
-	%r249 = mul i64 %r248, 32
-	%r250 = sdiv i64 %r249, 64
-	%r251 = mul i64 %r250, 128
-	%r252 = sdiv i64 %r251, 4
+	%r248 = sdiv i64 3000, 2
+	%r249 = mul i64 %r248, 4
+	%r250 = sdiv i64 %r249, 8
+	%r251 = sdiv i64 %r250, 16
+	%r252 = mul i64 %r251, 32
+	%r253 = sdiv i64 %r252, 64
+	%r254 = mul i64 %r253, 128
+	%r255 = sdiv i64 %r254, 4
 	br label %LU37
 LU37:
-	ret i64 %r252
+	ret i64 %r255
 }
 
 define i64 @association () {
 LU38:
-	%r254 = mul i64 10, 2
-	%r255 = sdiv i64 %r254, 2
-	%r256 = mul i64 3, %r255
-	%r257 = sdiv i64 %r256, 3
-	%r258 = mul i64 %r257, 4
-	%r259 = sdiv i64 %r258, 4
-	%r260 = add i64 %r259, 4
-	%r261 = sub i64 %r260, 4
-	%r262 = mul i64 %r261, 50
-	%r263 = sdiv i64 %r262, 50
+	%r257 = mul i64 10, 2
+	%r258 = sdiv i64 %r257, 2
+	%r259 = mul i64 3, %r258
+	%r260 = sdiv i64 %r259, 3
+	%r261 = mul i64 %r260, 4
+	%r262 = sdiv i64 %r261, 4
+	%r263 = add i64 %r262, 4
+	%r264 = sub i64 %r263, 4
+	%r265 = mul i64 %r264, 50
+	%r266 = sdiv i64 %r265, 50
 	br label %LU39
 LU39:
-	ret i64 %r263
+	ret i64 %r266
 }
 
-define i64 @tailRecursionHelper (i64 %r265, i64 %r266) {
+define i64 @tailRecursionHelper (i64 %r268, i64 %r269) {
 LU40:
-	%r267 = icmp eq i64 %r265, 0
-	br i1 %r267, label %LU43, label %LU44
+	%r270 = icmp eq i64 %r268, 0
+	br i1 %r270, label %LU43, label %LU44
 LU43:
 	br label %LU41
 LU44:
-	%r268 = sub i64 %r265, 1
-	%r269 = add i64 %r266, %r265
-	%r270 = call i64 @tailRecursionHelper(i64 %r268, i64 %r269)
+	%r271 = sub i64 %r268, 1
+	%r272 = add i64 %r269, %r268
+	%r273 = call i64 @tailRecursionHelper(i64 %r271, i64 %r272)
 	br label %LU41
 LU41:
-	%r272 = phi i64 [ %r266, %LU43 ], [ %r270, %LU44 ]
-	ret i64 %r272
+	%r275 = phi i64 [ %r269, %LU43 ], [ %r273, %LU44 ]
+	ret i64 %r275
 }
 
-define i64 @tailRecursion (i64 %r273) {
+define i64 @tailRecursion (i64 %r276) {
 LU45:
-	%r274 = call i64 @tailRecursionHelper(i64 %r273, i64 0)
+	%r277 = call i64 @tailRecursionHelper(i64 %r276, i64 0)
 	br label %LU46
 LU46:
-	ret i64 %r274
+	ret i64 %r277
 }
 
 define i64 @unswitching () {
 LU47:
 	br label %LU50
 LU50:
-	%r276 = icmp slt i64 1, 1000000
-	br i1 %r276, label %LU51, label %LU49
+	%r279 = icmp slt i64 1, 1000000
+	br i1 %r279, label %LU51, label %LU49
 LU51:
-	%r279 = phi i64 [ 1, %LU50 ], [ %r282, %LU52 ]
-	%r277 = phi i64 [ 2, %LU50 ], [ %r277, %LU52 ]
-	%r278 = icmp eq i64 %r277, 2
-	br i1 %r278, label %LU53, label %LU54
+	%r282 = phi i64 [ 1, %LU50 ], [ %r285, %LU52 ]
+	%r280 = phi i64 [ 2, %LU50 ], [ %r280, %LU52 ]
+	%r281 = icmp eq i64 %r280, 2
+	br i1 %r281, label %LU53, label %LU54
 LU53:
-	%r280 = add i64 %r279, 1
+	%r283 = add i64 %r282, 1
 	br label %LU52
 LU54:
-	%r281 = add i64 %r279, 2
+	%r284 = add i64 %r282, 2
 	br label %LU52
 LU52:
-	%r282 = phi i64 [ %r280, %LU53 ], [ %r281, %LU54 ]
-	%r283 = icmp slt i64 %r282, 1000000
-	br i1 %r283, label %LU51, label %LU49
+	%r285 = phi i64 [ %r283, %LU53 ], [ %r284, %LU54 ]
+	%r286 = icmp slt i64 %r285, 1000000
+	br i1 %r286, label %LU51, label %LU49
 LU49:
-	%r285 = phi i64 [ 1, %LU50 ], [ %r282, %LU52 ]
+	%r288 = phi i64 [ 1, %LU50 ], [ %r285, %LU52 ]
 	br label %LU48
 LU48:
-	ret i64 %r285
+	ret i64 %r288
 }
 
-define i64 @randomCalculation (i64 %r287) {
+define i64 @randomCalculation (i64 %r290) {
 LU55:
 	br label %LU58
 LU58:
-	%r288 = icmp slt i64 0, %r287
-	br i1 %r288, label %LU59, label %LU57
+	%r291 = icmp slt i64 0, %r290
+	br i1 %r291, label %LU59, label %LU57
 LU59:
-	%r298 = phi i64 [ 0, %LU58 ], [ %r305, %LU59 ]
-	%r296 = phi i64 [ 0, %LU58 ], [ %r297, %LU59 ]
-	%r295 = phi i64 [ 0, %LU58 ], [ %r294, %LU59 ]
-	%r293 = phi i64 [ 0, %LU58 ], [ %r292, %LU59 ]
-	%r291 = phi i64 [ 0, %LU58 ], [ 8, %LU59 ]
-	%r290 = phi i64 [ 0, %LU58 ], [ 7, %LU59 ]
-	%r289 = phi i64 [ 0, %LU58 ], [ 4, %LU59 ]
-	%r292 = add i64 4, 7
-	%r294 = add i64 %r292, 8
-	%r297 = add i64 %r296, %r294
-	%r299 = mul i64 %r298, 2
-	%r300 = sdiv i64 %r299, 2
-	%r301 = mul i64 3, %r300
-	%r302 = sdiv i64 %r301, 3
-	%r303 = mul i64 %r302, 4
-	%r304 = sdiv i64 %r303, 4
-	%r305 = add i64 %r304, 1
-	%r307 = icmp slt i64 %r305, %r287
-	br i1 %r307, label %LU59, label %LU57
+	%r301 = phi i64 [ 0, %LU58 ], [ %r308, %LU59 ]
+	%r299 = phi i64 [ 0, %LU58 ], [ %r300, %LU59 ]
+	%r298 = phi i64 [ 0, %LU58 ], [ %r297, %LU59 ]
+	%r296 = phi i64 [ 0, %LU58 ], [ %r295, %LU59 ]
+	%r294 = phi i64 [ 0, %LU58 ], [ 8, %LU59 ]
+	%r293 = phi i64 [ 0, %LU58 ], [ 7, %LU59 ]
+	%r292 = phi i64 [ 0, %LU58 ], [ 4, %LU59 ]
+	%r295 = add i64 4, 7
+	%r297 = add i64 %r295, 8
+	%r300 = add i64 %r299, %r297
+	%r302 = mul i64 %r301, 2
+	%r303 = sdiv i64 %r302, 2
+	%r304 = mul i64 3, %r303
+	%r305 = sdiv i64 %r304, 3
+	%r306 = mul i64 %r305, 4
+	%r307 = sdiv i64 %r306, 4
+	%r308 = add i64 %r307, 1
+	%r310 = icmp slt i64 %r308, %r290
+	br i1 %r310, label %LU59, label %LU57
 LU57:
-	%r308 = phi i64 [ 0, %LU58 ], [ %r297, %LU59 ]
+	%r311 = phi i64 [ 0, %LU58 ], [ %r300, %LU59 ]
 	br label %LU56
 LU56:
-	ret i64 %r308
+	ret i64 %r311
 }
 
-define i64 @iterativeFibonacci (i64 %r310) {
+define i64 @iterativeFibonacci (i64 %r313) {
 LU60:
-	%r311 = sub i64 0, 1
+	%r314 = sub i64 0, 1
 	br label %LU63
 LU63:
-	%r312 = icmp slt i64 0, %r310
-	br i1 %r312, label %LU64, label %LU62
+	%r315 = icmp slt i64 0, %r313
+	br i1 %r315, label %LU64, label %LU62
 LU64:
-	%r317 = phi i64 [ 0, %LU63 ], [ %r318, %LU64 ]
-	%r316 = phi i64 [ 0, %LU63 ], [ %r315, %LU64 ]
-	%r314 = phi i64 [ %r311, %LU63 ], [ %r313, %LU64 ]
-	%r313 = phi i64 [ 1, %LU63 ], [ %r315, %LU64 ]
-	%r315 = add i64 %r313, %r314
-	%r318 = add i64 %r317, 1
-	%r320 = icmp slt i64 %r318, %r310
-	br i1 %r320, label %LU64, label %LU62
+	%r320 = phi i64 [ 0, %LU63 ], [ %r321, %LU64 ]
+	%r319 = phi i64 [ 0, %LU63 ], [ %r318, %LU64 ]
+	%r317 = phi i64 [ %r314, %LU63 ], [ %r316, %LU64 ]
+	%r316 = phi i64 [ 1, %LU63 ], [ %r318, %LU64 ]
+	%r318 = add i64 %r316, %r317
+	%r321 = add i64 %r320, 1
+	%r323 = icmp slt i64 %r321, %r313
+	br i1 %r323, label %LU64, label %LU62
 LU62:
-	%r321 = phi i64 [ 1, %LU63 ], [ %r315, %LU64 ]
+	%r324 = phi i64 [ 1, %LU63 ], [ %r318, %LU64 ]
 	br label %LU61
 LU61:
-	ret i64 %r321
+	ret i64 %r324
 }
 
-define i64 @recursiveFibonacci (i64 %r323) {
+define i64 @recursiveFibonacci (i64 %r326) {
 LU65:
-	%r324 = icmp sle i64 %r323, 0
-	%r325 = icmp eq i64 %r323, 1
-	%r326 = or i1 %r324, %r325
-	br i1 %r326, label %LU68, label %LU69
+	%r327 = icmp sle i64 %r326, 0
+	%r328 = icmp eq i64 %r326, 1
+	%r329 = or i1 %r327, %r328
+	br i1 %r329, label %LU68, label %LU69
 LU68:
 	br label %LU66
 LU69:
-	%r327 = sub i64 %r323, 1
-	%r328 = call i64 @recursiveFibonacci(i64 %r327)
-	%r329 = sub i64 %r323, 2
-	%r330 = call i64 @recursiveFibonacci(i64 %r329)
-	%r331 = add i64 %r328, %r330
+	%r330 = sub i64 %r326, 1
+	%r331 = call i64 @recursiveFibonacci(i64 %r330)
+	%r332 = sub i64 %r326, 2
+	%r333 = call i64 @recursiveFibonacci(i64 %r332)
+	%r334 = add i64 %r331, %r333
 	br label %LU66
 LU66:
-	%r333 = phi i64 [ %r323, %LU68 ], [ %r331, %LU69 ]
-	ret i64 %r333
+	%r336 = phi i64 [ %r326, %LU68 ], [ %r334, %LU69 ]
+	ret i64 %r336
 }
 
 define i64 @main () {
 LU70:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r334 = load i64* @.read_scratch
+	%r337 = load i64* @.read_scratch
 	br label %LU73
 LU73:
-	%r335 = icmp slt i64 1, %r334
-	br i1 %r335, label %LU74, label %LU72
+	%r338 = icmp slt i64 1, %r337
+	br i1 %r338, label %LU74, label %LU72
 LU74:
-	%r355 = phi i64 [ 1, %LU73 ], [ %r356, %LU74 ]
-	%r337 = phi i64 [ 0, %LU73 ], [ %r354, %LU74 ]
-	%r336 = call i64 @constantFolding()
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r336)
-	%r338 = call i64 @constantPropagation()
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r338)
-	%r339 = call i64 @deadCodeElimination()
+	%r358 = phi i64 [ 1, %LU73 ], [ %r359, %LU74 ]
+	%r340 = phi i64 [ 0, %LU73 ], [ %r357, %LU74 ]
+	%r339 = call i64 @constantFolding()
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r339)
-	%r340 = call i64 @interProceduralOptimization()
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r340)
-	%r341 = call i64 @commonSubexpressionElimination()
+	%r341 = call i64 @constantPropagation()
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r341)
-	%r342 = call i64 @hoisting()
+	%r342 = call i64 @deadCodeElimination()
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r342)
-	%r343 = call i64 @doubleIf()
+	%r343 = call i64 @interProceduralOptimization()
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r343)
-	%r344 = call i64 @integerDivide()
+	%r344 = call i64 @commonSubexpressionElimination()
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r344)
-	%r345 = call i64 @association()
+	%r345 = call i64 @hoisting()
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r345)
-	%r347 = sdiv i64 %r334, 1000
-	%r348 = call i64 @tailRecursion(i64 %r347)
+	%r346 = call i64 @doubleIf()
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r346)
+	%r347 = call i64 @integerDivide()
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r347)
+	%r348 = call i64 @association()
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r348)
-	%r349 = call i64 @unswitching()
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r349)
-	%r350 = call i64 @randomCalculation(i64 %r334)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r350)
-	%r351 = sdiv i64 %r334, 5
-	%r352 = call i64 @iterativeFibonacci(i64 %r351)
+	%r350 = sdiv i64 %r337, 1000
+	%r351 = call i64 @tailRecursion(i64 %r350)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r351)
+	%r352 = call i64 @unswitching()
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r352)
-	%r353 = sdiv i64 %r334, 1000
-	%r354 = call i64 @recursiveFibonacci(i64 %r353)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r354)
-	%r356 = add i64 %r355, 1
-	%r357 = icmp slt i64 %r356, %r334
-	br i1 %r357, label %LU74, label %LU72
+	%r353 = call i64 @randomCalculation(i64 %r337)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r353)
+	%r354 = sdiv i64 %r337, 5
+	%r355 = call i64 @iterativeFibonacci(i64 %r354)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r355)
+	%r356 = sdiv i64 %r337, 1000
+	%r357 = call i64 @recursiveFibonacci(i64 %r356)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r357)
+	%r359 = add i64 %r358, 1
+	%r360 = icmp slt i64 %r359, %r337
+	br i1 %r360, label %LU74, label %LU72
 LU72:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 9999)
 	br label %LU71

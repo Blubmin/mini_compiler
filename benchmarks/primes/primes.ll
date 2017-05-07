@@ -75,7 +75,8 @@ LU18:
 	%r29 = icmp sle i64 0, %r28
 	br i1 %r29, label %LU19, label %LU17
 LU19:
-	%r30 = phi i64 [ 0, %LU18 ], [ %r33, %LU20 ]
+	%r35 = phi i64 [ %r28, %LU18 ], [ %r35, %LU20 ]
+	%r30 = phi i64 [ 0, %LU18 ], [ %r34, %LU20 ]
 	%r31 = call i64 @prime(i64 %r30)
 	%r32 = trunc i64 %r31 to i1
 	br i1 %r32, label %LU21, label %LU20
@@ -83,9 +84,9 @@ LU21:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r30)
 	br label %LU20
 LU20:
-	%r33 = add i64 %r30, 1
-	%r35 = icmp sle i64 %r33, %r28
-	br i1 %r35, label %LU19, label %LU17
+	%r34 = add i64 %r30, 1
+	%r37 = icmp sle i64 %r34, %r35
+	br i1 %r37, label %LU19, label %LU17
 LU17:
 	br label %LU16
 LU16:

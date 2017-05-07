@@ -309,6 +309,7 @@ class Block:
         self.add_instruction(jump)
         self.successors += [self.func.ret]
         self.func.ret.predecessors += [self]
+        self.next = self.func.ret
         return None
 
     def handle_assign(self, assign):
@@ -328,6 +329,9 @@ class Block:
         self.func.blocks += [true_block]
         true_block.predecessors += [self]
         if_ret = true_block.traverse_statement(iff["then"])
+        last = self.func.blocks[-1]
+        if last.next == after_block:
+            after_block.predecessors += [last]
 
         if "else" in iff:
             false_block = Block(self.func, after_block)
@@ -335,7 +339,11 @@ class Block:
             self.func.blocks += [false_block]
             false_block.predecessors += [self]
             else_ret = false_block.traverse_statement(iff["else"])
-            after_block.predecessors += [true_block, false_block]
+            last = self.func.blocks[-1]
+
+            if last.next == after_block:
+                after_block.predecessors += [last]
+                
             if if_ret is None and else_ret is None:
                 guard = Block.convert_boolean(guard, self)
                 inst = BrInstruction(guard, true_block, false_block)
@@ -344,6 +352,7 @@ class Block:
         else:
             self.successors += [after_block]
             after_block.predecessors += [self]
+
         self.func.blocks += [after_block]
 
         guard = Block.convert_boolean(guard, self)

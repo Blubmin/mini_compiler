@@ -248,48 +248,48 @@ LU44:
 LU41:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r106 = load i64* @.read_scratch
-	%r108 = icmp ne i64 %r106, 0
-	br i1 %r108, label %LU40, label %LU38
+	%r115 = icmp ne i64 %r106, 0
+	br i1 %r115, label %LU40, label %LU38
 LU38:
-	%r110 = phi %struct.LameStruct* [ %r48, %LU39 ], [ %r62, %LU41 ]
-	%r111 = call i64 @countTotal(%struct.LameStruct* %r110)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r111)
-	%r112 = call i64 @convertBinary(i64 1)
-	%r113 = getelementptr inbounds %struct.LameStruct* %r110, i1 0, i32 0
-	%r114 = load i64* %r113
-	call i64 @printRecursive(i64 %r112, i64 %r114)
-	%r115 = call i64 @convertBinary(i64 2)
-	%r116 = getelementptr inbounds %struct.LameStruct* %r110, i1 0, i32 1
-	%r117 = load i64* %r116
-	call i64 @printRecursive(i64 %r115, i64 %r117)
-	%r118 = call i64 @convertBinary(i64 3)
-	%r119 = getelementptr inbounds %struct.LameStruct* %r110, i1 0, i32 2
-	%r120 = load i64* %r119
-	call i64 @printRecursive(i64 %r118, i64 %r120)
-	%r121 = call i64 @convertBinary(i64 4)
-	%r122 = getelementptr inbounds %struct.LameStruct* %r110, i1 0, i32 3
-	%r123 = load i64* %r122
-	call i64 @printRecursive(i64 %r121, i64 %r123)
-	%r124 = call i64 @convertBinary(i64 5)
-	%r125 = getelementptr inbounds %struct.LameStruct* %r110, i1 0, i32 4
-	%r126 = load i64* %r125
-	call i64 @printRecursive(i64 %r124, i64 %r126)
-	%r127 = call i64 @convertBinary(i64 6)
-	%r128 = getelementptr inbounds %struct.LameStruct* %r110, i1 0, i32 5
-	%r129 = load i64* %r128
-	call i64 @printRecursive(i64 %r127, i64 %r129)
-	%r130 = call i64 @convertBinary(i64 7)
-	%r131 = getelementptr inbounds %struct.LameStruct* %r110, i1 0, i32 6
-	%r132 = load i64* %r131
-	call i64 @printRecursive(i64 %r130, i64 %r132)
-	%r133 = call i64 @convertBinary(i64 8)
-	%r134 = getelementptr inbounds %struct.LameStruct* %r110, i1 0, i32 7
-	%r135 = load i64* %r134
-	call i64 @printRecursive(i64 %r133, i64 %r135)
-	%r136 = call i64 @convertBinary(i64 9)
-	%r137 = getelementptr inbounds %struct.LameStruct* %r110, i1 0, i32 8
-	%r138 = load i64* %r137
-	call i64 @printRecursive(i64 %r136, i64 %r138)
+	%r124 = phi %struct.LameStruct* [ %r48, %LU39 ], [ %r62, %LU41 ]
+	%r125 = call i64 @countTotal(%struct.LameStruct* %r124)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r125)
+	%r126 = call i64 @convertBinary(i64 1)
+	%r127 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 0
+	%r128 = load i64* %r127
+	call i64 @printRecursive(i64 %r126, i64 %r128)
+	%r129 = call i64 @convertBinary(i64 2)
+	%r130 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 1
+	%r131 = load i64* %r130
+	call i64 @printRecursive(i64 %r129, i64 %r131)
+	%r132 = call i64 @convertBinary(i64 3)
+	%r133 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 2
+	%r134 = load i64* %r133
+	call i64 @printRecursive(i64 %r132, i64 %r134)
+	%r135 = call i64 @convertBinary(i64 4)
+	%r136 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 3
+	%r137 = load i64* %r136
+	call i64 @printRecursive(i64 %r135, i64 %r137)
+	%r138 = call i64 @convertBinary(i64 5)
+	%r139 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 4
+	%r140 = load i64* %r139
+	call i64 @printRecursive(i64 %r138, i64 %r140)
+	%r141 = call i64 @convertBinary(i64 6)
+	%r142 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 5
+	%r143 = load i64* %r142
+	call i64 @printRecursive(i64 %r141, i64 %r143)
+	%r144 = call i64 @convertBinary(i64 7)
+	%r145 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 6
+	%r146 = load i64* %r145
+	call i64 @printRecursive(i64 %r144, i64 %r146)
+	%r147 = call i64 @convertBinary(i64 8)
+	%r148 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 7
+	%r149 = load i64* %r148
+	call i64 @printRecursive(i64 %r147, i64 %r149)
+	%r150 = call i64 @convertBinary(i64 9)
+	%r151 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 8
+	%r152 = load i64* %r151
+	call i64 @printRecursive(i64 %r150, i64 %r152)
 	br label %LU37
 LU37:
 	ret i64 0
