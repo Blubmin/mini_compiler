@@ -26,15 +26,24 @@ if __name__ == "__main__":
             benchmark = dir;
             print()
             print_color("====== {} ======".format(dir), bcolors.OKBLUE)
-            start = time.time()
-            subprocess.call([sys.executable, "MiniCompiler.py", "{}/{}/{}.mini".format(path, dir, dir)])
+            subprocess.call([sys.executable, "MiniCompiler.py", "-s", "{}/{}/{}.mini".format(path, dir, dir)])
             subprocess.call(["clang", "{}/{}/{}.ll".format(path, dir, dir), "-o", "{}/{}/{}".format(path, dir, dir)])
-            print("compile time: {:.5f}".format(time.time() - start))
-            start = time.time()
             with open("{}/{}/input".format(path, dir)) as filein:
                 with open("{}/{}/test".format(path, dir), "w") as fileout:
                     print_color("Running:", bcolors.OKGREEN)
-                    print_color("{} < input > test".format(dir), bcolors.OKGREEN)
+                    print_color("{} Stack".format(dir), bcolors.OKGREEN)
+                    start = time.time()
+                    subprocess.call(["{}/{}/{}".format(path, dir, dir)], stdin=filein, stdout=fileout)
+            print("run time: {:.5f}".format(time.time() - start))
+            subprocess.call(["diff", "{}/{}/output".format(path, dir), "{}/{}/test".format(path, dir)])
+
+            subprocess.call([sys.executable, "MiniCompiler.py", "{}/{}/{}.mini".format(path, dir, dir)])
+            subprocess.call(["clang", "{}/{}/{}.ll".format(path, dir, dir), "-o", "{}/{}/{}".format(path, dir, dir)])
+            with open("{}/{}/input".format(path, dir)) as filein:
+                with open("{}/{}/test".format(path, dir), "w") as fileout:
+                    print_color("Running:", bcolors.OKGREEN)
+                    print_color("{} SSA".format(dir), bcolors.OKGREEN)
+                    start = time.time()
                     subprocess.call(["{}/{}/{}".format(path, dir, dir)], stdin=filein, stdout=fileout)
             print("run time: {:.5f}".format(time.time() - start))
             subprocess.call(["diff", "{}/{}/output".format(path, dir), "{}/{}/test".format(path, dir)])
