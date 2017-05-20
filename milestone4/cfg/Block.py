@@ -22,6 +22,11 @@ class Block:
         string += "label %{}".format(self.label)
         return string
 
+    def create_register(self, typ):
+        reg = Register(typ, self)
+        self.func.registers += [reg]
+        return reg
+
     def get_id(self, id):
         if id in self.locals:
             return self[id]
@@ -37,7 +42,7 @@ class Block:
                         self[id] = pred[0]["value"]
                         return pred[0]["value"]
                     else:
-                        res = Register(pred[0]["value"].type, self)
+                        res = self.create_register(pred[0]["value"].type)
                         local = Local(id, res.type, res)
                         self[id] = local
                         inst = PhiInstruction(res, res.type)
@@ -48,7 +53,7 @@ class Block:
                         self.instructions = [inst] + self.instructions
                         return local
                 else:
-                    res = Register(pred[0]["value"].type, self)
+                    res = self.create_register(pred[0]["value"].type)
                     local = Local(id, res.type, res)
                     self[id] = local
                     inst = PhiInstruction(res, res.type)
@@ -77,7 +82,7 @@ class Block:
     @staticmethod
     def convert_boolean(value, block):
         if value.type != "i1":
-            cast = Register("i1", block)
+            cast = block.create_register("i1")
             inst = TruncInstruction(cast, value, value.type, cast.type)
             block.add_instruction(inst)
             value = cast
@@ -85,12 +90,12 @@ class Block:
 
     def handle_store(self, source, target):
         if target.type == "i64" and source.type == "i1":
-            cast = Register(target.type, self)
+            cast = self.create_register(target.type)
             inst = ZextInstruction(cast, source, source.type, cast.type)
             self.add_instruction(inst)
             source = cast
         if target.type == "i1" and source.type == "i64":
-            cast = Register(target.type, self)
+            cast = self.create_register(target.type)
             inst = TruncInstruction(cast, source, source.type, cast.type)
             self.add_instruction(inst)
             source = cast
@@ -111,7 +116,7 @@ class Block:
     def handle_comp(self, eq, comp):
         lft = self.traverse_expression(eq["lft"])
         rht = self.traverse_expression(eq["rht"])
-        res = Register("i1", self)
+        res = self.create_register("i1")
         inst = ICmpInstruction(res, lft, rht, lft.type, comp)
         self.add_instruction(inst)
         return res
@@ -137,7 +142,7 @@ class Block:
     def handle_bin(self, bin, instruction):
         lft = self.traverse_expression(bin["lft"])
         rht = self.traverse_expression(bin["rht"])
-        res = Register(lft.type, self)
+        res = self.create_register(lft.type)
         inst = instruction(res, lft, rht, lft.type)
         self.add_instruction(inst)
         return res
@@ -182,13 +187,13 @@ class Block:
         if "left" in lvalue:
             lft = self.handle_lvalue(lvalue["left"])
             if utils.stack or type(lft) is not Local:
-                val = Register(lft.type, self)
+                val = self.create_register(lft.type)
                 inst = LoadInstruction(lft, val, lft.type)
                 self.add_instruction(inst)
             else:
                 val = lft.value
             idx, id_type = utils.get_struct_index(val.type, lvalue["id"])
-            ptr = Register(id_type, self)
+            ptr = self.create_register(id_type)
             inst = GetElementPtrInstruction(val.type, val, idx, ptr)
             self.add_instruction(inst)
             return ptr
@@ -202,10 +207,10 @@ class Block:
     def handle_dot(self, dot):
         lft = self.traverse_expression(dot["left"])
         idx, type = utils.get_struct_index(lft.type, dot["id"])
-        ptr = Register("{}*".format(type), self)
+        ptr = self.create_register("{}*".format(type))
         inst = GetElementPtrInstruction(lft.type, lft, idx, ptr)
         self.add_instruction(inst)
-        val = Register(type, self)
+        val = self.create_register(type)
         inst = LoadInstruction(ptr, val, type)
         self.add_instruction(inst)
         return val
@@ -213,7 +218,7 @@ class Block:
     def handle_id(self, id):
         val = self.get_id(id["id"])
         if utils.stack or type(val) is not Local:
-            reg = Register(val.type, self)
+            reg = self.create_register(val.type)
             load = LoadInstruction(val, reg, val.type)
             self.add_instruction(load)
         else:
@@ -223,11 +228,11 @@ class Block:
     def handle_new(self, new):
         type = utils.get_type(new["id"])
         size = utils.get_struct_size(type)
-        ptr = Register("i8*", self)
+        ptr = self.create_register("i8*")
         inst = MallocInstruction(ptr, size)
         self.add_instruction(inst)
 
-        cast = Register(type, self)
+        cast = self.create_register(type)
         inst = BitcastInstruction(cast, ptr, "i8*", type)
         self.add_instruction(inst)
         return cast
@@ -235,7 +240,7 @@ class Block:
     def handle_call_exp(self, call):
         type = utils.get_fun_type(call["id"])
         args = [self.traverse_expression(a) for a in call["args"]]
-        val = Register(type, self)
+        val = self.create_register(type)
         inst = CallInstruction(val, call["id"], type, args)
         self.add_instruction(inst)
         return val
@@ -247,7 +252,7 @@ class Block:
         return Bool("false")
 
     def handle_read(self, read):
-        val = Register("i64", self)
+        val = self.create_register("i64")
         self.add_instruction(ReadInstruction())
         inst = LoadInstruction(utils.get_scratch(), val, val.type)
         self.add_instruction(inst)
@@ -255,14 +260,14 @@ class Block:
 
     def handle_not(self, unary):
         val = self.traverse_expression(unary["operand"])
-        inv = Register(val.type, self)
+        inv = self.create_register(val.type)
         inst = NotInstruction(inv, val, val.type)
         self.add_instruction(inst)
         return inv
 
     def handle_neg(self, unary):
         val = self.traverse_expression(unary["operand"])
-        neg = Register(val.type, self)
+        neg = self.create_register(val.type)
         inst = NegInstruction(neg, val, val.type)
         self.add_instruction(inst)
         return neg
@@ -276,7 +281,7 @@ class Block:
 
     def handle_global(self, g):
         glob = utils.get_global(g["id"])
-        res = Register(glob.type, self)
+        res = self.create_register(glob.type)
         inst = LoadInstruction(glob, res, glob.type)
         self.add_instruction(inst)
         return res
@@ -421,7 +426,7 @@ class Block:
 
     def handle_delete(self, delete):
         val = self.traverse_expression(delete["exp"])
-        cast = Register("i8*", self)
+        cast = self.create_register("i8*")
         inst = BitcastInstruction(cast, val, val.type, "i8*")
         self.add_instruction(inst)
         inst = FreeInstruction(cast)
