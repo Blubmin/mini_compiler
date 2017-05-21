@@ -18,7 +18,7 @@ class StoreInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class LoadInstruction:
@@ -39,7 +39,7 @@ class LoadInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class AllocaInstruction:
@@ -72,7 +72,7 @@ class RetInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class JumpInstruction:
@@ -103,7 +103,7 @@ class GetElementPtrInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class ICmpInstruction:
@@ -124,9 +124,9 @@ class ICmpInstruction:
         return string
 
     def replace(self, o, r):
-        if self.lft == o:
+        if self.lft is o:
             self.lft = r
-        if self.rht == o:
+        if self.rht is o:
             self.rht = r
 
 class BrInstruction:
@@ -143,7 +143,9 @@ class BrInstruction:
         return string
 
     def replace(self, o, r):
-        return
+        if self.cond is o:
+            self.cond = r
+
 
 class PrintInstruction:
     def __init__(self, value, endl):
@@ -160,7 +162,7 @@ class PrintInstruction:
         return string
 
     def replace(self, o, r):
-        if self.value == o:
+        if self.value is o:
             self.value = r
 
 class ReadInstruction:
@@ -190,9 +192,9 @@ class AddInstruction:
         return string
 
     def replace(self, o, r):
-        if self.lft == o:
+        if self.lft is o:
             self.lft = r
-        if self.rht == o:
+        if self.rht is o:
             self.rht = r
 
 class SubInstruction:
@@ -212,9 +214,9 @@ class SubInstruction:
         return string
 
     def replace(self, o, r):
-        if self.lft == o:
+        if self.lft is o:
             self.lft = r
-        if self.rht == o:
+        if self.rht is o:
             self.rht = r
 
 class MultInstruction:
@@ -234,9 +236,9 @@ class MultInstruction:
         return string
 
     def replace(self, o, r):
-        if self.lft == o:
+        if self.lft is o:
             self.lft = r
-        if self.rht == o:
+        if self.rht is o:
             self.rht = r
 
 class DivInstruction:
@@ -256,9 +258,9 @@ class DivInstruction:
         return string
 
     def replace(self, o, r):
-        if self.lft == o:
+        if self.lft is o:
             self.lft = r
-        if self.rht == o:
+        if self.rht is o:
             self.rht = r
 
 class MallocInstruction:
@@ -288,7 +290,7 @@ class FreeInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class BitcastInstruction:
@@ -307,7 +309,7 @@ class BitcastInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class ZextInstruction:
@@ -326,7 +328,7 @@ class ZextInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class TruncInstruction:
@@ -345,7 +347,7 @@ class TruncInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class CallInstruction:
@@ -372,7 +374,7 @@ class CallInstruction:
 
     def replace(self, o, r):
         for i in range(len(self.args)):
-            if self.args[i] == o:
+            if self.args[i] is o:
                 self.args[i] = r
 
 class NotInstruction:
@@ -390,7 +392,7 @@ class NotInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class NegInstruction:
@@ -408,7 +410,7 @@ class NegInstruction:
         return string
 
     def replace(self, o, r):
-        if self.source == o:
+        if self.source is o:
             self.source = r
 
 class AndInstruction:
@@ -428,9 +430,9 @@ class AndInstruction:
         return string
 
     def replace(self, o, r):
-        if self.lft == o:
+        if self.lft is o:
             self.lft = r
-        if self.rht == o:
+        if self.rht is o:
             self.rht = r
 
 class OrInstruction:
@@ -450,9 +452,9 @@ class OrInstruction:
         return string
 
     def replace(self, o, r):
-        if self.lft == o:
+        if self.lft is o:
             self.lft = r
-        if self.rht == o:
+        if self.rht is o:
             self.rht = r
 
 class PhiInstruction:
@@ -476,5 +478,5 @@ class PhiInstruction:
 
     def replace(self, o, r):
         for i in range(len(self.sources)):
-            if self.sources[i]["value"] == o:
+            if self.sources[i]["value"] is o:
                 self.sources[i]["value"] = r

@@ -1,0 +1,2 @@
+def eliminate():
+    return

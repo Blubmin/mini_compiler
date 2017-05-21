@@ -3,8 +3,6 @@ from cfg import utils
 from cfg.Block import Block
 from cfg.Instruction import *
 from cfg.Local import Local
-from cfg.Register import Register
-
 
 class Function:
     def __init__(self, ast_func):
@@ -13,10 +11,10 @@ class Function:
         self.name = ast_func["id"]
         self.type = utils.get_type(ast_func["return_type"])
         self.locals = {}
-        self.params = Parameters(ast_func["parameters"])
+        self.registers = {}
         self.entry = Block(self, None)
+        self.params = Parameters(ast_func["parameters"], self.entry)
         self.blocks = [self.entry]
-        self.registers = []
 
         for d in ast_func["declarations"]:
             local = Local.from_dict(d)
@@ -42,7 +40,7 @@ class Function:
         self.traverse_tree(ast_func["body"])
         self.ret.seal()
 
-        temp = Register(self.type, self.ret)
+        temp = self.ret.create_register(self.type)
         if utils.stack:
             ret_local = Local(".ret", self.type, utils.get_default(self.type))
 
@@ -70,6 +68,8 @@ class Function:
         if self.type == "void" and not ret:
             inst = JumpInstruction(self.ret)
             self.blocks[-1].add_instruction(inst)
+            self.blocks[-1].successors += [self.ret]
+            self.ret.predecessors += [self.blocks[-1]]
 
     def __str__(self):
         string = ""
@@ -109,10 +109,10 @@ class Function:
             i.replace(original, replacement)
 
 class Parameters:
-    def __init__(self, ast_params):
+    def __init__(self, ast_params, entry):
         self.params = []
         for p in ast_params:
-            self.params += [Parameter(p)]
+            self.params += [Parameter(p, entry)]
 
     def __getitem__(self, item):
         return self.params[item]
@@ -131,9 +131,9 @@ class Parameters:
         return string
 
 class Parameter:
-    def __init__(self, ast_param):
+    def __init__(self, ast_param, entry):
         self.type = utils.get_type(ast_param["type"])
-        self.reg = Register(self.type, utils.cur_block())
+        self.reg = entry.create_register(self.type)
         self.id = ast_param["id"]
 
     def __str__(self):

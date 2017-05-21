@@ -47,3 +47,14 @@ if __name__ == "__main__":
                     subprocess.call(["{}/{}/{}".format(path, dir, dir)], stdin=filein, stdout=fileout)
             print("run time: {:.5f}".format(time.time() - start))
             subprocess.call(["diff", "{}/{}/output".format(path, dir), "{}/{}/test".format(path, dir)])
+
+            subprocess.call([sys.executable, "MiniCompiler.py", "-o", "{}/{}/{}.mini".format(path, dir, dir)])
+            subprocess.call(["clang", "{}/{}/{}.ll".format(path, dir, dir), "-o", "{}/{}/{}".format(path, dir, dir)])
+            with open("{}/{}/input".format(path, dir)) as filein:
+                with open("{}/{}/test".format(path, dir), "w") as fileout:
+                    print_color("Running:", bcolors.OKGREEN)
+                    print_color("{} SSA Optimizations".format(dir), bcolors.OKGREEN)
+                    start = time.time()
+                    subprocess.call(["{}/{}/{}".format(path, dir, dir)], stdin=filein, stdout=fileout)
+            print("run time: {:.5f}".format(time.time() - start))
+            subprocess.call(["diff", "{}/{}/output".format(path, dir), "{}/{}/test".format(path, dir)])

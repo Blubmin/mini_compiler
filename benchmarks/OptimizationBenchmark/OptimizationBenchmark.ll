@@ -317,7 +317,6 @@ LU28:
 	%r238 = phi i64 [ 0, %LU27 ], [ %r239, %LU28 ]
 	%r237 = phi i64 [ 0, %LU27 ], [ %r236, %LU28 ]
 	%r233 = phi i64 [ 0, %LU27 ], [ %r232, %LU28 ]
-	%r227 = phi i64 [ 0, %LU27 ], [ 5, %LU28 ]
 	%r230 = add i64 1, 2
 	%r232 = add i64 %r230, 3
 	%r235 = add i64 3, 4
@@ -345,10 +344,9 @@ LU35:
 LU33:
 	br label %LU31
 LU31:
-	%r246 = phi i64 [ 50, %LU33 ], [ 0, %LU29 ]
 	br label %LU30
 LU30:
-	ret i64 %r246
+	ret i64 50
 }
 
 define i64 @integerDivide () {
@@ -446,9 +444,6 @@ LU59:
 	%r299 = phi i64 [ 0, %LU58 ], [ %r300, %LU59 ]
 	%r298 = phi i64 [ 0, %LU58 ], [ %r297, %LU59 ]
 	%r296 = phi i64 [ 0, %LU58 ], [ %r295, %LU59 ]
-	%r294 = phi i64 [ 0, %LU58 ], [ 8, %LU59 ]
-	%r293 = phi i64 [ 0, %LU58 ], [ 7, %LU59 ]
-	%r292 = phi i64 [ 0, %LU58 ], [ 4, %LU59 ]
 	%r295 = add i64 4, 7
 	%r297 = add i64 %r295, 8
 	%r300 = add i64 %r299, %r297

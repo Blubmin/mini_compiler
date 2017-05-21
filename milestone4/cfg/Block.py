@@ -24,7 +24,8 @@ class Block:
 
     def create_register(self, typ):
         reg = Register(typ, self)
-        self.func.registers += [reg]
+        if typ != "void":
+            self.func.registers[reg.id] = reg
         return reg
 
     def get_id(self, id):
@@ -75,6 +76,7 @@ class Block:
 
     def add_instruction(self, instruction):
         self.instructions += [instruction]
+        instruction.block = self
 
     def add_local(self, local):
         self.locals[local.id] = local
@@ -337,6 +339,7 @@ class Block:
         last = self.func.blocks[-1]
         if last.next == after_block:
             after_block.predecessors += [last]
+            last.successors += [after_block]
 
         if "else" in iff:
             false_block = Block(self.func, after_block)
@@ -348,6 +351,7 @@ class Block:
 
             if last.next == after_block:
                 after_block.predecessors += [last]
+                last.successors += [after_block]
 
             if if_ret is None and else_ret is None:
                 guard = Block.convert_boolean(guard, self)
@@ -459,6 +463,9 @@ class Block:
 
     def __setitem__(self, key, value):
         self.locals[key] = value
+
+    def __eq__(self, other):
+        return self.label == other.label
 
     def __str__(self):
         string = ""
