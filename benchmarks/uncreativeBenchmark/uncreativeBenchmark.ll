@@ -40,8 +40,6 @@ LU0:
 	%r24 = getelementptr inbounds %struct.LameStruct* %r0, i1 0, i32 8
 	%r25 = load i64* %r24
 	%r26 = add i64 %r23, %r25
-	br label %LU1
-LU1:
 	ret i64 %r26
 }
 
@@ -138,13 +136,11 @@ LU36:
 	store i64 0, i64* %r57
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r58 = load i64* @.read_scratch
-	br label %LU39
-LU39:
 	%r59 = icmp ne i64 %r58, 0
 	br i1 %r59, label %LU40, label %LU38
 LU40:
-	%r62 = phi %struct.LameStruct* [ %r48, %LU39 ], [ %r62, %LU41 ]
-	%r60 = phi i64 [ %r58, %LU39 ], [ %r106, %LU41 ]
+	%r62 = phi %struct.LameStruct* [ %r48, %LU36 ], [ %r62, %LU41 ]
+	%r60 = phi i64 [ %r58, %LU36 ], [ %r106, %LU41 ]
 	%r61 = icmp eq i64 %r60, 1
 	br i1 %r61, label %LU42, label %LU43
 LU42:
@@ -251,7 +247,7 @@ LU41:
 	%r115 = icmp ne i64 %r106, 0
 	br i1 %r115, label %LU40, label %LU38
 LU38:
-	%r124 = phi %struct.LameStruct* [ %r48, %LU39 ], [ %r62, %LU41 ]
+	%r124 = phi %struct.LameStruct* [ %r48, %LU36 ], [ %r62, %LU41 ]
 	%r125 = call i64 @countTotal(%struct.LameStruct* %r124)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r125)
 	%r126 = call i64 @convertBinary(i64 1)
@@ -290,8 +286,6 @@ LU38:
 	%r151 = getelementptr inbounds %struct.LameStruct* %r124, i1 0, i32 8
 	%r152 = load i64* %r151
 	call i64 @printRecursive(i64 %r150, i64 %r152)
-	br label %LU37
-LU37:
 	ret i64 0
 }
 

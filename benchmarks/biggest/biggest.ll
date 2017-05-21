@@ -55,15 +55,13 @@ define i64 @biggestInList (%struct.IntList* %r17) {
 LU10:
 	%r18 = getelementptr inbounds %struct.IntList* %r17, i1 0, i32 0
 	%r19 = load i64* %r18
-	br label %LU13
-LU13:
 	%r20 = getelementptr inbounds %struct.IntList* %r17, i1 0, i32 1
 	%r21 = load %struct.IntList** %r20
 	%r22 = icmp ne %struct.IntList* %r21, null
 	br i1 %r22, label %LU14, label %LU12
 LU14:
-	%r24 = phi %struct.IntList* [ %r17, %LU13 ], [ %r29, %LU14 ]
-	%r23 = phi i64 [ %r19, %LU13 ], [ %r27, %LU14 ]
+	%r24 = phi %struct.IntList* [ %r17, %LU10 ], [ %r29, %LU14 ]
+	%r23 = phi i64 [ %r19, %LU10 ], [ %r27, %LU14 ]
 	%r25 = getelementptr inbounds %struct.IntList* %r24, i1 0, i32 0
 	%r26 = load i64* %r25
 	%r27 = call i64 @biggest(i64 %r23, i64 %r26)
@@ -74,9 +72,7 @@ LU14:
 	%r32 = icmp ne %struct.IntList* %r31, null
 	br i1 %r32, label %LU14, label %LU12
 LU12:
-	%r33 = phi i64 [ %r19, %LU13 ], [ %r27, %LU14 ]
-	br label %LU11
-LU11:
+	%r33 = phi i64 [ %r19, %LU10 ], [ %r27, %LU14 ]
 	ret i64 %r33
 }
 
@@ -85,8 +81,6 @@ LU15:
 	%r35 = call %struct.IntList* @getIntList()
 	%r36 = call i64 @biggestInList(%struct.IntList* %r35)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r36)
-	br label %LU16
-LU16:
 	ret i64 0
 }
 

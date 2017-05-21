@@ -14,8 +14,6 @@ declare i32 @scanf(i8*, ...)
 define i64 @sum (i64 %r0, i64 %r1) {
 LU0:
 	%r2 = add i64 %r0, %r1
-	br label %LU1
-LU1:
 	ret i64 %r2
 }
 
@@ -46,8 +44,6 @@ LU3:
 
 define i64 @main () {
 LU8:
-	br label %LU11
-LU11:
 	br label %LU12
 LU12:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
@@ -63,8 +59,6 @@ LU12:
 	%r29 = icmp ne i64 %r26, -1
 	br i1 %r29, label %LU12, label %LU10
 LU10:
-	br label %LU9
-LU9:
 	ret i64 0
 }
 

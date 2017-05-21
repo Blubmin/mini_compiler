@@ -75,13 +75,11 @@ LU12:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r28 = load i64* @.read_scratch
 	store i64 %r28, i64* @intList
-	br label %LU15
-LU15:
 	%r29 = load i64* @intList
 	%r30 = icmp sgt i64 %r29, 0
 	br i1 %r30, label %LU16, label %LU14
 LU16:
-	%r31 = phi %struct.intList* [ null, %LU15 ], [ %r33, %LU16 ]
+	%r31 = phi %struct.intList* [ null, %LU12 ], [ %r33, %LU16 ]
 	%r32 = load i64* @intList
 	%r33 = call %struct.intList* @addToFront(%struct.intList* %r31, i64 %r32)
 	%r34 = getelementptr inbounds %struct.intList* %r33, i1 0, i32 0
@@ -94,17 +92,15 @@ LU16:
 	%r39 = icmp sgt i64 %r38, 0
 	br i1 %r39, label %LU16, label %LU14
 LU14:
-	%r40 = phi %struct.intList* [ null, %LU15 ], [ %r33, %LU16 ]
+	%r40 = phi %struct.intList* [ null, %LU12 ], [ %r33, %LU16 ]
 	%r41 = call i64 @length(%struct.intList* %r40)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r41)
-	br label %LU18
-LU18:
 	%r42 = call i64 @length(%struct.intList* %r40)
 	%r43 = icmp sgt i64 %r42, 0
 	br i1 %r43, label %LU19, label %LU17
 LU19:
-	%r47 = phi %struct.intList* [ %r40, %LU18 ], [ %r52, %LU19 ]
-	%r46 = phi i64 [ 0, %LU18 ], [ %r50, %LU19 ]
+	%r47 = phi %struct.intList* [ %r40, %LU14 ], [ %r52, %LU19 ]
+	%r46 = phi i64 [ 0, %LU14 ], [ %r50, %LU19 ]
 	%r48 = getelementptr inbounds %struct.intList* %r47, i1 0, i32 0
 	%r49 = load i64* %r48
 	%r50 = add i64 %r46, %r49
@@ -115,10 +111,8 @@ LU19:
 	%r54 = icmp sgt i64 %r53, 0
 	br i1 %r54, label %LU19, label %LU17
 LU17:
-	%r55 = phi i64 [ 0, %LU18 ], [ %r50, %LU19 ]
+	%r55 = phi i64 [ 0, %LU14 ], [ %r50, %LU19 ]
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r55)
-	br label %LU13
-LU13:
 	ret i64 0
 }
 

@@ -78,8 +78,6 @@ LU8:
 	%r28 = load i64* @numMoves
 	%r29 = add i64 %r28, 1
 	store i64 %r29, i64* @numMoves
-	br label %LU1
-LU1:
 	ret void
 }
 
@@ -98,19 +96,15 @@ LU18:
 	call void @hanoi(i64 %r37, i64 %r34, i64 %r33, i64 %r32)
 	br label %LU16
 LU16:
-	br label %LU15
-LU15:
 	ret void
 }
 
 define void @printPeg (%struct.plate* %r39) {
 LU19:
-	br label %LU22
-LU22:
 	%r40 = icmp ne %struct.plate* %r39, null
 	br i1 %r40, label %LU23, label %LU21
 LU23:
-	%r41 = phi %struct.plate* [ %r39, %LU22 ], [ %r45, %LU23 ]
+	%r41 = phi %struct.plate* [ %r39, %LU19 ], [ %r45, %LU23 ]
 	%r42 = getelementptr inbounds %struct.plate* %r41, i1 0, i32 0
 	%r43 = load i64* %r42
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r43)
@@ -119,8 +113,6 @@ LU23:
 	%r46 = icmp ne %struct.plate* %r45, null
 	br i1 %r46, label %LU23, label %LU21
 LU21:
-	br label %LU20
-LU20:
 	ret void
 }
 
@@ -135,12 +127,10 @@ LU24:
 	%r49 = icmp sge i64 %r48, 1
 	br i1 %r49, label %LU27, label %LU26
 LU27:
-	br label %LU29
-LU29:
 	%r50 = icmp ne i64 %r48, 0
 	br i1 %r50, label %LU30, label %LU28
 LU30:
-	%r54 = phi i64 [ %r48, %LU29 ], [ %r58, %LU30 ]
+	%r54 = phi i64 [ %r48, %LU27 ], [ %r58, %LU30 ]
 	%r51 = call i8* @malloc(i64 16)
 	%r52 = bitcast i8* %r51 to %struct.plate*
 	%r55 = getelementptr inbounds %struct.plate* %r52, i1 0, i32 0
@@ -174,8 +164,6 @@ LU28:
 	call void @printPeg(%struct.plate* %r67)
 	%r68 = load i64* @numMoves
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r68)
-	br label %LU32
-LU32:
 	%r69 = load %struct.plate** @peg3
 	%r70 = icmp ne %struct.plate* %r69, null
 	br i1 %r70, label %LU33, label %LU31
@@ -190,8 +178,6 @@ LU33:
 LU31:
 	br label %LU26
 LU26:
-	br label %LU25
-LU25:
 	ret i64 0
 }
 

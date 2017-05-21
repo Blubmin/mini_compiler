@@ -55,8 +55,6 @@ LU4:
 	%r25 = sdiv i64 %r24, 2
 	%r26 = getelementptr inbounds %struct.IntHolder* %r14, i1 0, i32 0
 	store i64 %r25, i64* %r26
-	br label %LU5
-LU5:
 	ret void
 }
 
@@ -73,21 +71,17 @@ LU6:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r30)
 	%r32 = load i64* @interval
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r32)
-	br label %LU9
-LU9:
 	br label %LU10
 LU10:
-	%r76 = phi i64 [ 0, %LU9 ], [ %r80, %LU11 ]
-	%r51 = phi %struct.IntHolder* [ %r29, %LU9 ], [ %r84, %LU11 ]
-	%r47 = phi i64 [ 0, %LU9 ], [ %r83, %LU11 ]
-	br label %LU12
-LU12:
+	%r76 = phi i64 [ 0, %LU6 ], [ %r80, %LU11 ]
+	%r51 = phi %struct.IntHolder* [ %r29, %LU6 ], [ %r84, %LU11 ]
+	%r47 = phi i64 [ 0, %LU6 ], [ %r83, %LU11 ]
 	%r35 = load i64* @end
 	%r36 = icmp sle i64 0, %r35
 	br i1 %r36, label %LU13, label %LU11
 LU13:
-	%r52 = phi %struct.IntHolder* [ %r51, %LU12 ], [ %r52, %LU14 ]
-	%r49 = phi i64 [ 0, %LU12 ], [ %r69, %LU14 ]
+	%r52 = phi %struct.IntHolder* [ %r51, %LU10 ], [ %r52, %LU14 ]
+	%r49 = phi i64 [ 0, %LU10 ], [ %r69, %LU14 ]
 	%r46 = mul i64 3628800, 11
 	%r50 = add i64 %r49, 1
 	%r53 = getelementptr inbounds %struct.IntHolder* %r52, i1 0, i32 0
@@ -107,17 +101,15 @@ LU14:
 	%r71 = icmp sle i64 %r69, %r70
 	br i1 %r71, label %LU13, label %LU11
 LU11:
-	%r84 = phi %struct.IntHolder* [ %r51, %LU12 ], [ %r52, %LU14 ]
-	%r83 = phi i64 [ %r47, %LU12 ], [ %r46, %LU14 ]
-	%r82 = phi i64 [ 0, %LU12 ], [ %r69, %LU14 ]
+	%r84 = phi %struct.IntHolder* [ %r51, %LU10 ], [ %r52, %LU14 ]
+	%r83 = phi i64 [ %r47, %LU10 ], [ %r46, %LU14 ]
+	%r82 = phi i64 [ 0, %LU10 ], [ %r69, %LU14 ]
 	%r80 = add i64 %r76, 1
 	%r81 = icmp slt i64 %r80, 50
 	br i1 %r81, label %LU10, label %LU8
 LU8:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r82)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r83)
-	br label %LU7
-LU7:
 	ret i64 0
 }
 

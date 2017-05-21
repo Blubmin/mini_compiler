@@ -18,13 +18,11 @@ LU0:
 LU3:
 	br label %LU1
 LU2:
-	br label %LU5
-LU5:
 	%r2 = mul i64 %r0, %r0
 	%r3 = icmp slt i64 0, %r2
 	br i1 %r3, label %LU6, label %LU4
 LU6:
-	%r4 = phi i64 [ 0, %LU5 ], [ %r8, %LU6 ]
+	%r4 = phi i64 [ 0, %LU2 ], [ %r8, %LU6 ]
 	%r6 = add i64 %r4, %r0
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r6)
 	%r8 = add i64 %r4, 1
@@ -46,8 +44,6 @@ LU7:
 	%r16 = load i64* @.read_scratch
 	call i64 @function(i64 %r16)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 0)
-	br label %LU8
-LU8:
 	ret i64 0
 }
 

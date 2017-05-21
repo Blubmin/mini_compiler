@@ -84,7 +84,8 @@ class JumpInstruction:
         return string
 
     def replace(self, o, r):
-       return
+       if self.dest is o:
+           self.dest = r
 
 class GetElementPtrInstruction:
     def __init__(self, type, source, idx, target):
@@ -142,6 +143,10 @@ class BrInstruction:
         return string
 
     def replace(self, o, r):
+        if self.true is o:
+            self.true = r
+        if self.false is o:
+            self.false = r
         if self.cond is o:
             self.cond = r
 
@@ -483,3 +488,5 @@ class PhiInstruction:
         for i in range(len(self.sources)):
             if self.sources[i]["value"] is o:
                 self.sources[i]["value"] = r
+            if self.sources[i]["location"] is o:
+                self.sources[i]["location"] = r

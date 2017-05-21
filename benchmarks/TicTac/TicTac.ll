@@ -32,8 +32,6 @@ LU0:
 	store i64 0, i64* %r8
 	%r9 = getelementptr inbounds %struct.gameBoard* %r0, i1 0, i32 8
 	store i64 0, i64* %r9
-	br label %LU1
-LU1:
 	ret void
 }
 
@@ -66,8 +64,6 @@ LU2:
 	%r28 = getelementptr inbounds %struct.gameBoard* %r11, i1 0, i32 8
 	%r29 = load i64* %r28
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r29)
-	br label %LU3
-LU3:
 	ret void
 }
 
@@ -76,8 +72,6 @@ LU4:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 123)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 456)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 789)
-	br label %LU5
-LU5:
 	ret void
 }
 
@@ -162,8 +156,6 @@ LU14:
 LU11:
 	br label %LU8
 LU8:
-	br label %LU7
-LU7:
 	ret void
 }
 
@@ -432,13 +424,11 @@ LU108:
 	%r189 = call i8* @malloc(i64 72)
 	%r190 = bitcast i8* %r189 to %struct.gameBoard*
 	call void @cleanBoard(%struct.gameBoard* %r190)
-	br label %LU111
-LU111:
 	br label %LU112
 LU112:
-	%r207 = phi i64 [ 0, %LU111 ], [ %r209, %LU113 ]
-	%r195 = phi i64 [ 0, %LU111 ], [ %r213, %LU113 ]
-	%r194 = phi %struct.gameBoard* [ %r190, %LU111 ], [ %r194, %LU113 ]
+	%r207 = phi i64 [ 0, %LU108 ], [ %r209, %LU113 ]
+	%r195 = phi i64 [ 0, %LU108 ], [ %r213, %LU113 ]
+	%r194 = phi %struct.gameBoard* [ %r190, %LU108 ], [ %r194, %LU113 ]
 	call void @printBoard(%struct.gameBoard* %r194)
 	%r196 = icmp eq i64 %r195, 0
 	br i1 %r196, label %LU114, label %LU115
@@ -465,8 +455,6 @@ LU113:
 LU110:
 	%r217 = add i64 %r204, 1
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r217)
-	br label %LU109
-LU109:
 	ret i64 0
 }
 

@@ -40,8 +40,6 @@ LU8:
 	%r10 = load i64* @.read_scratch
 	%r11 = call i64 @computeFib(i64 %r10)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r11)
-	br label %LU9
-LU9:
 	ret i64 0
 }
 

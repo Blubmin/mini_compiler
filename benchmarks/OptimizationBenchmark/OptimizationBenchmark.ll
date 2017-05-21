@@ -16,15 +16,11 @@ declare i32 @scanf(i8*, ...)
 
 define i64 @constantFolding () {
 LU0:
-	br label %LU1
-LU1:
 	ret i64 226
 }
 
 define i64 @constantPropagation () {
 LU2:
-	br label %LU3
-LU3:
 	ret i64 -654525983689197
 }
 
@@ -33,35 +29,27 @@ LU4:
 	store i64 11, i64* @global1
 	store i64 5, i64* @global1
 	store i64 9, i64* @global1
-	br label %LU5
-LU5:
 	ret i64 38
 }
 
 define i64 @sum (i64 %r76) {
 LU6:
-	br label %LU9
-LU9:
 	%r77 = icmp sgt i64 %r76, 0
 	br i1 %r77, label %LU10, label %LU8
 LU10:
-	%r79 = phi i64 [ %r76, %LU9 ], [ %r81, %LU10 ]
-	%r78 = phi i64 [ 0, %LU9 ], [ %r80, %LU10 ]
+	%r79 = phi i64 [ %r76, %LU6 ], [ %r81, %LU10 ]
+	%r78 = phi i64 [ 0, %LU6 ], [ %r80, %LU10 ]
 	%r80 = add i64 %r78, %r79
 	%r81 = sub i64 %r79, 1
 	%r82 = icmp sgt i64 %r81, 0
 	br i1 %r82, label %LU10, label %LU8
 LU8:
-	%r83 = phi i64 [ 0, %LU9 ], [ %r80, %LU10 ]
-	br label %LU7
-LU7:
+	%r83 = phi i64 [ 0, %LU6 ], [ %r80, %LU10 ]
 	ret i64 %r83
 }
 
 define i64 @doesntModifyGlobals () {
 LU11:
-	br label %LU12
-LU12:
 	ret i64 3
 }
 
@@ -97,60 +85,38 @@ LU20:
 	br label %LU15
 LU15:
 	%r99 = phi i64 [ %r90, %LU16 ], [ %r98, %LU20 ]
-	br label %LU14
-LU14:
 	ret i64 %r99
 }
 
 define i64 @commonSubexpressionElimination () {
 LU22:
-	br label %LU23
-LU23:
 	ret i64 -48796
 }
 
 define i64 @hoisting () {
 LU24:
-	br label %LU27
-LU27:
 	br label %LU28
 LU28:
-	%r238 = phi i64 [ 0, %LU27 ], [ %r239, %LU28 ]
+	%r238 = phi i64 [ 0, %LU24 ], [ %r239, %LU28 ]
 	%r239 = add i64 %r238, 1
 	%r240 = icmp slt i64 %r239, 1000000
 	br i1 %r240, label %LU28, label %LU26
 LU26:
-	br label %LU25
-LU25:
 	ret i64 2
 }
 
 define i64 @doubleIf () {
 LU29:
-	br label %LU32
-LU32:
-	br label %LU34
-LU34:
-	br label %LU33
-LU33:
-	br label %LU31
-LU31:
-	br label %LU30
-LU30:
 	ret i64 50
 }
 
 define i64 @integerDivide () {
 LU36:
-	br label %LU37
-LU37:
 	ret i64 736
 }
 
 define i64 @association () {
 LU38:
-	br label %LU39
-LU39:
 	ret i64 10
 }
 
@@ -173,40 +139,28 @@ LU41:
 define i64 @tailRecursion (i64 %r276) {
 LU45:
 	%r277 = call i64 @tailRecursionHelper(i64 %r276, i64 0)
-	br label %LU46
-LU46:
 	ret i64 %r277
 }
 
 define i64 @unswitching () {
 LU47:
-	br label %LU50
-LU50:
 	br label %LU51
 LU51:
-	%r282 = phi i64 [ 1, %LU50 ], [ %r283, %LU52 ]
-	br label %LU53
-LU53:
+	%r282 = phi i64 [ 1, %LU47 ], [ %r283, %LU51 ]
 	%r283 = add i64 %r282, 1
-	br label %LU52
-LU52:
 	%r286 = icmp slt i64 %r283, 1000000
 	br i1 %r286, label %LU51, label %LU49
 LU49:
-	br label %LU48
-LU48:
 	ret i64 %r283
 }
 
 define i64 @randomCalculation (i64 %r290) {
 LU55:
-	br label %LU58
-LU58:
 	%r291 = icmp slt i64 0, %r290
 	br i1 %r291, label %LU59, label %LU57
 LU59:
-	%r301 = phi i64 [ 0, %LU58 ], [ %r308, %LU59 ]
-	%r299 = phi i64 [ 0, %LU58 ], [ %r300, %LU59 ]
+	%r301 = phi i64 [ 0, %LU55 ], [ %r308, %LU59 ]
+	%r299 = phi i64 [ 0, %LU55 ], [ %r300, %LU59 ]
 	%r300 = add i64 %r299, 19
 	%r302 = mul i64 %r301, 2
 	%r303 = sdiv i64 %r302, 2
@@ -218,30 +172,24 @@ LU59:
 	%r310 = icmp slt i64 %r308, %r290
 	br i1 %r310, label %LU59, label %LU57
 LU57:
-	%r311 = phi i64 [ 0, %LU58 ], [ %r300, %LU59 ]
-	br label %LU56
-LU56:
+	%r311 = phi i64 [ 0, %LU55 ], [ %r300, %LU59 ]
 	ret i64 %r311
 }
 
 define i64 @iterativeFibonacci (i64 %r313) {
 LU60:
-	br label %LU63
-LU63:
 	%r315 = icmp slt i64 0, %r313
 	br i1 %r315, label %LU64, label %LU62
 LU64:
-	%r320 = phi i64 [ 0, %LU63 ], [ %r321, %LU64 ]
-	%r317 = phi i64 [ -1, %LU63 ], [ %r316, %LU64 ]
-	%r316 = phi i64 [ 1, %LU63 ], [ %r318, %LU64 ]
+	%r320 = phi i64 [ 0, %LU60 ], [ %r321, %LU64 ]
+	%r317 = phi i64 [ -1, %LU60 ], [ %r316, %LU64 ]
+	%r316 = phi i64 [ 1, %LU60 ], [ %r318, %LU64 ]
 	%r318 = add i64 %r316, %r317
 	%r321 = add i64 %r320, 1
 	%r323 = icmp slt i64 %r321, %r313
 	br i1 %r323, label %LU64, label %LU62
 LU62:
-	%r324 = phi i64 [ 1, %LU63 ], [ %r318, %LU64 ]
-	br label %LU61
-LU61:
+	%r324 = phi i64 [ 1, %LU60 ], [ %r318, %LU64 ]
 	ret i64 %r324
 }
 
@@ -269,12 +217,10 @@ define i64 @main () {
 LU70:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r337 = load i64* @.read_scratch
-	br label %LU73
-LU73:
 	%r338 = icmp slt i64 1, %r337
 	br i1 %r338, label %LU74, label %LU72
 LU74:
-	%r358 = phi i64 [ 1, %LU73 ], [ %r359, %LU74 ]
+	%r358 = phi i64 [ 1, %LU70 ], [ %r359, %LU74 ]
 	%r339 = call i64 @constantFolding()
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r339)
 	%r341 = call i64 @constantPropagation()
@@ -311,8 +257,6 @@ LU74:
 	br i1 %r360, label %LU74, label %LU72
 LU72:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 9999)
-	br label %LU71
-LU71:
 	ret i64 0
 }
 

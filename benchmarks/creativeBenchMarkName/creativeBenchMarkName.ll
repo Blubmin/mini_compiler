@@ -62,8 +62,6 @@ LU0:
 	store %struct.node* %r11, %struct.node** %r28
 	%r29 = getelementptr inbounds %struct.node* %r11, i1 0, i32 1
 	store %struct.node* null, %struct.node** %r29
-	br label %LU1
-LU1:
 	ret %struct.node* %r1
 }
 
@@ -73,13 +71,11 @@ LU2:
 	%r33 = load i64* %r32
 	%r34 = getelementptr inbounds %struct.node* %r31, i1 0, i32 1
 	%r35 = load %struct.node** %r34
-	br label %LU5
-LU5:
 	br label %LU6
 LU6:
-	%r44 = phi i64 [ 0, %LU5 ], [ %r45, %LU6 ]
-	%r38 = phi %struct.node* [ %r35, %LU5 ], [ %r43, %LU6 ]
-	%r37 = phi i64 [ %r33, %LU5 ], [ %r41, %LU6 ]
+	%r44 = phi i64 [ 0, %LU2 ], [ %r45, %LU6 ]
+	%r38 = phi %struct.node* [ %r35, %LU2 ], [ %r43, %LU6 ]
+	%r37 = phi i64 [ %r33, %LU2 ], [ %r41, %LU6 ]
 	%r39 = getelementptr inbounds %struct.node* %r38, i1 0, i32 0
 	%r40 = load i64* %r39
 	%r41 = mul i64 %r37, %r40
@@ -90,8 +86,6 @@ LU6:
 	%r46 = icmp slt i64 %r45, 5
 	br i1 %r46, label %LU6, label %LU4
 LU4:
-	br label %LU3
-LU3:
 	ret i64 %r41
 }
 
@@ -101,13 +95,11 @@ LU7:
 	%r51 = load i64* %r50
 	%r52 = getelementptr inbounds %struct.node* %r49, i1 0, i32 1
 	%r53 = load %struct.node** %r52
-	br label %LU10
-LU10:
 	br label %LU11
 LU11:
-	%r62 = phi i64 [ 0, %LU10 ], [ %r63, %LU11 ]
-	%r56 = phi %struct.node* [ %r53, %LU10 ], [ %r61, %LU11 ]
-	%r55 = phi i64 [ %r51, %LU10 ], [ %r59, %LU11 ]
+	%r62 = phi i64 [ 0, %LU7 ], [ %r63, %LU11 ]
+	%r56 = phi %struct.node* [ %r53, %LU7 ], [ %r61, %LU11 ]
+	%r55 = phi i64 [ %r51, %LU7 ], [ %r59, %LU11 ]
 	%r57 = getelementptr inbounds %struct.node* %r56, i1 0, i32 0
 	%r58 = load i64* %r57
 	%r59 = add i64 %r55, %r58
@@ -118,8 +110,6 @@ LU11:
 	%r64 = icmp slt i64 %r63, 5
 	br i1 %r64, label %LU11, label %LU9
 LU9:
-	br label %LU8
-LU8:
 	ret i64 %r59
 }
 
@@ -153,12 +143,10 @@ LU17:
 	%r83 = call i64 @add(%struct.node* %r81)
 	%r84 = sdiv i64 %r83, 2
 	%r85 = sub i64 %r82, %r84
-	br label %LU20
-LU20:
 	br label %LU21
 LU21:
-	%r91 = phi i64 [ 0, %LU20 ], [ %r92, %LU21 ]
-	%r87 = phi i64 [ 0, %LU20 ], [ %r90, %LU21 ]
+	%r91 = phi i64 [ 0, %LU17 ], [ %r92, %LU21 ]
+	%r87 = phi i64 [ 0, %LU17 ], [ %r90, %LU21 ]
 	%r89 = call i64 @recurseList(%struct.node* %r81)
 	%r90 = add i64 %r87, %r89
 	%r92 = add i64 %r91, 1
@@ -166,21 +154,17 @@ LU21:
 	br i1 %r93, label %LU21, label %LU19
 LU19:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r90)
-	br label %LU23
-LU23:
 	%r95 = icmp ne i64 %r90, 0
 	br i1 %r95, label %LU24, label %LU22
 LU24:
-	%r96 = phi i64 [ %r90, %LU23 ], [ %r97, %LU24 ]
+	%r96 = phi i64 [ %r90, %LU19 ], [ %r97, %LU24 ]
 	%r97 = sub i64 %r96, 1
 	%r98 = icmp ne i64 %r97, 0
 	br i1 %r98, label %LU24, label %LU22
 LU22:
-	%r103 = phi i64 [ %r90, %LU23 ], [ %r97, %LU24 ]
+	%r103 = phi i64 [ %r90, %LU19 ], [ %r97, %LU24 ]
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r85)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r103)
-	br label %LU18
-LU18:
 	ret i64 0
 }
 

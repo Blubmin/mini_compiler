@@ -13,38 +13,30 @@ declare i32 @scanf(i8*, ...)
 
 define i64 @wait (i64 %r0) {
 LU0:
-	br label %LU3
-LU3:
 	%r1 = icmp sgt i64 %r0, 0
 	br i1 %r1, label %LU4, label %LU2
 LU4:
-	%r2 = phi i64 [ %r0, %LU3 ], [ %r3, %LU4 ]
+	%r2 = phi i64 [ %r0, %LU0 ], [ %r3, %LU4 ]
 	%r3 = sub i64 %r2, 1
 	%r4 = icmp sgt i64 %r3, 0
 	br i1 %r4, label %LU4, label %LU2
 LU2:
-	br label %LU1
-LU1:
 	ret i64 0
 }
 
 define i64 @power (i64 %r6, i64 %r7) {
 LU5:
-	br label %LU8
-LU8:
 	%r8 = icmp sgt i64 %r7, 0
 	br i1 %r8, label %LU9, label %LU7
 LU9:
-	%r12 = phi i64 [ %r7, %LU8 ], [ %r13, %LU9 ]
-	%r9 = phi i64 [ 1, %LU8 ], [ %r11, %LU9 ]
+	%r12 = phi i64 [ %r7, %LU5 ], [ %r13, %LU9 ]
+	%r9 = phi i64 [ 1, %LU5 ], [ %r11, %LU9 ]
 	%r11 = mul i64 %r9, %r6
 	%r13 = sub i64 %r12, 1
 	%r14 = icmp sgt i64 %r13, 0
 	br i1 %r14, label %LU9, label %LU7
 LU7:
-	%r15 = phi i64 [ 1, %LU8 ], [ %r11, %LU9 ]
-	br label %LU6
-LU6:
+	%r15 = phi i64 [ 1, %LU5 ], [ %r11, %LU9 ]
 	ret i64 %r15
 }
 
@@ -78,8 +70,6 @@ LU11:
 define i64 @convertToDecimal (i64 %r35) {
 LU16:
 	%r36 = call i64 @recursiveDecimalSum(i64 %r35, i64 0, i64 0)
-	br label %LU17
-LU17:
 	ret i64 %r36
 }
 
@@ -89,20 +79,16 @@ LU18:
 	%r38 = load i64* @.read_scratch
 	%r39 = call i64 @convertToDecimal(i64 %r38)
 	%r40 = mul i64 %r39, %r39
-	br label %LU21
-LU21:
 	%r41 = icmp sgt i64 %r40, 0
 	br i1 %r41, label %LU22, label %LU20
 LU22:
-	%r42 = phi i64 [ %r40, %LU21 ], [ %r43, %LU22 ]
+	%r42 = phi i64 [ %r40, %LU18 ], [ %r43, %LU22 ]
 	call i64 @wait(i64 %r42)
 	%r43 = sub i64 %r42, 1
 	%r44 = icmp sgt i64 %r43, 0
 	br i1 %r44, label %LU22, label %LU20
 LU20:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r39)
-	br label %LU19
-LU19:
 	ret i64 0
 }
 
