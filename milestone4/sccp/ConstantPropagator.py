@@ -1,4 +1,4 @@
-from cfg.Instruction import BrInstruction, JumpInstruction
+from cfg.Instruction import BrInstruction, JumpInstruction, PhiInstruction
 from cfg.Literal import Bool
 from cfg.Register import Register
 from sccp.Edge import Edge
@@ -14,6 +14,11 @@ TOP = "T"
 
 def has_been_visited(b):
     return "visited" in b.__dict__
+
+def is_executable(pred, succ):
+    test = Edge(pred, succ)
+    e = [e for e in edges if e == test]
+    return e[0].executable
 
 def add_edge(pred, dest):
     global flow_wl
@@ -234,8 +239,8 @@ def rewrite_uses(f):
 def fix_branches(f):
     f.blocks = [b for b in f.blocks if has_been_visited(b)]
     for b in f.blocks:
-        b.predecessors = [p for p in b.predecessors if p in f.blocks]
-        b.successors = [s for s in b.successors if s in f.blocks]
+        b.predecessors = [p for p in b.predecessors if is_executable(p, b)]
+        b.successors = [s for s in b.successors if is_executable(b, s)]
         br = b.instructions.pop()
         if isinstance(br, BrInstruction) and isinstance(br.cond, Bool):
             if bool(br.cond):
@@ -243,6 +248,12 @@ def fix_branches(f):
             else:
                 br = JumpInstruction(br.false)
         b.instructions += [br]
+
+    for b in f.blocks:
+        for p in [i for i in b.instructions if isinstance(i, PhiInstruction)]:
+            p.sources = [s for s in p.sources if is_executable(s["location"], b)]
+            if len(p.sources) == 1:
+                f.replace(p.target, p.sources[0]["value"])
 
 def propagate(cfg):
     for f in [cfg[f] for f in cfg]:

@@ -315,13 +315,13 @@ define %struct.node* @quickSortMain (%struct.node* %r161) {
 LU56:
 	call void @printList(%struct.node* %r161)
 	%r162 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B645978>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	call void @printList(%struct.node* %r161)
 	%r163 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B645AC8>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	call void @printList(%struct.node* %r161)
 	%r164 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B645C18>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	br label %LU57
 LU57:
 	ret %struct.node* null
@@ -330,7 +330,7 @@ LU57:
 define i64 @treesearch (%struct.tnode* %r166, i64 %r167) {
 LU58:
 	%r168 = sub i64 0, 1
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B648240>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -1)
 	%r169 = icmp ne %struct.tnode* %r166, null
 	br i1 %r169, label %LU61, label %LU60
 LU61:
@@ -362,7 +362,7 @@ LU60:
 	br label %LU59
 LU59:
 	%r182 = phi i64 [ 1, %LU63 ], [ 1, %LU65 ], [ 1, %LU67 ], [ 0, %LU68 ], [ 0, %LU60 ]
-	ret i64 1
+	ret i64 %r182
 }
 
 define %struct.node* @inOrder (%struct.tnode* %r183) {
@@ -397,7 +397,7 @@ LU70:
 define i64 @bintreesearch (%struct.tnode* %r201, i64 %r202) {
 LU74:
 	%r203 = sub i64 0, 1
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B794B38>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -1)
 	%r204 = icmp ne %struct.tnode* %r201, null
 	br i1 %r204, label %LU77, label %LU76
 LU77:
@@ -441,9 +441,9 @@ LU87:
 	%r222 = phi %struct.tnode* [ null, %LU86 ], [ %r226, %LU87 ]
 	%r225 = call i64 @get(%struct.node* %r219, i64 %r224)
 	%r226 = call %struct.tnode* @treeadd(%struct.tnode* %r222, i64 %r225)
-	%r227 = add i64 0, 1
+	%r227 = add i64 %r224, 1
 	%r228 = call i64 @size(%struct.node* %r219)
-	%r229 = icmp slt i64 1, %r228
+	%r229 = icmp slt i64 %r227, %r228
 	br i1 %r229, label %LU87, label %LU85
 LU85:
 	%r230 = phi %struct.tnode* [ null, %LU86 ], [ %r226, %LU87 ]
@@ -457,75 +457,75 @@ LU88:
 	%r233 = call %struct.tnode* @buildTree(%struct.node* %r232)
 	call void @treeprint(%struct.tnode* %r233)
 	%r234 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A3198>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r235 = call %struct.node* @inOrder(%struct.tnode* %r233)
 	call void @printList(%struct.node* %r235)
 	%r236 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A33C8>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	call void @freeList(%struct.node* %r235)
 	%r237 = call %struct.node* @postOrder(%struct.tnode* %r233)
 	call void @printList(%struct.node* %r237)
 	%r238 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A3630>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	call void @freeList(%struct.node* %r237)
 	%r239 = call i64 @treesearch(%struct.tnode* %r233, i64 0)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r239)
 	%r240 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A3898>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r241 = call i64 @treesearch(%struct.tnode* %r233, i64 10)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r241)
 	%r242 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A3AC8>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r243 = sub i64 0, 2
-	%r244 = call i64 @treesearch(%struct.tnode* %r233, i64 %r243)
+	%r244 = call i64 @treesearch(%struct.tnode* %r233, i64 -2)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r244)
 	%r245 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A3DA0>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r246 = call i64 @treesearch(%struct.tnode* %r233, i64 2)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r246)
 	%r247 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A3FD0>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r248 = call i64 @treesearch(%struct.tnode* %r233, i64 3)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r248)
 	%r249 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A5240>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r250 = call i64 @treesearch(%struct.tnode* %r233, i64 9)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r250)
 	%r251 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A5470>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r252 = call i64 @treesearch(%struct.tnode* %r233, i64 1)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r252)
 	%r253 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A56A0>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r254 = call i64 @bintreesearch(%struct.tnode* %r233, i64 0)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r254)
 	%r255 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A58D0>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r256 = call i64 @bintreesearch(%struct.tnode* %r233, i64 10)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r256)
 	%r257 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A5B00>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r258 = sub i64 0, 2
-	%r259 = call i64 @bintreesearch(%struct.tnode* %r233, i64 %r258)
+	%r259 = call i64 @bintreesearch(%struct.tnode* %r233, i64 -2)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r259)
 	%r260 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A5DD8>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r261 = call i64 @bintreesearch(%struct.tnode* %r233, i64 2)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r261)
 	%r262 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A8048>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r263 = call i64 @bintreesearch(%struct.tnode* %r233, i64 3)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r263)
 	%r264 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A8278>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r265 = call i64 @bintreesearch(%struct.tnode* %r233, i64 9)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r265)
 	%r266 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A84A8>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	%r267 = call i64 @bintreesearch(%struct.tnode* %r233, i64 1)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r267)
 	%r268 = sub i64 0, 999
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 <bound method Num.__neg__ of <cfg.Literal.Num object at 0x000001C93B7A86D8>>)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -999)
 	call void @freeTree(%struct.tnode* %r233)
 	br label %LU89
 LU89:
@@ -573,9 +573,17 @@ LU98:
 	%r290 = call %struct.node* @quickSortMain(%struct.node* %r286)
 	call void @freeList(%struct.node* %r290)
 	call void @treeMain(%struct.node* %r288)
-	%r293 = add i64 0, 1
-	%r294 = icmp slt i64 1, 10
-	br label %LU98
+	%r293 = add i64 %r292, 1
+	%r294 = icmp slt i64 %r293, 10
+	br i1 %r294, label %LU98, label %LU96
+LU96:
+	%r297 = phi %struct.node* [ %r288, %LU98 ]
+	%r296 = phi %struct.node* [ %r286, %LU98 ]
+	%r295 = phi %struct.node* [ %r285, %LU98 ]
+	call void @freeList(%struct.node* %r285)
+	call void @freeList(%struct.node* %r286)
+	call void @freeList(%struct.node* %r288)
+	br label %LU95
 LU95:
 	ret i64 0
 }

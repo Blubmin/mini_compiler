@@ -360,6 +360,9 @@ class CallInstruction:
         if (target is not None):
             target.set_definition(self)
 
+        for a in args:
+            a.add_use(self)
+
     def __str__(self):
         string = ""
         if self.target is not None:
