@@ -40,13 +40,13 @@ class Num:
         return Bool.from_bool(self.value >= other.value)
 
     def __equals__(self, other):
-        return Bool.from_bool(isinstance(other, Num) and other.value == other.value)
+        return Bool.from_bool(isinstance(other, Num) and self.value == other.value)
 
     def __not_equals__(self, other):
-        return Bool.from_bool(isinstance(other, Num) and other.value != other.value)
+        return Bool.from_bool(isinstance(other, Num) and self.value != other.value)
 
     def __eq__(self, other):
-        return isinstance(other, Num) and other.value == other.value
+        return isinstance(other, Num) and self.value == other.value
 
     def __str__(self):
         string = ""

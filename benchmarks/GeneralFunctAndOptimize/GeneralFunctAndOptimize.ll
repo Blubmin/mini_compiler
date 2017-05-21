@@ -76,7 +76,7 @@ LU6:
 	br label %LU9
 LU9:
 	%r33 = icmp slt i64 0, 50
-	br i1 %r33, label %LU10, label %LU8
+	br label %LU10
 LU10:
 	%r76 = phi i64 [ 0, %LU9 ], [ %r80, %LU11 ]
 	%r63 = phi i64 [ 0, %LU9 ], [ %r87, %LU11 ]
@@ -98,15 +98,15 @@ LU13:
 	%r49 = phi i64 [ 0, %LU12 ], [ %r69, %LU14 ]
 	%r48 = phi i64 [ %r47, %LU12 ], [ %r46, %LU14 ]
 	%r37 = mul i64 1, 2
-	%r38 = mul i64 %r37, 3
-	%r39 = mul i64 %r38, 4
-	%r40 = mul i64 %r39, 5
-	%r41 = mul i64 %r40, 6
-	%r42 = mul i64 %r41, 7
-	%r43 = mul i64 %r42, 8
-	%r44 = mul i64 %r43, 9
-	%r45 = mul i64 %r44, 10
-	%r46 = mul i64 %r45, 11
+	%r38 = mul i64 2, 3
+	%r39 = mul i64 6, 4
+	%r40 = mul i64 24, 5
+	%r41 = mul i64 120, 6
+	%r42 = mul i64 720, 7
+	%r43 = mul i64 5040, 8
+	%r44 = mul i64 40320, 9
+	%r45 = mul i64 362880, 10
+	%r46 = mul i64 3628800, 11
 	%r50 = add i64 %r49, 1
 	%r53 = getelementptr inbounds %struct.IntHolder* %r52, i1 0, i32 0
 	store i64 %r50, i64* %r53
@@ -139,10 +139,10 @@ LU11:
 	%r81 = icmp slt i64 %r80, 50
 	br i1 %r81, label %LU10, label %LU8
 LU8:
-	%r89 = phi i64 [ 0, %LU9 ], [ %r83, %LU11 ]
-	%r88 = phi i64 [ 0, %LU9 ], [ %r82, %LU11 ]
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r88)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r89)
+	%r89 = phi i64 [ %r83, %LU11 ]
+	%r88 = phi i64 [ %r82, %LU11 ]
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r82)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r83)
 	br label %LU7
 LU7:
 	ret i64 0

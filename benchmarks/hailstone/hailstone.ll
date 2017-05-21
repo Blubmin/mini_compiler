@@ -26,7 +26,7 @@ LU2:
 	br label %LU5
 LU5:
 	%r7 = trunc i64 1 to i1
-	br i1 %r7, label %LU6, label %LU4
+	br label %LU6
 LU6:
 	%r8 = phi i64 [ %r6, %LU5 ], [ %r14, %LU10 ]
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r8)
@@ -49,9 +49,7 @@ LU11:
 	br label %LU3
 LU10:
 	%r16 = trunc i64 1 to i1
-	br i1 %r16, label %LU6, label %LU4
-LU4:
-	br label %LU3
+	br label %LU6
 LU3:
 	ret void
 }

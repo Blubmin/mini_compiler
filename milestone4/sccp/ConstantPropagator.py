@@ -137,14 +137,13 @@ def analyze_phi(p):
         is_bottom = True
         val = vals[0]
         for i in range(1, len(vals)):
-            res = val != vals[i]
+            res = val == vals[i]
             is_bottom &= res
 
         if not is_bottom:
             set_ssa(p.target, BOTTOM)
         else:
             set_ssa(p.target, val)
-
 
 def analyze_instruction(bl, i):
     options = {
@@ -177,7 +176,7 @@ def analyze_instruction(bl, i):
 
 def analyze_phis(b):
     for i in b.instructions:
-        if i.__class__.__name__ == "PhiInstruction":
+        if isinstance(i, PhiInstruction):
             analyze_phi(i)
 
 def analyze_block(b):
@@ -221,7 +220,7 @@ def analyze_func(f):
                 analyze_phis(item.dec)
         else:
             for u in item.uses:
-                if u.__class__.__name__ == "PhiInstruction":
+                if isinstance(u, PhiInstruction):
                     analyze_phi(u)
                 elif has_been_visited(u.block):
                     analyze_instruction(u.block, u)

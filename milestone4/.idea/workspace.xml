@@ -40,8 +40,8 @@
       <file leaf-file-name="ConstantPropagator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sccp/ConstantPropagator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="253" column="79" lean-forward="false" selection-start-line="253" selection-start-column="79" selection-end-line="253" selection-end-column="79" />
+            <state relative-caret-position="493">
+              <caret line="145" column="34" lean-forward="false" selection-start-line="145" selection-start-column="34" selection-end-line="145" selection-end-column="34" />
               <folding>
                 <element signature="e#0#74#0" expanded="true" />
               </folding>
@@ -92,8 +92,8 @@
       <file leaf-file-name="Literal.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cfg/Literal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state relative-caret-position="402">
+              <caret line="48" column="67" lean-forward="true" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -130,7 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>utils</find>
       <find>boolean</find>
       <find>Store</find>
       <find>handle_assign</find>
@@ -160,6 +159,7 @@
       <find>handle_dot</find>
       <find>element</find>
       <find>calli</find>
+      <find>call</find>
     </findStrings>
     <replaceStrings>
       <replace>is</replace>
@@ -204,10 +204,10 @@
         <option value="$PROJECT_DIR$/UselessCodeEliminator.py" />
         <option value="$PROJECT_DIR$/cfg/utils.py" />
         <option value="$PROJECT_DIR$/cfg/Block.py" />
-        <option value="$PROJECT_DIR$/cfg/Literal.py" />
         <option value="$PROJECT_DIR$/3.mini" />
-        <option value="$PROJECT_DIR$/../benchmarks/bert/bert.ll" />
         <option value="$PROJECT_DIR$/cfg/Instruction.py" />
+        <option value="$PROJECT_DIR$/../benchmarks/bert/bert.ll" />
+        <option value="$PROJECT_DIR$/cfg/Literal.py" />
         <option value="$PROJECT_DIR$/sccp/ConstantPropagator.py" />
       </list>
     </option>
@@ -635,7 +635,7 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25135428" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25135428" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1008,18 +1008,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cfg/Literal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cfg/Function.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-272">
           <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cfg/Instruction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="475" column="19" lean-forward="true" selection-start-line="475" selection-start-column="19" selection-end-line="475" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1040,18 +1040,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cfg/Instruction.py">
+    <entry file="file://$PROJECT_DIR$/cfg/Literal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="475" column="19" lean-forward="true" selection-start-line="475" selection-start-column="19" selection-end-line="475" selection-end-column="19" />
+        <state relative-caret-position="402">
+          <caret line="48" column="67" lean-forward="true" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sccp/ConstantPropagator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="253" column="79" lean-forward="false" selection-start-line="253" selection-start-column="79" selection-end-line="253" selection-end-column="79" />
+        <state relative-caret-position="493">
+          <caret line="145" column="34" lean-forward="false" selection-start-line="145" selection-start-column="34" selection-end-line="145" selection-end-column="34" />
           <folding>
             <element signature="e#0#74#0" expanded="true" />
           </folding>

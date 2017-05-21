@@ -30,7 +30,7 @@ LU2:
 	br label %LU5
 LU5:
 	%r9 = icmp eq i64 1, 1
-	br i1 %r9, label %LU6, label %LU4
+	br label %LU6
 LU6:
 	%r23 = phi i64 [ 0, %LU5 ], [ %r48, %LU7 ]
 	%r12 = phi %struct.Node* [ null, %LU5 ], [ %r47, %LU7 ]
@@ -128,7 +128,7 @@ LU17:
 	br i1 %r68, label %LU20, label %LU19
 LU20:
 	%r69 = sub i64 0, 1
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r69)
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -1)
 	%r70 = sub i64 0, 1
 	br label %LU18
 LU19:
@@ -168,7 +168,7 @@ LU21:
 	call void @printEVILList(%struct.Node* %r73)
 	br label %LU18
 LU18:
-	%r93 = phi i64 [ %r70, %LU20 ], [ 0, %LU21 ]
+	%r93 = phi i64 [ -1, %LU20 ], [ 0, %LU21 ]
 	ret i64 %r93
 }
 

@@ -136,54 +136,29 @@ LU25:
 	%r70 = icmp ne %struct.linkedNums* %r69, null
 	br i1 %r70, label %LU26, label %LU24
 LU26:
-	%r78 = phi i64 [ 0, %LU25 ], [ %r104, %LU27 ]
-	%r75 = phi i64 [ 0, %LU25 ], [ %r101, %LU27 ]
+	%r78 = phi i64 [ 0, %LU25 ], [ %r77, %LU27 ]
+	%r75 = phi i64 [ 0, %LU25 ], [ %r74, %LU27 ]
 	%r72 = phi %struct.linkedNums* [ %r69, %LU25 ], [ %r94, %LU27 ]
-	%r71 = phi i64 [ 1, %LU25 ], [ %r98, %LU27 ]
-	%r89 = trunc i64 %r71 to i1
-	br i1 %r89, label %LU28, label %LU29
+	%r71 = phi i64 [ 1, %LU25 ], [ 0, %LU27 ]
+	%r89 = trunc i64 1 to i1
+	br label %LU28
 LU28:
 	%r73 = getelementptr inbounds %struct.linkedNums* %r72, i1 0, i32 0
 	%r74 = load i64* %r73
 	%r76 = getelementptr inbounds %struct.linkedNums* %r72, i1 0, i32 0
 	%r77 = load i64* %r76
 	br label %LU27
-LU29:
-	%r79 = getelementptr inbounds %struct.linkedNums* %r72, i1 0, i32 0
-	%r80 = load i64* %r79
-	%r81 = icmp slt i64 %r80, %r75
-	br i1 %r81, label %LU31, label %LU32
-LU31:
-	%r82 = getelementptr inbounds %struct.linkedNums* %r72, i1 0, i32 0
-	%r83 = load i64* %r82
-	br label %LU30
-LU32:
-	%r84 = getelementptr inbounds %struct.linkedNums* %r72, i1 0, i32 0
-	%r85 = load i64* %r84
-	%r86 = icmp sgt i64 %r85, %r78
-	br i1 %r86, label %LU34, label %LU33
-LU34:
-	%r87 = getelementptr inbounds %struct.linkedNums* %r72, i1 0, i32 0
-	%r88 = load i64* %r87
-	br label %LU33
-LU33:
-	%r102 = phi i64 [ %r88, %LU34 ], [ %r78, %LU32 ]
-	br label %LU30
-LU30:
-	%r103 = phi i64 [ %r78, %LU31 ], [ %r102, %LU33 ]
-	%r100 = phi i64 [ %r83, %LU31 ], [ %r75, %LU33 ]
-	br label %LU27
 LU27:
-	%r104 = phi i64 [ %r77, %LU28 ], [ %r103, %LU30 ]
-	%r101 = phi i64 [ %r74, %LU28 ], [ %r100, %LU30 ]
-	%r98 = phi i64 [ 0, %LU28 ], [ %r71, %LU30 ]
+	%r104 = phi i64 [ %r77, %LU28 ]
+	%r101 = phi i64 [ %r74, %LU28 ]
+	%r98 = phi i64 [ 0, %LU28 ]
 	%r93 = getelementptr inbounds %struct.linkedNums* %r72, i1 0, i32 1
 	%r94 = load %struct.linkedNums** %r93
 	%r95 = icmp ne %struct.linkedNums* %r94, null
 	br i1 %r95, label %LU26, label %LU24
 LU24:
-	%r106 = phi i64 [ 0, %LU25 ], [ %r104, %LU27 ]
-	%r105 = phi i64 [ 0, %LU25 ], [ %r101, %LU27 ]
+	%r106 = phi i64 [ 0, %LU25 ], [ %r77, %LU27 ]
+	%r105 = phi i64 [ 0, %LU25 ], [ %r74, %LU27 ]
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r105)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r106)
 	br label %LU23

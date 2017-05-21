@@ -32,7 +32,7 @@ define i64 @fun1 (i64 %r7, i64 %r8, i64 %r9) {
 LU5:
 	%r10 = add i64 5, 6
 	%r11 = mul i64 %r7, 2
-	%r12 = sub i64 %r10, %r11
+	%r12 = sub i64 11, %r11
 	%r13 = sdiv i64 4, %r8
 	%r14 = add i64 %r12, %r13
 	%r15 = add i64 %r14, %r9
@@ -44,7 +44,7 @@ LU8:
 LU9:
 	%r18 = icmp slt i64 5, 6
 	%r19 = icmp sle i64 %r15, %r8
-	%r20 = and i1 %r18, %r19
+	%r20 = and i1 1, %r19
 	br i1 %r20, label %LU11, label %LU10
 LU11:
 	%r21 = call i64 @fun2(i64 %r15, i64 %r8)

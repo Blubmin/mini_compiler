@@ -53,7 +53,7 @@ LU7:
 	br label %LU10
 LU10:
 	%r19 = icmp slt i64 0, 1000000
-	br i1 %r19, label %LU11, label %LU9
+	br label %LU11
 LU11:
 	%r28 = phi i64 [ 0, %LU10 ], [ %r27, %LU11 ]
 	%r20 = phi i64 [ 0, %LU10 ], [ %r21, %LU11 ]
@@ -66,11 +66,11 @@ LU11:
 	%r29 = icmp slt i64 %r21, 1000000
 	br i1 %r29, label %LU11, label %LU9
 LU9:
-	%r30 = phi i64 [ 0, %LU10 ], [ %r27, %LU11 ]
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r30)
+	%r30 = phi i64 [ %r27, %LU11 ]
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r27)
 	br label %LU6
 LU6:
-	%r32 = phi i64 [ %r17, %LU8 ], [ 1, %LU9 ]
+	%r32 = phi i64 [ -1, %LU8 ], [ 1, %LU9 ]
 	ret i64 %r32
 }
 

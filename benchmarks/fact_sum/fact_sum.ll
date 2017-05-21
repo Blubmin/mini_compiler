@@ -32,7 +32,7 @@ LU4:
 	br i1 %r8, label %LU7, label %LU6
 LU7:
 	%r9 = sub i64 0, 1
-	%r10 = mul i64 %r9, %r4
+	%r10 = mul i64 -1, %r4
 	%r11 = call i64 @fact(i64 %r10)
 	br label %LU3
 LU6:
@@ -50,25 +50,8 @@ LU8:
 	br label %LU11
 LU11:
 	%r17 = sub i64 0, 1
-	%r18 = icmp ne i64 0, %r17
-	br i1 %r18, label %LU12, label %LU10
-LU12:
-	%r27 = phi i64 [ 0, %LU11 ], [ %r26, %LU12 ]
-	%r22 = phi i64 [ 0, %LU11 ], [ %r24, %LU12 ]
-	%r20 = phi i64 [ 0, %LU11 ], [ %r23, %LU12 ]
-	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r19 = load i64* @.read_scratch
-	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r21 = load i64* @.read_scratch
-	%r23 = call i64 @fact(i64 %r19)
-	%r24 = call i64 @fact(i64 %r21)
-	%r25 = call i64 @sum(i64 %r23, i64 %r24)
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r25)
-	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
-	%r26 = load i64* @.read_scratch
-	%r28 = sub i64 0, 1
-	%r29 = icmp ne i64 %r26, %r28
-	br i1 %r29, label %LU12, label %LU10
+	%r18 = icmp ne i64 0, -1
+	br label %LU10
 LU10:
 	br label %LU9
 LU9:

@@ -424,7 +424,7 @@ LU102:
 	%r185 = sub i64 0, 1
 	br label %LU35
 LU35:
-	%r187 = phi i64 [ 0, %LU41 ], [ 1, %LU47 ], [ 0, %LU53 ], [ 1, %LU59 ], [ 0, %LU65 ], [ 1, %LU71 ], [ 0, %LU77 ], [ 1, %LU83 ], [ 0, %LU89 ], [ 1, %LU95 ], [ 0, %LU101 ], [ 1, %LU107 ], [ %r185, %LU102 ]
+	%r187 = phi i64 [ 0, %LU41 ], [ 1, %LU47 ], [ 0, %LU53 ], [ 1, %LU59 ], [ 0, %LU65 ], [ 1, %LU71 ], [ 0, %LU77 ], [ 1, %LU83 ], [ 0, %LU89 ], [ 1, %LU95 ], [ 0, %LU101 ], [ 1, %LU107 ], [ -1, %LU102 ]
 	ret i64 %r187
 }
 
@@ -436,13 +436,13 @@ LU108:
 	call void @cleanBoard(%struct.gameBoard* %r190)
 	br label %LU111
 LU111:
-	%r191 = icmp slt i64 %r188, 0
+	%r191 = icmp slt i64 -1, 0
 	%r192 = icmp ne i64 0, 8
-	%r193 = and i1 %r191, %r192
-	br i1 %r193, label %LU112, label %LU110
+	%r193 = and i1 1, 1
+	br label %LU112
 LU112:
 	%r207 = phi i64 [ 0, %LU111 ], [ %r209, %LU113 ]
-	%r205 = phi i64 [ %r188, %LU111 ], [ %r204, %LU113 ]
+	%r205 = phi i64 [ -1, %LU111 ], [ %r204, %LU113 ]
 	%r202 = phi i64 [ 0, %LU111 ], [ %r215, %LU113 ]
 	%r199 = phi i64 [ 0, %LU111 ], [ %r214, %LU113 ]
 	%r195 = phi i64 [ 0, %LU111 ], [ %r213, %LU113 ]
@@ -473,8 +473,8 @@ LU113:
 	%r212 = and i1 %r210, %r211
 	br i1 %r212, label %LU112, label %LU110
 LU110:
-	%r216 = phi i64 [ %r188, %LU111 ], [ %r204, %LU113 ]
-	%r217 = add i64 %r216, 1
+	%r216 = phi i64 [ %r204, %LU113 ]
+	%r217 = add i64 %r204, 1
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r217)
 	br label %LU109
 LU109:
