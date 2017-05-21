@@ -21,8 +21,6 @@ LU0:
 LU3:
 	br label %LU1
 LU2:
-	%r2 = call i8* @malloc(i64 24)
-	%r3 = bitcast i8* %r2 to %struct.foo*
 	%r4 = sub i64 %r0, 1
 	call void @tailrecursive(i64 %r4)
 	br label %LU1
@@ -74,20 +72,6 @@ LU9:
 	br i1 %r33, label %LU10, label %LU8
 LU10:
 	%r62 = phi i64 [ %r10, %LU9 ], [ %r63, %LU10 ]
-	%r41 = phi i64 [ 0, %LU9 ], [ %r61, %LU10 ]
-	%r35 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 0
-	%r36 = load i64* %r35
-	%r38 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 0
-	%r39 = load i64* %r38
-	%r40 = mul i64 %r36, %r39
-	%r42 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 2
-	%r43 = load %struct.simple** %r42
-	%r44 = getelementptr inbounds %struct.simple* %r43, i1 0, i32 0
-	%r45 = load i64* %r44
-	%r46 = mul i64 %r40, %r45
-	%r47 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 0
-	%r48 = load i64* %r47
-	%r49 = sdiv i64 %r46, %r48
 	%r50 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 2
 	%r51 = load %struct.simple** %r50
 	%r52 = getelementptr inbounds %struct.simple* %r51, i1 0, i32 0
@@ -95,19 +79,10 @@ LU10:
 	%r54 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 0
 	%r55 = load i64* %r54
 	%r56 = call i64 @add(i64 %r53, i64 %r55)
-	%r57 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 0
-	%r58 = load i64* %r57
-	%r59 = getelementptr inbounds %struct.foo* %r12, i1 0, i32 0
-	%r60 = load i64* %r59
-	%r61 = sub i64 %r58, %r60
 	%r63 = sub i64 %r62, 1
 	%r64 = icmp sgt i64 %r63, 0
 	br i1 %r64, label %LU10, label %LU8
 LU8:
-	%r66 = bitcast %struct.foo* %r12 to i8*
-	call void @free(i8* %r66)
-	%r68 = bitcast %struct.foo* %r17 to i8*
-	call void @free(i8* %r68)
 	br label %LU7
 LU7:
 	ret void
@@ -121,11 +96,6 @@ LU14:
 	br i1 %r71, label %LU15, label %LU13
 LU15:
 	%r76 = phi i64 [ %r70, %LU14 ], [ %r77, %LU15 ]
-	%r74 = phi %struct.foo* [ null, %LU14 ], [ %r73, %LU15 ]
-	%r72 = call i8* @malloc(i64 24)
-	%r73 = bitcast i8* %r72 to %struct.foo*
-	%r75 = bitcast %struct.foo* %r73 to i8*
-	call void @free(i8* %r75)
 	%r77 = sub i64 %r76, 1
 	%r78 = icmp sgt i64 %r77, 0
 	br i1 %r78, label %LU15, label %LU13

@@ -6,7 +6,6 @@ class StoreInstruction:
         self.source = source
         self.type = type
 
-        target.set_definition(self)
         source.add_use(self)
 
     def get_target(self):

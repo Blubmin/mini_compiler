@@ -18,7 +18,6 @@ LU0:
 	%r1 = bitcast i8* %r0 to %struct.IntList*
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r2 = load i64* @.read_scratch
-	%r3 = sub i64 0, 1
 	%r4 = icmp eq i64 %r2, -1
 	br i1 %r4, label %LU3, label %LU4
 LU3:

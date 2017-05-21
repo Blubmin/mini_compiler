@@ -14,13 +14,6 @@ declare i32 @scanf(i8*, ...)
 
 define void @foo (i64 %r0) {
 LU0:
-	%r1 = load i64* @y
-	%r2 = add i64 %r1, 1
-	%r3 = add i64 %r0, 1
-	%r4 = add i64 3, 4
-	%r5 = add i64 4, 7
-	%r6 = mul i64 4, 7
-	%r7 = sub i64 99, 3
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 96)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 4)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 7)
@@ -45,7 +38,6 @@ LU5:
 LU6:
 	br label %LU4
 LU4:
-	%r17 = add i64 2, 3
 	br label %LU3
 LU3:
 	ret i64 5
@@ -60,21 +52,16 @@ LU10:
 LU11:
 	br label %LU9
 LU9:
-	%r24 = or i64 1, 0
-	%r25 = trunc i64 1 to i1
 	br label %LU13
 LU13:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 1)
 	br label %LU12
 LU12:
-	%r27 = xor i64 1, 1
-	%r28 = trunc i64 <bound method Bool.__not__ of <cfg.Literal.Bool object at 0x000001FFFBD30DD8>> to i1
-	br i1 <bound method Bool.__not__ of <cfg.Literal.Bool object at 0x000001FFFBD30DD8>>, label %LU16, label %LU17
-LU16:
-	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 3)
+	br label %LU17
+LU17:
+	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 4)
 	br label %LU15
 LU15:
-	%r32 = and i64 1, 0
 	br label %LU8
 LU8:
 	ret i64 0
@@ -96,22 +83,14 @@ LU23:
 LU24:
 	br label %LU22
 LU22:
-	%r41 = icmp eq i64 1, 2
-	call void @fbool(i64 %r41)
-	%r42 = icmp ne i64 1, 2
-	call void @fbool(i64 %r42)
-	%r43 = icmp slt i64 1, 2
-	call void @fbool(i64 %r43)
-	%r44 = icmp sle i64 1, 2
-	call void @fbool(i64 %r44)
-	%r45 = icmp sgt i64 1, 2
-	call void @fbool(i64 %r45)
-	%r46 = icmp sge i64 1, 2
-	call void @fbool(i64 %r46)
-	%r47 = icmp sge i64 2, 2
-	call void @fbool(i64 %r47)
-	%r48 = icmp sle i64 2, 2
-	call void @fbool(i64 %r48)
+	call void @fbool(i64 0)
+	call void @fbool(i64 1)
+	call void @fbool(i64 1)
+	call void @fbool(i64 1)
+	call void @fbool(i64 0)
+	call void @fbool(i64 1)
+	call void @fbool(i64 1)
+	call void @fbool(i64 1)
 	br label %LU21
 LU21:
 	ret i64 0
@@ -122,28 +101,18 @@ LU25:
 	%r52 = icmp sgt i64 %r50, %r51
 	br i1 %r52, label %LU28, label %LU29
 LU28:
-	%r53 = add i64 1, 1
 	br label %LU27
 LU29:
 	br label %LU27
 LU27:
-	%r55 = phi i64 [ %r53, %LU28 ], [ 2, %LU29 ]
-	%r56 = icmp eq i64 1, 2
-	call void @fbool(i64 %r56)
-	%r57 = icmp ne i64 1, 2
-	call void @fbool(i64 %r57)
-	%r58 = icmp slt i64 1, 2
-	call void @fbool(i64 %r58)
-	%r59 = icmp sle i64 1, 2
-	call void @fbool(i64 %r59)
-	%r60 = icmp sgt i64 1, 2
-	call void @fbool(i64 %r60)
-	%r61 = icmp sge i64 1, 2
-	call void @fbool(i64 %r61)
-	%r62 = icmp sge i64 2, 2
-	call void @fbool(i64 %r62)
-	%r63 = icmp sle i64 2, 2
-	call void @fbool(i64 %r63)
+	call void @fbool(i64 0)
+	call void @fbool(i64 1)
+	call void @fbool(i64 1)
+	call void @fbool(i64 1)
+	call void @fbool(i64 0)
+	call void @fbool(i64 1)
+	call void @fbool(i64 1)
+	call void @fbool(i64 1)
 	br label %LU26
 LU26:
 	ret i64 0
@@ -154,13 +123,10 @@ LU30:
 	%r67 = icmp sgt i64 %r65, %r66
 	br i1 %r67, label %LU33, label %LU34
 LU33:
-	%r68 = add i64 1, 1
 	br label %LU32
 LU34:
 	br label %LU32
 LU32:
-	%r69 = phi i64 [ %r68, %LU33 ], [ 2, %LU34 ]
-	%r70 = add i64 2, 2
 	br label %LU31
 LU31:
 	ret i64 4
@@ -168,7 +134,6 @@ LU31:
 
 define i64 @blergh () {
 LU35:
-	%r73 = icmp slt i64 1, 2
 	br label %LU38
 LU38:
 	br label %LU37

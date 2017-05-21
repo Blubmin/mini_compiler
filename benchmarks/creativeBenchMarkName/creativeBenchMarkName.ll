@@ -75,7 +75,6 @@ LU2:
 	%r35 = load %struct.node** %r34
 	br label %LU5
 LU5:
-	%r36 = icmp slt i64 0, 5
 	br label %LU6
 LU6:
 	%r44 = phi i64 [ 0, %LU5 ], [ %r45, %LU6 ]
@@ -91,7 +90,6 @@ LU6:
 	%r46 = icmp slt i64 %r45, 5
 	br i1 %r46, label %LU6, label %LU4
 LU4:
-	%r47 = phi i64 [ %r41, %LU6 ]
 	br label %LU3
 LU3:
 	ret i64 %r41
@@ -105,7 +103,6 @@ LU7:
 	%r53 = load %struct.node** %r52
 	br label %LU10
 LU10:
-	%r54 = icmp slt i64 0, 5
 	br label %LU11
 LU11:
 	%r62 = phi i64 [ 0, %LU10 ], [ %r63, %LU11 ]
@@ -121,7 +118,6 @@ LU11:
 	%r64 = icmp slt i64 %r63, 5
 	br i1 %r64, label %LU11, label %LU9
 LU9:
-	%r65 = phi i64 [ %r59, %LU11 ]
 	br label %LU8
 LU8:
 	ret i64 %r59
@@ -159,7 +155,6 @@ LU17:
 	%r85 = sub i64 %r82, %r84
 	br label %LU20
 LU20:
-	%r86 = icmp slt i64 0, 10
 	br label %LU21
 LU21:
 	%r91 = phi i64 [ 0, %LU20 ], [ %r92, %LU21 ]
@@ -170,7 +165,6 @@ LU21:
 	%r93 = icmp slt i64 %r92, 10
 	br i1 %r93, label %LU21, label %LU19
 LU19:
-	%r94 = phi i64 [ %r90, %LU21 ]
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r90)
 	br label %LU23
 LU23:

@@ -57,6 +57,9 @@ def get_fun_arg_type(id, idx):
 def get_global(id):
     return g_decs[id]
 
+def get_globals():
+    return g_decs
+
 def reduce_list_dict(dict, item):
     dict[item["id"]] = item["structure"]
     return dict

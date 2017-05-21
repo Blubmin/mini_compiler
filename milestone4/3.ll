@@ -14,14 +14,12 @@ declare i32 @scanf(i8*, ...)
 
 define i64 @main () {
 LU0:
-	%r0 = getelementptr inbounds %struct.A* null, i1 0, i32 0
 	store i64 9, i64* %r0
 	%r1 = getelementptr inbounds %struct.A* null, i1 0, i32 0
 	%r2 = load i64* %r1
 	%r3 = icmp slt i64 8, %r2
 	br i1 %r3, label %LU3, label %LU4
 LU3:
-	%r4 = sub i64 0, 2
 	br label %LU1
 LU4:
 	%r5 = getelementptr inbounds %struct.A* null, i1 0, i32 0

@@ -10,6 +10,7 @@ from sccp import ConstantPropagator
 import StaticSemanticAnalyzer
 from cfg import LLVMWriter
 
+import UselessCodeEliminator
 
 def cleanup(filename):
     os.remove(filename)
@@ -39,6 +40,7 @@ if __name__ == "__main__":
         cfg = ControlFlowGraphConstructor.create_cfg(symbol_table, args.stack)
         if(args.optimizations):
             cfg = ConstantPropagator.propagate(cfg)
+            cfg = UselessCodeEliminator.eliminate(cfg)
         LLVMWriter.write_to_file("{}.ll".format(args.filename.split(".mini")[0]), symbol_table, cfg);
     except StaticSemanticAnalyzer.SemanticError:
         code = 1

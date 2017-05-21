@@ -45,17 +45,14 @@ LU5:
 	%r16 = icmp slt i64 %r15, 0
 	br i1 %r16, label %LU8, label %LU7
 LU8:
-	%r17 = sub i64 0, 1
 	br label %LU6
 LU7:
 	%r18 = getelementptr inbounds %struct.Power* %r12, i1 0, i32 1
 	store i64 %r15, i64* %r18
 	br label %LU10
 LU10:
-	%r19 = icmp slt i64 0, 1000000
 	br label %LU11
 LU11:
-	%r28 = phi i64 [ 0, %LU10 ], [ %r27, %LU11 ]
 	%r20 = phi i64 [ 0, %LU10 ], [ %r21, %LU11 ]
 	%r21 = add i64 %r20, 1
 	%r23 = getelementptr inbounds %struct.Power* %r12, i1 0, i32 0
@@ -66,7 +63,6 @@ LU11:
 	%r29 = icmp slt i64 %r21, 1000000
 	br i1 %r29, label %LU11, label %LU9
 LU9:
-	%r30 = phi i64 [ %r27, %LU11 ]
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r27)
 	br label %LU6
 LU6:

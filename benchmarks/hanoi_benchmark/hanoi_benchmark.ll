@@ -141,7 +141,6 @@ LU29:
 	br i1 %r50, label %LU30, label %LU28
 LU30:
 	%r54 = phi i64 [ %r48, %LU29 ], [ %r58, %LU30 ]
-	%r53 = phi %struct.plate* [ null, %LU29 ], [ %r52, %LU30 ]
 	%r51 = call i8* @malloc(i64 16)
 	%r52 = bitcast i8* %r51 to %struct.plate*
 	%r55 = getelementptr inbounds %struct.plate* %r52, i1 0, i32 0
@@ -154,7 +153,6 @@ LU30:
 	%r59 = icmp ne i64 %r58, 0
 	br i1 %r59, label %LU30, label %LU28
 LU28:
-	%r72 = phi %struct.plate* [ null, %LU29 ], [ %r52, %LU30 ]
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 1)
 	%r60 = load %struct.plate** @peg1
 	call void @printPeg(%struct.plate* %r60)
@@ -182,14 +180,10 @@ LU32:
 	%r70 = icmp ne %struct.plate* %r69, null
 	br i1 %r70, label %LU33, label %LU31
 LU33:
-	%r73 = phi %struct.plate* [ %r72, %LU32 ], [ %r71, %LU33 ]
-	%r71 = load %struct.plate** @peg3
 	%r74 = load %struct.plate** @peg3
 	%r75 = getelementptr inbounds %struct.plate* %r74, i1 0, i32 1
 	%r76 = load %struct.plate** %r75
 	store %struct.plate* %r76, %struct.plate** @peg3
-	%r77 = bitcast %struct.plate* %r71 to i8*
-	call void @free(i8* %r77)
 	%r78 = load %struct.plate** @peg3
 	%r79 = icmp ne %struct.plate* %r78, null
 	br i1 %r79, label %LU33, label %LU31

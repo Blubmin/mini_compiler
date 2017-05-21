@@ -29,13 +29,9 @@ define void @deathSort (%struct.Node* %r8) {
 LU2:
 	br label %LU5
 LU5:
-	%r9 = icmp eq i64 1, 1
 	br label %LU6
 LU6:
-	%r23 = phi i64 [ 0, %LU5 ], [ %r48, %LU7 ]
-	%r12 = phi %struct.Node* [ null, %LU5 ], [ %r47, %LU7 ]
 	%r11 = phi %struct.Node* [ %r8, %LU5 ], [ %r46, %LU7 ]
-	%r10 = phi i64 [ 1, %LU5 ], [ %r44, %LU7 ]
 	br label %LU8
 LU8:
 	%r13 = getelementptr inbounds %struct.Node* %r11, i1 0, i32 2
@@ -45,7 +41,6 @@ LU8:
 LU9:
 	%r39 = phi %struct.Node* [ %r11, %LU8 ], [ %r39, %LU10 ]
 	%r33 = phi i64 [ 0, %LU8 ], [ %r43, %LU10 ]
-	%r24 = phi i64 [ %r23, %LU8 ], [ %r42, %LU10 ]
 	%r16 = phi %struct.Node* [ %r11, %LU8 ], [ %r36, %LU10 ]
 	%r17 = getelementptr inbounds %struct.Node* %r16, i1 0, i32 2
 	%r18 = load %struct.Node** %r17
@@ -68,7 +63,6 @@ LU11:
 	br label %LU10
 LU10:
 	%r43 = phi i64 [ 1, %LU11 ], [ %r33, %LU9 ]
-	%r42 = phi i64 [ %r22, %LU11 ], [ %r24, %LU9 ]
 	%r35 = getelementptr inbounds %struct.Node* %r16, i1 0, i32 2
 	%r36 = load %struct.Node** %r35
 	%r37 = getelementptr inbounds %struct.Node* %r36, i1 0, i32 2
@@ -76,8 +70,6 @@ LU10:
 	%r41 = icmp ne %struct.Node* %r38, %r39
 	br i1 %r41, label %LU9, label %LU7
 LU7:
-	%r48 = phi i64 [ %r23, %LU8 ], [ %r42, %LU10 ]
-	%r47 = phi %struct.Node* [ %r11, %LU8 ], [ %r36, %LU10 ]
 	%r46 = phi %struct.Node* [ %r11, %LU8 ], [ %r39, %LU10 ]
 	%r44 = phi i64 [ 0, %LU8 ], [ %r43, %LU10 ]
 	%r45 = icmp eq i64 %r44, 1
@@ -95,22 +87,17 @@ LU12:
 	%r53 = getelementptr inbounds %struct.Node* %r50, i1 0, i32 0
 	%r54 = load i64* %r53
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r54)
-	%r55 = bitcast %struct.Node* %r50 to i8*
-	call void @free(i8* %r55)
 	br label %LU15
 LU15:
 	%r56 = icmp ne %struct.Node* %r52, %r50
 	br i1 %r56, label %LU16, label %LU14
 LU16:
-	%r58 = phi %struct.Node* [ null, %LU15 ], [ %r57, %LU16 ]
 	%r57 = phi %struct.Node* [ %r52, %LU15 ], [ %r62, %LU16 ]
 	%r59 = getelementptr inbounds %struct.Node* %r57, i1 0, i32 0
 	%r60 = load i64* %r59
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r60)
 	%r61 = getelementptr inbounds %struct.Node* %r57, i1 0, i32 2
 	%r62 = load %struct.Node** %r61
-	%r63 = bitcast %struct.Node* %r57 to i8*
-	call void @free(i8* %r63)
 	%r65 = icmp ne %struct.Node* %r62, %r50
 	br i1 %r65, label %LU16, label %LU14
 LU14:
@@ -127,9 +114,7 @@ LU17:
 	%r68 = icmp sle i64 %r67, 0
 	br i1 %r68, label %LU20, label %LU19
 LU20:
-	%r69 = sub i64 0, 1
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 -1)
-	%r70 = sub i64 0, 1
 	br label %LU18
 LU19:
 	%r71 = mul i64 %r67, 1000
@@ -149,7 +134,6 @@ LU22:
 LU23:
 	%r84 = phi %struct.Node* [ %r73, %LU22 ], [ %r80, %LU23 ]
 	%r82 = phi i64 [ %r77, %LU22 ], [ %r89, %LU23 ]
-	%r81 = phi %struct.Node* [ null, %LU22 ], [ %r80, %LU23 ]
 	%r79 = call i8* @malloc(i64 24)
 	%r80 = bitcast i8* %r79 to %struct.Node*
 	%r83 = getelementptr inbounds %struct.Node* %r80, i1 0, i32 0

@@ -46,7 +46,6 @@ LU11:
 	%r15 = icmp sle i64 2, %r14
 	br i1 %r15, label %LU12, label %LU10
 LU12:
-	%r21 = phi i64 [ 0, %LU11 ], [ %r20, %LU13 ]
 	%r17 = phi i64 [ 2, %LU11 ], [ %r23, %LU13 ]
 	%r18 = sdiv i64 %r12, %r17
 	%r19 = mul i64 %r18, %r17

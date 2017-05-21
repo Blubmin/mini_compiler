@@ -24,7 +24,6 @@ LU5:
 	%r3 = icmp slt i64 0, %r2
 	br i1 %r3, label %LU6, label %LU4
 LU6:
-	%r7 = phi i64 [ 0, %LU5 ], [ %r6, %LU6 ]
 	%r4 = phi i64 [ 0, %LU5 ], [ %r8, %LU6 ]
 	%r6 = add i64 %r4, %r0
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r6)

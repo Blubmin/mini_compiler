@@ -75,49 +75,27 @@ LU6:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r32)
 	br label %LU9
 LU9:
-	%r33 = icmp slt i64 0, 50
 	br label %LU10
 LU10:
 	%r76 = phi i64 [ 0, %LU9 ], [ %r80, %LU11 ]
-	%r63 = phi i64 [ 0, %LU9 ], [ %r87, %LU11 ]
-	%r60 = phi i64 [ 0, %LU9 ], [ %r86, %LU11 ]
-	%r56 = phi i64 [ 0, %LU9 ], [ %r85, %LU11 ]
 	%r51 = phi %struct.IntHolder* [ %r29, %LU9 ], [ %r84, %LU11 ]
 	%r47 = phi i64 [ 0, %LU9 ], [ %r83, %LU11 ]
-	%r34 = phi i64 [ 0, %LU9 ], [ %r82, %LU11 ]
 	br label %LU12
 LU12:
 	%r35 = load i64* @end
 	%r36 = icmp sle i64 0, %r35
 	br i1 %r36, label %LU13, label %LU11
 LU13:
-	%r64 = phi i64 [ %r63, %LU12 ], [ %r65, %LU14 ]
-	%r61 = phi i64 [ %r60, %LU12 ], [ %r68, %LU14 ]
-	%r57 = phi i64 [ %r56, %LU12 ], [ %r55, %LU14 ]
 	%r52 = phi %struct.IntHolder* [ %r51, %LU12 ], [ %r52, %LU14 ]
 	%r49 = phi i64 [ 0, %LU12 ], [ %r69, %LU14 ]
-	%r48 = phi i64 [ %r47, %LU12 ], [ %r46, %LU14 ]
-	%r37 = mul i64 1, 2
-	%r38 = mul i64 2, 3
-	%r39 = mul i64 6, 4
-	%r40 = mul i64 24, 5
-	%r41 = mul i64 120, 6
-	%r42 = mul i64 720, 7
-	%r43 = mul i64 5040, 8
-	%r44 = mul i64 40320, 9
-	%r45 = mul i64 362880, 10
 	%r46 = mul i64 3628800, 11
 	%r50 = add i64 %r49, 1
 	%r53 = getelementptr inbounds %struct.IntHolder* %r52, i1 0, i32 0
 	store i64 %r50, i64* %r53
-	%r54 = getelementptr inbounds %struct.IntHolder* %r52, i1 0, i32 0
-	%r55 = load i64* %r54
 	call i64 @multBy4xTimes(%struct.IntHolder* %r52, i64 2)
 	call void @divideBy8(%struct.IntHolder* %r52)
 	%r58 = load i64* @interval
 	%r59 = sub i64 %r58, 1
-	%r62 = icmp sle i64 %r59, 0
-	%r65 = zext i1 %r62 to i64
 	%r66 = icmp sle i64 %r59, 0
 	br i1 %r66, label %LU15, label %LU14
 LU15:
@@ -129,9 +107,6 @@ LU14:
 	%r71 = icmp sle i64 %r69, %r70
 	br i1 %r71, label %LU13, label %LU11
 LU11:
-	%r87 = phi i64 [ %r63, %LU12 ], [ %r65, %LU14 ]
-	%r86 = phi i64 [ %r60, %LU12 ], [ %r68, %LU14 ]
-	%r85 = phi i64 [ %r56, %LU12 ], [ %r55, %LU14 ]
 	%r84 = phi %struct.IntHolder* [ %r51, %LU12 ], [ %r52, %LU14 ]
 	%r83 = phi i64 [ %r47, %LU12 ], [ %r46, %LU14 ]
 	%r82 = phi i64 [ 0, %LU12 ], [ %r69, %LU14 ]
@@ -139,8 +114,6 @@ LU11:
 	%r81 = icmp slt i64 %r80, 50
 	br i1 %r81, label %LU10, label %LU8
 LU8:
-	%r89 = phi i64 [ %r83, %LU11 ]
-	%r88 = phi i64 [ %r82, %LU11 ]
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r82)
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r83)
 	br label %LU7

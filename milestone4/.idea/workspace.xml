@@ -18,9 +18,21 @@
       <file leaf-file-name="Instruction.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cfg/Instruction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="475" column="19" lean-forward="true" selection-start-line="475" selection-start-column="19" selection-end-line="475" selection-end-column="19" />
+            <state relative-caret-position="323">
+              <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UselessCodeEliminator.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/UselessCodeEliminator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1524">
+              <caret line="100" column="23" lean-forward="false" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -28,32 +40,28 @@
       <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cfg/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="215">
+              <caret line="60" column="17" lean-forward="false" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConstantPropagator.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sccp/ConstantPropagator.py">
+      <file leaf-file-name="sccp.mini" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sccp.mini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="145" column="34" lean-forward="false" selection-start-line="145" selection-start-column="34" selection-end-line="145" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#74#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="391">
+              <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ControlFlowGraphConstructor.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cfg/ControlFlowGraphConstructor.py">
+      <file leaf-file-name="sccp.ll" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sccp.ll">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="-235">
+              <caret line="9" column="45" lean-forward="true" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -62,8 +70,40 @@
       <file leaf-file-name="Function.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cfg/Function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-272">
+            <state relative-caret-position="1003">
               <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConstantPropagator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sccp/ConstantPropagator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="137" column="21" lean-forward="false" selection-start-line="137" selection-start-column="21" selection-end-line="137" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#74#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BenchMarkishTopics.ll" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../benchmarks/BenchMarkishTopics/BenchMarkishTopics.ll">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="222">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="biggest.ll" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../benchmarks/biggest/biggest.ll">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -72,49 +112,11 @@
       <file leaf-file-name="MiniCompiler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MiniCompiler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Block.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cfg/Block.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="115" column="22" lean-forward="false" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Literal.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cfg/Literal.py">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="402">
-              <caret line="48" column="67" lean-forward="true" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bert.ll" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../benchmarks/bert/bert.ll">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4077">
-              <caret line="317" column="0" lean-forward="false" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="3.mini" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3.mini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-              <folding />
+              <caret line="43" column="17" lean-forward="false" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,9 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>boolean</find>
-      <find>Store</find>
-      <find>handle_assign</find>
       <find>type</find>
       <find>handle_return</find>
       <find>handle_while</find>
@@ -144,22 +143,25 @@
       <find>handle_store</find>
       <find>Register</find>
       <find>Jump</find>
-      <find>icmp</find>
       <find>neg</find>
       <find>cur_block</find>
       <find>Call</find>
       <find>ssa_wl</find>
       <find>76</find>
       <find>dest</find>
-      <find>reti</find>
       <find>==</find>
       <find>has_been</find>
       <find>_if</find>
-      <find>malloc</find>
-      <find>handle_dot</find>
-      <find>element</find>
       <find>calli</find>
       <find>call</find>
+      <find>handle_dot</find>
+      <find>reti</find>
+      <find>ele</find>
+      <find>cmp</find>
+      <find>icmp</find>
+      <find>malloc</find>
+      <find>element</find>
+      <find>Store</find>
     </findStrings>
     <replaceStrings>
       <replace>is</replace>
@@ -197,18 +199,20 @@
         <option value="$PROJECT_DIR$/cfg/Register.py" />
         <option value="$PROJECT_DIR$/sccp/ConstantPropigator.py" />
         <option value="$PROJECT_DIR$/run_benchmarks.py" />
-        <option value="$PROJECT_DIR$/MiniCompiler.py" />
         <option value="$PROJECT_DIR$/sccp.mini" />
         <option value="$PROJECT_DIR$/sccp/Edge.py" />
         <option value="$PROJECT_DIR$/cfg/Function.py" />
-        <option value="$PROJECT_DIR$/UselessCodeEliminator.py" />
-        <option value="$PROJECT_DIR$/cfg/utils.py" />
         <option value="$PROJECT_DIR$/cfg/Block.py" />
         <option value="$PROJECT_DIR$/3.mini" />
-        <option value="$PROJECT_DIR$/cfg/Instruction.py" />
         <option value="$PROJECT_DIR$/../benchmarks/bert/bert.ll" />
         <option value="$PROJECT_DIR$/cfg/Literal.py" />
+        <option value="$PROJECT_DIR$/MiniCompiler.py" />
+        <option value="$PROJECT_DIR$/cfg/Instruction.py" />
+        <option value="$PROJECT_DIR$/../benchmarks/BenchMarkishTopics/BenchMarkishTopics.ll" />
+        <option value="$PROJECT_DIR$/../benchmarks/biggest/biggest.ll" />
         <option value="$PROJECT_DIR$/sccp/ConstantPropagator.py" />
+        <option value="$PROJECT_DIR$/cfg/utils.py" />
+        <option value="$PROJECT_DIR$/UselessCodeEliminator.py" />
       </list>
     </option>
   </component>
@@ -685,7 +689,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="161" />
+      <option name="time" value="182" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -694,13 +698,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/1.mini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="12" lean-forward="false" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/3.mini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -910,26 +907,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../benchmarks/BenchMarkishTopics/BenchMarkishTopics.ll">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="941">
-          <caret line="85" column="35" lean-forward="false" selection-start-line="85" selection-start-column="34" selection-end-line="85" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cfg/Local.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cfg/Register.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -950,48 +931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sccp.mini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3145">
-          <caret line="185" column="12" lean-forward="true" selection-start-line="185" selection-start-column="12" selection-end-line="185" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sccp.ll">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1507">
-          <caret line="167" column="48" lean-forward="true" selection-start-line="167" selection-start-column="48" selection-end-line="167" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UselessCodeEliminator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MiniCompiler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cfg/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cfg/ControlFlowGraphConstructor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1004,22 +943,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="115" column="22" lean-forward="false" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cfg/Function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cfg/Instruction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="475" column="19" lean-forward="true" selection-start-line="475" selection-start-column="19" selection-end-line="475" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1048,12 +971,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cfg/Register.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sccp.mini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sccp.ll">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-235">
+          <caret line="9" column="45" lean-forward="true" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../benchmarks/BenchMarkishTopics/BenchMarkishTopics.ll">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiniCompiler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="43" column="17" lean-forward="false" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../benchmarks/biggest/biggest.ll">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cfg/Instruction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sccp/ConstantPropagator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="145" column="34" lean-forward="false" selection-start-line="145" selection-start-column="34" selection-end-line="145" selection-end-column="34" />
+        <state relative-caret-position="202">
+          <caret line="137" column="21" lean-forward="false" selection-start-line="137" selection-start-column="21" selection-end-line="137" selection-end-column="21" />
           <folding>
             <element signature="e#0#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cfg/Function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cfg/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="60" column="17" lean-forward="false" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UselessCodeEliminator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1524">
+          <caret line="100" column="23" lean-forward="false" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

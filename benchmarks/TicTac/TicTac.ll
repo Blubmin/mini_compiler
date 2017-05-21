@@ -421,7 +421,6 @@ LU106:
 LU104:
 	br label %LU102
 LU102:
-	%r185 = sub i64 0, 1
 	br label %LU35
 LU35:
 	%r187 = phi i64 [ 0, %LU41 ], [ 1, %LU47 ], [ 0, %LU53 ], [ 1, %LU59 ], [ 0, %LU65 ], [ 1, %LU71 ], [ 0, %LU77 ], [ 1, %LU83 ], [ 0, %LU89 ], [ 1, %LU95 ], [ 0, %LU101 ], [ 1, %LU107 ], [ -1, %LU102 ]
@@ -430,21 +429,14 @@ LU35:
 
 define i64 @main () {
 LU108:
-	%r188 = sub i64 0, 1
 	%r189 = call i8* @malloc(i64 72)
 	%r190 = bitcast i8* %r189 to %struct.gameBoard*
 	call void @cleanBoard(%struct.gameBoard* %r190)
 	br label %LU111
 LU111:
-	%r191 = icmp slt i64 -1, 0
-	%r192 = icmp ne i64 0, 8
-	%r193 = and i1 1, 1
 	br label %LU112
 LU112:
 	%r207 = phi i64 [ 0, %LU111 ], [ %r209, %LU113 ]
-	%r205 = phi i64 [ -1, %LU111 ], [ %r204, %LU113 ]
-	%r202 = phi i64 [ 0, %LU111 ], [ %r215, %LU113 ]
-	%r199 = phi i64 [ 0, %LU111 ], [ %r214, %LU113 ]
 	%r195 = phi i64 [ 0, %LU111 ], [ %r213, %LU113 ]
 	%r194 = phi %struct.gameBoard* [ %r190, %LU111 ], [ %r194, %LU113 ]
 	call void @printBoard(%struct.gameBoard* %r194)
@@ -463,8 +455,6 @@ LU115:
 	call void @placePiece(%struct.gameBoard* %r194, i64 2, i64 %r201)
 	br label %LU113
 LU113:
-	%r215 = phi i64 [ %r202, %LU114 ], [ %r201, %LU115 ]
-	%r214 = phi i64 [ %r198, %LU114 ], [ %r199, %LU115 ]
 	%r213 = phi i64 [ %r197, %LU114 ], [ %r200, %LU115 ]
 	%r204 = call i64 @checkWinner(%struct.gameBoard* %r194)
 	%r209 = add i64 %r207, 1
@@ -473,7 +463,6 @@ LU113:
 	%r212 = and i1 %r210, %r211
 	br i1 %r212, label %LU112, label %LU110
 LU110:
-	%r216 = phi i64 [ %r204, %LU113 ]
 	%r217 = add i64 %r204, 1
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r217)
 	br label %LU109
