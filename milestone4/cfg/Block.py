@@ -113,7 +113,7 @@ class Block:
         return Num(num["value"])
 
     def handle_null(self, null):
-        return Null()
+        return Null("")
 
     def handle_comp(self, eq, comp):
         lft = self.traverse_expression(eq["lft"])
@@ -194,9 +194,9 @@ class Block:
                 self.add_instruction(inst)
             else:
                 val = lft.value
-            idx, id_type = utils.get_struct_index(val.type, lvalue["id"])
+            idx, id_type = utils.get_struct_index(lft.type, lvalue["id"])
             ptr = self.create_register(id_type)
-            inst = GetElementPtrInstruction(val.type, val, idx, ptr)
+            inst = GetElementPtrInstruction(lft.type, val, idx, ptr)
             self.add_instruction(inst)
             return ptr
         else:

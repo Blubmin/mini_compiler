@@ -68,8 +68,8 @@ LU13:
 	br label %LU12
 LU12:
 	%r27 = xor i64 1, 1
-	%r28 = trunc i64 <bound method Bool.__not__ of <cfg.Literal.Bool object at 0x000001A4E3FD0DA0>> to i1
-	br i1 <bound method Bool.__not__ of <cfg.Literal.Bool object at 0x000001A4E3FD0DA0>>, label %LU16, label %LU17
+	%r28 = trunc i64 <bound method Bool.__not__ of <cfg.Literal.Bool object at 0x000001FFFBD30DD8>> to i1
+	br i1 <bound method Bool.__not__ of <cfg.Literal.Bool object at 0x000001FFFBD30DD8>>, label %LU16, label %LU17
 LU16:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 3)
 	br label %LU15

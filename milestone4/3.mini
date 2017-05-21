@@ -5,12 +5,13 @@ struct A {
 fun main() int {
     struct A a;
     int ha;
+    a.a = 9;
     ha = 8;
-    if (ha < 10) {
-        print ha;
+    if (ha < a.a) {
+        return -2;
     }
     else {
-        print 0;
+        print a.a;
     }
     return 0;
 }

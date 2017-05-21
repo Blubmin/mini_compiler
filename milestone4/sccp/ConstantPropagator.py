@@ -69,7 +69,7 @@ def analyze_uni(opr):
             set_ssa(b.target, TOP)
             return
 
-        res = getattr(source, opr)
+        res = getattr(source, opr)()
         set_ssa(b.target, res)
     return chk
 
@@ -129,12 +129,13 @@ def analyze_phi(p):
         return
 
     if vals:
-        is_bottom = False
+        is_bottom = True
         val = vals[0]
         for i in range(1, len(vals)):
-            is_bottom = val != vals[i]
+            res = val != vals[i]
+            is_bottom &= res
 
-        if is_bottom:
+        if not is_bottom:
             set_ssa(p.target, BOTTOM)
         else:
             set_ssa(p.target, val)

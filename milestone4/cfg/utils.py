@@ -36,7 +36,7 @@ def get_default(llvm_type):
     if llvm_type == "i64":
         return Num(0)
     else:
-        return Null()
+        return Null(llvm_type)
 
 def get_struct_index(type, id):
     struct = structs[type]

@@ -25,7 +25,7 @@ class Num:
         return Num(self.value // other.value)
 
     def __neg__(self):
-        return Num(-self.value)
+        return Num(self.value * -1)
 
     def __lt__(self, other):
         return Bool.from_bool(self.value < other.value)
@@ -54,8 +54,9 @@ class Num:
         return string
 
 class Null:
-    def __init__(self):
+    def __init__(self, type):
         self.value = "null"
+        self.type = type
 
     def add_use(self, use):
         return

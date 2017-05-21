@@ -467,6 +467,7 @@ class PhiInstruction:
 
     def add_source(self, source):
         self.sources += [source]
+        source["value"].add_use(self)
 
     def __str__(self):
         string = ""
