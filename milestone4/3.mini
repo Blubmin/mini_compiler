@@ -1,17 +1,4 @@
-struct A {
-    int a;
-};
-
 fun main() int {
-    struct A a;
-    int ha;
-    a.a = 9;
-    ha = 8;
-    if (ha < a.a) {
-        return -2;
-    }
-    else {
-        print a.a;
-    }
+    print 789/-341;
     return 0;
 }

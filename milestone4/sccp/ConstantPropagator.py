@@ -151,7 +151,7 @@ def analyze_instruction(bl, i):
         "AddInstruction": analyze_bin("__add__"),
         "SubInstruction": analyze_bin("__sub__"),
         "MultInstruction": analyze_bin("__mul__"),
-        "DivInstruction": analyze_bin("__floordiv__"),
+        "DivInstruction": analyze_bin("__truediv__"),
         "NegInstruction": analyze_uni("__neg__"),
         "AndInstruction": analyze_bin("__and__"),
         "OrInstruction": analyze_bin("__or__"),

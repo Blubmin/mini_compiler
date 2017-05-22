@@ -21,9 +21,6 @@ class Num:
     def __truediv__(self, other):
         return Num(self.value / other.value)
 
-    def __floordiv__(self, other):
-        return Num(self.value // other.value)
-
     def __neg__(self):
         return Num(self.value * -1)
 
