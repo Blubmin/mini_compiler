@@ -17,7 +17,9 @@ declare i32 @scanf(i8*, ...)
 define void @tailrecursive (i64 %r0) {
 LU0:
 	%r1 = icmp sle i64 %r0, 0
-	br i1 %r1, label %LU1, label %LU2
+	br i1 %r1, label %LU3, label %LU2
+LU3:
+	br label %LU1
 LU2:
 	%r4 = sub i64 %r0, 1
 	call void @tailrecursive(i64 %r4)
@@ -81,11 +83,11 @@ LU7:
 }
 
 define void @objinstantiation (i64 %r70) {
-LU11:
+LU14:
 	%r71 = icmp sgt i64 %r70, 0
 	br i1 %r71, label %LU15, label %LU12
 LU15:
-	%r76 = phi i64 [ %r70, %LU11 ], [ %r77, %LU15 ]
+	%r76 = phi i64 [ %r70, %LU14 ], [ %r77, %LU15 ]
 	%r77 = sub i64 %r76, 1
 	%r78 = icmp sgt i64 %r77, 0
 	br i1 %r78, label %LU15, label %LU12

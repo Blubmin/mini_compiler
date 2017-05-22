@@ -54,7 +54,7 @@ def analyze_bin(opr):
             set_ssa(b.target, TOP)
             return
 
-        if (opr == "__floordiv__" and rht.value == 0):
+        if (opr == "__truediv__" and rht.value == 0):
             set_ssa(b.target, BOTTOM)
             return
 
@@ -88,7 +88,7 @@ def analyze_icmp(c):
         "slt": analyze_bin("__lt__"),
         "sle": analyze_bin("__le__"),
         "sgt": analyze_bin("__gt__"),
-        "sge": analyze_bin("__le__"),
+        "sge": analyze_bin("__ge__"),
         "eq": analyze_bin("__equals__"),
         "ne": analyze_bin("__not_equals__")
     }

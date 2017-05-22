@@ -13,18 +13,18 @@ declare i32 @scanf(i8*, ...)
 
 
 define i64 @calcPower (i64 %r0, i64 %r1) {
-LU0:
+LU3:
 	%r2 = icmp sgt i64 %r1, 0
 	br i1 %r2, label %LU4, label %LU2
 LU4:
-	%r6 = phi i64 [ %r1, %LU0 ], [ %r7, %LU4 ]
-	%r3 = phi i64 [ 1, %LU0 ], [ %r5, %LU4 ]
+	%r6 = phi i64 [ %r1, %LU3 ], [ %r7, %LU4 ]
+	%r3 = phi i64 [ 1, %LU3 ], [ %r5, %LU4 ]
 	%r5 = mul i64 %r3, %r0
 	%r7 = sub i64 %r6, 1
 	%r8 = icmp sgt i64 %r7, 0
 	br i1 %r8, label %LU4, label %LU2
 LU2:
-	%r9 = phi i64 [ 1, %LU0 ], [ %r5, %LU4 ]
+	%r9 = phi i64 [ 1, %LU3 ], [ %r5, %LU4 ]
 	ret i64 %r9
 }
 

@@ -21,16 +21,16 @@ declare i32 @scanf(i8*, ...)
 define %struct.node* @concatLists (%struct.node* %r0, %struct.node* %r1) {
 LU0:
 	%r2 = icmp eq %struct.node* %r0, null
-	br i1 %r2, label %LU3, label %LU2
+	br i1 %r2, label %LU3, label %LU5
 LU3:
 	br label %LU1
-LU2:
+LU5:
 	%r3 = getelementptr inbounds %struct.node* %r0, i1 0, i32 1
 	%r4 = load %struct.node** %r3
 	%r5 = icmp ne %struct.node* %r4, null
 	br i1 %r5, label %LU6, label %LU4
 LU6:
-	%r6 = phi %struct.node* [ %r0, %LU2 ], [ %r8, %LU6 ]
+	%r6 = phi %struct.node* [ %r0, %LU5 ], [ %r8, %LU6 ]
 	%r7 = getelementptr inbounds %struct.node* %r6, i1 0, i32 1
 	%r8 = load %struct.node** %r7
 	%r9 = getelementptr inbounds %struct.node* %r8, i1 0, i32 1
@@ -38,7 +38,7 @@ LU6:
 	%r11 = icmp ne %struct.node* %r10, null
 	br i1 %r11, label %LU6, label %LU4
 LU4:
-	%r14 = phi %struct.node* [ %r0, %LU2 ], [ %r8, %LU6 ]
+	%r14 = phi %struct.node* [ %r0, %LU5 ], [ %r8, %LU6 ]
 	%r15 = getelementptr inbounds %struct.node* %r14, i1 0, i32 1
 	store %struct.node* %r1, %struct.node** %r15
 	br label %LU1
@@ -403,13 +403,13 @@ LU75:
 }
 
 define %struct.tnode* @buildTree (%struct.node* %r219) {
-LU83:
+LU86:
 	%r220 = call i64 @size(%struct.node* %r219)
 	%r221 = icmp slt i64 0, %r220
 	br i1 %r221, label %LU87, label %LU85
 LU87:
-	%r224 = phi i64 [ 0, %LU83 ], [ %r227, %LU87 ]
-	%r222 = phi %struct.tnode* [ null, %LU83 ], [ %r226, %LU87 ]
+	%r224 = phi i64 [ 0, %LU86 ], [ %r227, %LU87 ]
+	%r222 = phi %struct.tnode* [ null, %LU86 ], [ %r226, %LU87 ]
 	%r225 = call i64 @get(%struct.node* %r219, i64 %r224)
 	%r226 = call %struct.tnode* @treeadd(%struct.tnode* %r222, i64 %r225)
 	%r227 = add i64 %r224, 1
@@ -417,7 +417,7 @@ LU87:
 	%r229 = icmp slt i64 %r227, %r228
 	br i1 %r229, label %LU87, label %LU85
 LU85:
-	%r230 = phi %struct.tnode* [ null, %LU83 ], [ %r226, %LU87 ]
+	%r230 = phi %struct.tnode* [ null, %LU86 ], [ %r226, %LU87 ]
 	ret %struct.tnode* %r230
 }
 

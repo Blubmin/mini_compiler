@@ -89,55 +89,71 @@ LU10:
 LU12:
 	%r38 = getelementptr inbounds %struct.gameBoard* %r32, i1 0, i32 1
 	store i64 %r33, i64* %r38
-	br label %LU7
+	br label %LU11
 LU13:
 	%r39 = icmp eq i64 %r34, 3
 	br i1 %r39, label %LU15, label %LU16
 LU15:
 	%r40 = getelementptr inbounds %struct.gameBoard* %r32, i1 0, i32 2
 	store i64 %r33, i64* %r40
-	br label %LU7
+	br label %LU14
 LU16:
 	%r41 = icmp eq i64 %r34, 4
 	br i1 %r41, label %LU18, label %LU19
 LU18:
 	%r42 = getelementptr inbounds %struct.gameBoard* %r32, i1 0, i32 3
 	store i64 %r33, i64* %r42
-	br label %LU7
+	br label %LU17
 LU19:
 	%r43 = icmp eq i64 %r34, 5
 	br i1 %r43, label %LU21, label %LU22
 LU21:
 	%r44 = getelementptr inbounds %struct.gameBoard* %r32, i1 0, i32 4
 	store i64 %r33, i64* %r44
-	br label %LU7
+	br label %LU20
 LU22:
 	%r45 = icmp eq i64 %r34, 6
 	br i1 %r45, label %LU24, label %LU25
 LU24:
 	%r46 = getelementptr inbounds %struct.gameBoard* %r32, i1 0, i32 5
 	store i64 %r33, i64* %r46
-	br label %LU7
+	br label %LU23
 LU25:
 	%r47 = icmp eq i64 %r34, 7
 	br i1 %r47, label %LU27, label %LU28
 LU27:
 	%r48 = getelementptr inbounds %struct.gameBoard* %r32, i1 0, i32 6
 	store i64 %r33, i64* %r48
-	br label %LU7
+	br label %LU26
 LU28:
 	%r49 = icmp eq i64 %r34, 8
 	br i1 %r49, label %LU30, label %LU31
 LU30:
 	%r50 = getelementptr inbounds %struct.gameBoard* %r32, i1 0, i32 7
 	store i64 %r33, i64* %r50
-	br label %LU7
+	br label %LU29
 LU31:
 	%r51 = icmp eq i64 %r34, 9
-	br i1 %r51, label %LU33, label %LU7
+	br i1 %r51, label %LU33, label %LU32
 LU33:
 	%r52 = getelementptr inbounds %struct.gameBoard* %r32, i1 0, i32 8
 	store i64 %r33, i64* %r52
+	br label %LU32
+LU32:
+	br label %LU29
+LU29:
+	br label %LU26
+LU26:
+	br label %LU23
+LU23:
+	br label %LU20
+LU20:
+	br label %LU17
+LU17:
+	br label %LU14
+LU14:
+	br label %LU11
+LU11:
 	br label %LU7
 LU7:
 	ret void
@@ -158,9 +174,11 @@ LU39:
 	%r61 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 2
 	%r62 = load i64* %r61
 	%r63 = icmp eq i64 %r62, 1
-	br i1 %r63, label %LU41, label %LU38
+	br i1 %r63, label %LU41, label %LU40
 LU41:
 	br label %LU35
+LU40:
+	br label %LU38
 LU38:
 	br label %LU36
 LU36:
@@ -177,9 +195,11 @@ LU45:
 	%r72 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 2
 	%r73 = load i64* %r72
 	%r74 = icmp eq i64 %r73, 2
-	br i1 %r74, label %LU47, label %LU44
+	br i1 %r74, label %LU47, label %LU46
 LU47:
 	br label %LU35
+LU46:
+	br label %LU44
 LU44:
 	br label %LU42
 LU42:
@@ -196,9 +216,11 @@ LU51:
 	%r83 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 5
 	%r84 = load i64* %r83
 	%r85 = icmp eq i64 %r84, 1
-	br i1 %r85, label %LU53, label %LU50
+	br i1 %r85, label %LU53, label %LU52
 LU53:
 	br label %LU35
+LU52:
+	br label %LU50
 LU50:
 	br label %LU48
 LU48:
@@ -215,9 +237,11 @@ LU57:
 	%r94 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 5
 	%r95 = load i64* %r94
 	%r96 = icmp eq i64 %r95, 2
-	br i1 %r96, label %LU59, label %LU56
+	br i1 %r96, label %LU59, label %LU58
 LU59:
 	br label %LU35
+LU58:
+	br label %LU56
 LU56:
 	br label %LU54
 LU54:
@@ -234,9 +258,11 @@ LU63:
 	%r105 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 8
 	%r106 = load i64* %r105
 	%r107 = icmp eq i64 %r106, 1
-	br i1 %r107, label %LU65, label %LU62
+	br i1 %r107, label %LU65, label %LU64
 LU65:
 	br label %LU35
+LU64:
+	br label %LU62
 LU62:
 	br label %LU60
 LU60:
@@ -253,9 +279,11 @@ LU69:
 	%r116 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 8
 	%r117 = load i64* %r116
 	%r118 = icmp eq i64 %r117, 2
-	br i1 %r118, label %LU71, label %LU68
+	br i1 %r118, label %LU71, label %LU70
 LU71:
 	br label %LU35
+LU70:
+	br label %LU68
 LU68:
 	br label %LU66
 LU66:
@@ -272,9 +300,11 @@ LU75:
 	%r127 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 6
 	%r128 = load i64* %r127
 	%r129 = icmp eq i64 %r128, 1
-	br i1 %r129, label %LU77, label %LU74
+	br i1 %r129, label %LU77, label %LU76
 LU77:
 	br label %LU35
+LU76:
+	br label %LU74
 LU74:
 	br label %LU72
 LU72:
@@ -291,9 +321,11 @@ LU81:
 	%r138 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 6
 	%r139 = load i64* %r138
 	%r140 = icmp eq i64 %r139, 2
-	br i1 %r140, label %LU83, label %LU80
+	br i1 %r140, label %LU83, label %LU82
 LU83:
 	br label %LU35
+LU82:
+	br label %LU80
 LU80:
 	br label %LU78
 LU78:
@@ -310,9 +342,11 @@ LU87:
 	%r149 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 7
 	%r150 = load i64* %r149
 	%r151 = icmp eq i64 %r150, 1
-	br i1 %r151, label %LU89, label %LU86
+	br i1 %r151, label %LU89, label %LU88
 LU89:
 	br label %LU35
+LU88:
+	br label %LU86
 LU86:
 	br label %LU84
 LU84:
@@ -329,9 +363,11 @@ LU93:
 	%r160 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 7
 	%r161 = load i64* %r160
 	%r162 = icmp eq i64 %r161, 2
-	br i1 %r162, label %LU95, label %LU92
+	br i1 %r162, label %LU95, label %LU94
 LU95:
 	br label %LU35
+LU94:
+	br label %LU92
 LU92:
 	br label %LU90
 LU90:
@@ -348,9 +384,11 @@ LU99:
 	%r171 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 8
 	%r172 = load i64* %r171
 	%r173 = icmp eq i64 %r172, 1
-	br i1 %r173, label %LU101, label %LU98
+	br i1 %r173, label %LU101, label %LU100
 LU101:
 	br label %LU35
+LU100:
+	br label %LU98
 LU98:
 	br label %LU96
 LU96:
@@ -362,14 +400,18 @@ LU103:
 	%r179 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 5
 	%r180 = load i64* %r179
 	%r181 = icmp eq i64 %r180, 2
-	br i1 %r181, label %LU105, label %LU102
+	br i1 %r181, label %LU105, label %LU104
 LU105:
 	%r182 = getelementptr inbounds %struct.gameBoard* %r54, i1 0, i32 8
 	%r183 = load i64* %r182
 	%r184 = icmp eq i64 %r183, 2
-	br i1 %r184, label %LU107, label %LU102
+	br i1 %r184, label %LU107, label %LU106
 LU107:
 	br label %LU35
+LU106:
+	br label %LU104
+LU104:
+	br label %LU102
 LU102:
 	br label %LU35
 LU35:

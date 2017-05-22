@@ -12,11 +12,11 @@ declare i32 @scanf(i8*, ...)
 
 
 define i64 @wait (i64 %r0) {
-LU0:
+LU3:
 	%r1 = icmp sgt i64 %r0, 0
 	br i1 %r1, label %LU4, label %LU1
 LU4:
-	%r2 = phi i64 [ %r0, %LU0 ], [ %r3, %LU4 ]
+	%r2 = phi i64 [ %r0, %LU3 ], [ %r3, %LU4 ]
 	%r3 = sub i64 %r2, 1
 	%r4 = icmp sgt i64 %r3, 0
 	br i1 %r4, label %LU4, label %LU1
@@ -25,18 +25,18 @@ LU1:
 }
 
 define i64 @power (i64 %r6, i64 %r7) {
-LU5:
+LU8:
 	%r8 = icmp sgt i64 %r7, 0
 	br i1 %r8, label %LU9, label %LU7
 LU9:
-	%r12 = phi i64 [ %r7, %LU5 ], [ %r13, %LU9 ]
-	%r9 = phi i64 [ 1, %LU5 ], [ %r11, %LU9 ]
+	%r12 = phi i64 [ %r7, %LU8 ], [ %r13, %LU9 ]
+	%r9 = phi i64 [ 1, %LU8 ], [ %r11, %LU9 ]
 	%r11 = mul i64 %r9, %r6
 	%r13 = sub i64 %r12, 1
 	%r14 = icmp sgt i64 %r13, 0
 	br i1 %r14, label %LU9, label %LU7
 LU7:
-	%r15 = phi i64 [ 1, %LU5 ], [ %r11, %LU9 ]
+	%r15 = phi i64 [ 1, %LU8 ], [ %r11, %LU9 ]
 	ret i64 %r15
 }
 

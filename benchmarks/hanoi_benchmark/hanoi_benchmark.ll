@@ -65,12 +65,14 @@ LU12:
 	%r25 = getelementptr inbounds %struct.plate* %r21, i1 0, i32 1
 	store %struct.plate* %r24, %struct.plate** %r25
 	store %struct.plate* %r21, %struct.plate** @peg2
-	br label %LU8
+	br label %LU11
 LU13:
 	%r26 = load %struct.plate** @peg3
 	%r27 = getelementptr inbounds %struct.plate* %r21, i1 0, i32 1
 	store %struct.plate* %r26, %struct.plate** %r27
 	store %struct.plate* %r21, %struct.plate** @peg3
+	br label %LU11
+LU11:
 	br label %LU8
 LU8:
 	%r28 = load i64* @numMoves
@@ -98,11 +100,11 @@ LU15:
 }
 
 define void @printPeg (%struct.plate* %r39) {
-LU19:
+LU22:
 	%r40 = icmp ne %struct.plate* %r39, null
 	br i1 %r40, label %LU23, label %LU20
 LU23:
-	%r41 = phi %struct.plate* [ %r39, %LU19 ], [ %r45, %LU23 ]
+	%r41 = phi %struct.plate* [ %r39, %LU22 ], [ %r45, %LU23 ]
 	%r42 = getelementptr inbounds %struct.plate* %r41, i1 0, i32 0
 	%r43 = load i64* %r42
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r43)
@@ -123,12 +125,12 @@ LU24:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r48 = load i64* @.read_scratch
 	%r49 = icmp sge i64 %r48, 1
-	br i1 %r49, label %LU27, label %LU25
-LU27:
+	br i1 %r49, label %LU29, label %LU25
+LU29:
 	%r50 = icmp ne i64 %r48, 0
 	br i1 %r50, label %LU30, label %LU28
 LU30:
-	%r54 = phi i64 [ %r48, %LU27 ], [ %r58, %LU30 ]
+	%r54 = phi i64 [ %r48, %LU29 ], [ %r58, %LU30 ]
 	%r51 = call i8* @malloc(i64 16)
 	%r52 = bitcast i8* %r51 to %struct.plate*
 	%r55 = getelementptr inbounds %struct.plate* %r52, i1 0, i32 0
@@ -164,7 +166,7 @@ LU28:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r68)
 	%r69 = load %struct.plate** @peg3
 	%r70 = icmp ne %struct.plate* %r69, null
-	br i1 %r70, label %LU33, label %LU25
+	br i1 %r70, label %LU33, label %LU31
 LU33:
 	%r74 = load %struct.plate** @peg3
 	%r75 = getelementptr inbounds %struct.plate* %r74, i1 0, i32 1
@@ -172,7 +174,9 @@ LU33:
 	store %struct.plate* %r76, %struct.plate** @peg3
 	%r78 = load %struct.plate** @peg3
 	%r79 = icmp ne %struct.plate* %r78, null
-	br i1 %r79, label %LU33, label %LU25
+	br i1 %r79, label %LU33, label %LU31
+LU31:
+	br label %LU25
 LU25:
 	ret i64 0
 }

@@ -12,18 +12,18 @@ declare i32 @scanf(i8*, ...)
 
 
 define i64 @isqrt (i64 %r0) {
-LU0:
+LU3:
 	%r1 = icmp sle i64 1, %r0
 	br i1 %r1, label %LU4, label %LU2
 LU4:
-	%r3 = phi i64 [ 3, %LU0 ], [ %r5, %LU4 ]
-	%r2 = phi i64 [ 1, %LU0 ], [ %r4, %LU4 ]
+	%r3 = phi i64 [ 3, %LU3 ], [ %r5, %LU4 ]
+	%r2 = phi i64 [ 1, %LU3 ], [ %r4, %LU4 ]
 	%r4 = add i64 %r2, %r3
 	%r5 = add i64 %r3, 2
 	%r7 = icmp sle i64 %r4, %r0
 	br i1 %r7, label %LU4, label %LU2
 LU2:
-	%r8 = phi i64 [ 3, %LU0 ], [ %r5, %LU4 ]
+	%r8 = phi i64 [ 3, %LU3 ], [ %r5, %LU4 ]
 	%r9 = sdiv i64 %r8, 2
 	%r10 = sub i64 %r9, 1
 	ret i64 %r10

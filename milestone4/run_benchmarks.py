@@ -36,11 +36,9 @@ if __name__ == "__main__":
     print_bold_color("Benchmarks Milestone4", bcolors.HEADER)
     for (path, dirs, files) in os.walk("../benchmarks"):
         for dir in dirs:
-            if dir != "OptimizationBenchmark":
-                continue
             benchmark = dir;
             print()
             print_color("====== {} ======".format(dir), bcolors.OKBLUE)
-            # run("Stack", ["-s"], path, dir)
-            # run("SSA", [], path, dir)
+            run("Stack", ["-s"], path, dir)
+            run("SSA", [], path, dir)
             run("SSA Optimizations", ["-o"], path, dir)

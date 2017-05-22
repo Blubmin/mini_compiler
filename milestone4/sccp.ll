@@ -51,7 +51,7 @@ LU20:
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
 	call void @fbool(i64 0)
-	call void @fbool(i64 1)
+	call void @fbool(i64 0)
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
 	ret i64 0
@@ -64,7 +64,7 @@ LU25:
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
 	call void @fbool(i64 0)
-	call void @fbool(i64 1)
+	call void @fbool(i64 0)
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
 	ret i64 0

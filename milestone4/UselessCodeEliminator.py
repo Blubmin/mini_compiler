@@ -156,7 +156,7 @@ def remove_empty_blocks(f):
         if not b.critical and len(b.instructions) == 1 and isinstance(b.instructions[0], JumpInstruction):
             s = b.successors[0]
 
-            if not [i for i in s.instructions if isinstance(i, PhiInstruction) or isinstance(i, BrInstruction)]:
+            if not [i for i in s.instructions if isinstance(i, PhiInstruction)] and len(s.predecessors) == 1:
                 b.should_remove = True
                 if b.predecessors:
                     remove_middle(b.predecessors, b, b.successors[0])
