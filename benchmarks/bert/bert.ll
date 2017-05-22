@@ -104,7 +104,7 @@ LU17:
 define void @printList (%struct.node* %r50) {
 LU19:
 	%r51 = icmp ne %struct.node* %r50, null
-	br i1 %r51, label %LU22, label %LU21
+	br i1 %r51, label %LU22, label %LU20
 LU22:
 	%r52 = getelementptr inbounds %struct.node* %r50, i1 0, i32 0
 	%r53 = load i64* %r52
@@ -112,15 +112,15 @@ LU22:
 	%r54 = getelementptr inbounds %struct.node* %r50, i1 0, i32 1
 	%r55 = load %struct.node** %r54
 	call void @printList(%struct.node* %r55)
-	br label %LU21
-LU21:
+	br label %LU20
+LU20:
 	ret void
 }
 
 define void @treeprint (%struct.tnode* %r57) {
 LU23:
 	%r58 = icmp ne %struct.tnode* %r57, null
-	br i1 %r58, label %LU26, label %LU25
+	br i1 %r58, label %LU26, label %LU24
 LU26:
 	%r59 = getelementptr inbounds %struct.tnode* %r57, i1 0, i32 1
 	%r60 = load %struct.tnode** %r59
@@ -131,21 +131,21 @@ LU26:
 	%r63 = getelementptr inbounds %struct.tnode* %r57, i1 0, i32 2
 	%r64 = load %struct.tnode** %r63
 	call void @treeprint(%struct.tnode* %r64)
-	br label %LU25
-LU25:
+	br label %LU24
+LU24:
 	ret void
 }
 
 define void @freeList (%struct.node* %r66) {
 LU27:
 	%r67 = icmp ne %struct.node* %r66, null
-	br i1 %r67, label %LU30, label %LU29
+	br i1 %r67, label %LU30, label %LU28
 LU30:
 	%r68 = getelementptr inbounds %struct.node* %r66, i1 0, i32 1
 	%r69 = load %struct.node** %r68
 	call void @freeList(%struct.node* %r69)
-	br label %LU29
-LU29:
+	br label %LU28
+LU28:
 	ret void
 }
 
@@ -153,7 +153,7 @@ define void @freeTree (%struct.tnode* %r72) {
 LU31:
 	%r73 = icmp eq %struct.tnode* %r72, null
 	%r74 = xor i1 1, %r73
-	br i1 %r74, label %LU34, label %LU33
+	br i1 %r74, label %LU34, label %LU32
 LU34:
 	%r75 = getelementptr inbounds %struct.tnode* %r72, i1 0, i32 1
 	%r76 = load %struct.tnode** %r75
@@ -161,8 +161,8 @@ LU34:
 	%r77 = getelementptr inbounds %struct.tnode* %r72, i1 0, i32 2
 	%r78 = load %struct.tnode** %r77
 	call void @freeTree(%struct.tnode* %r78)
-	br label %LU33
-LU33:
+	br label %LU32
+LU32:
 	ret void
 }
 
@@ -501,11 +501,11 @@ LU91:
 }
 
 define i64 @main () {
-LU94:
+LU97:
 	br label %LU98
 LU98:
-	%r292 = phi i64 [ 0, %LU94 ], [ %r293, %LU98 ]
-	%r284 = phi %struct.node* [ null, %LU94 ], [ %r285, %LU98 ]
+	%r292 = phi i64 [ 0, %LU97 ], [ %r293, %LU98 ]
+	%r284 = phi %struct.node* [ null, %LU97 ], [ %r285, %LU98 ]
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r282 = load i64* @.read_scratch
 	%r285 = call %struct.node* @add(%struct.node* %r284, i64 %r282)

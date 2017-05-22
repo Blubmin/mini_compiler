@@ -65,14 +65,12 @@ LU12:
 	%r25 = getelementptr inbounds %struct.plate* %r21, i1 0, i32 1
 	store %struct.plate* %r24, %struct.plate** %r25
 	store %struct.plate* %r21, %struct.plate** @peg2
-	br label %LU11
+	br label %LU8
 LU13:
 	%r26 = load %struct.plate** @peg3
 	%r27 = getelementptr inbounds %struct.plate* %r21, i1 0, i32 1
 	store %struct.plate* %r26, %struct.plate** %r27
 	store %struct.plate* %r21, %struct.plate** @peg3
-	br label %LU11
-LU11:
 	br label %LU8
 LU8:
 	%r28 = load i64* @numMoves
@@ -87,22 +85,22 @@ LU14:
 	br i1 %r35, label %LU17, label %LU18
 LU17:
 	call void @move(i64 %r32, i64 %r33)
-	br label %LU16
+	br label %LU15
 LU18:
 	%r36 = sub i64 %r31, 1
 	call void @hanoi(i64 %r36, i64 %r32, i64 %r34, i64 %r33)
 	call void @move(i64 %r32, i64 %r33)
 	%r37 = sub i64 %r31, 1
 	call void @hanoi(i64 %r37, i64 %r34, i64 %r33, i64 %r32)
-	br label %LU16
-LU16:
+	br label %LU15
+LU15:
 	ret void
 }
 
 define void @printPeg (%struct.plate* %r39) {
 LU19:
 	%r40 = icmp ne %struct.plate* %r39, null
-	br i1 %r40, label %LU23, label %LU21
+	br i1 %r40, label %LU23, label %LU20
 LU23:
 	%r41 = phi %struct.plate* [ %r39, %LU19 ], [ %r45, %LU23 ]
 	%r42 = getelementptr inbounds %struct.plate* %r41, i1 0, i32 0
@@ -111,8 +109,8 @@ LU23:
 	%r44 = getelementptr inbounds %struct.plate* %r41, i1 0, i32 1
 	%r45 = load %struct.plate** %r44
 	%r46 = icmp ne %struct.plate* %r45, null
-	br i1 %r46, label %LU23, label %LU21
-LU21:
+	br i1 %r46, label %LU23, label %LU20
+LU20:
 	ret void
 }
 
@@ -125,7 +123,7 @@ LU24:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r48 = load i64* @.read_scratch
 	%r49 = icmp sge i64 %r48, 1
-	br i1 %r49, label %LU27, label %LU26
+	br i1 %r49, label %LU27, label %LU25
 LU27:
 	%r50 = icmp ne i64 %r48, 0
 	br i1 %r50, label %LU30, label %LU28
@@ -166,7 +164,7 @@ LU28:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r68)
 	%r69 = load %struct.plate** @peg3
 	%r70 = icmp ne %struct.plate* %r69, null
-	br i1 %r70, label %LU33, label %LU31
+	br i1 %r70, label %LU33, label %LU25
 LU33:
 	%r74 = load %struct.plate** @peg3
 	%r75 = getelementptr inbounds %struct.plate* %r74, i1 0, i32 1
@@ -174,10 +172,8 @@ LU33:
 	store %struct.plate* %r76, %struct.plate** @peg3
 	%r78 = load %struct.plate** @peg3
 	%r79 = icmp ne %struct.plate* %r78, null
-	br i1 %r79, label %LU33, label %LU31
-LU31:
-	br label %LU26
-LU26:
+	br i1 %r79, label %LU33, label %LU25
+LU25:
 	ret i64 0
 }
 

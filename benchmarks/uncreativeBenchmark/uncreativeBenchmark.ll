@@ -169,7 +169,7 @@ LU48:
 	%r75 = add i64 %r74, 1
 	%r76 = getelementptr inbounds %struct.LameStruct* %r62, i1 0, i32 2
 	store i64 %r75, i64* %r76
-	br label %LU47
+	br label %LU44
 LU49:
 	%r77 = icmp eq i64 %r60, 4
 	br i1 %r77, label %LU51, label %LU52
@@ -179,7 +179,7 @@ LU51:
 	%r80 = add i64 %r79, 1
 	%r81 = getelementptr inbounds %struct.LameStruct* %r62, i1 0, i32 3
 	store i64 %r80, i64* %r81
-	br label %LU50
+	br label %LU44
 LU52:
 	%r82 = icmp eq i64 %r60, 5
 	br i1 %r82, label %LU54, label %LU55
@@ -189,7 +189,7 @@ LU54:
 	%r85 = add i64 %r84, 1
 	%r86 = getelementptr inbounds %struct.LameStruct* %r62, i1 0, i32 4
 	store i64 %r85, i64* %r86
-	br label %LU53
+	br label %LU44
 LU55:
 	%r87 = icmp eq i64 %r60, 6
 	br i1 %r87, label %LU57, label %LU58
@@ -199,7 +199,7 @@ LU57:
 	%r90 = add i64 %r89, 1
 	%r91 = getelementptr inbounds %struct.LameStruct* %r62, i1 0, i32 5
 	store i64 %r90, i64* %r91
-	br label %LU56
+	br label %LU44
 LU58:
 	%r92 = icmp eq i64 %r60, 7
 	br i1 %r92, label %LU60, label %LU61
@@ -209,7 +209,7 @@ LU60:
 	%r95 = add i64 %r94, 1
 	%r96 = getelementptr inbounds %struct.LameStruct* %r62, i1 0, i32 6
 	store i64 %r95, i64* %r96
-	br label %LU59
+	br label %LU44
 LU61:
 	%r97 = icmp eq i64 %r60, 8
 	br i1 %r97, label %LU63, label %LU64
@@ -219,25 +219,13 @@ LU63:
 	%r100 = add i64 %r99, 1
 	%r101 = getelementptr inbounds %struct.LameStruct* %r62, i1 0, i32 7
 	store i64 %r100, i64* %r101
-	br label %LU62
+	br label %LU44
 LU64:
 	%r102 = getelementptr inbounds %struct.LameStruct* %r62, i1 0, i32 8
 	%r103 = load i64* %r102
 	%r104 = add i64 %r103, 1
 	%r105 = getelementptr inbounds %struct.LameStruct* %r62, i1 0, i32 8
 	store i64 %r104, i64* %r105
-	br label %LU62
-LU62:
-	br label %LU59
-LU59:
-	br label %LU56
-LU56:
-	br label %LU53
-LU53:
-	br label %LU50
-LU50:
-	br label %LU47
-LU47:
 	br label %LU44
 LU44:
 	br label %LU41

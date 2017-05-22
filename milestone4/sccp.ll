@@ -24,24 +24,18 @@ LU0:
 	%r9 = load i64* @.read_scratch
 	%r10 = add i64 %r9, 1
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r10)
-	br label %LU1
-LU1:
 	ret void
 }
 
 define i64 @bar (i64 %r12, i64 %r13) {
-LU3:
+LU2:
 	ret i64 5
 }
 
 define i64 @baz (i64 %r19, i64 %r20) {
-LU13:
+LU7:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 1)
-	br label %LU17
-LU17:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 4)
-	br label %LU8
-LU8:
 	ret i64 0
 }
 
@@ -51,7 +45,7 @@ LU19:
 }
 
 define i64 @quux (i64 %r36, i64 %r37) {
-LU22:
+LU20:
 	call void @fbool(i64 0)
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
@@ -60,13 +54,11 @@ LU22:
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
-	br label %LU21
-LU21:
 	ret i64 0
 }
 
 define i64 @quux2 (i64 %r50, i64 %r51) {
-LU27:
+LU25:
 	call void @fbool(i64 0)
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
@@ -75,13 +67,11 @@ LU27:
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
 	call void @fbool(i64 1)
-	br label %LU26
-LU26:
 	ret i64 0
 }
 
 define i64 @flrgrl (i64 %r65, i64 %r66) {
-LU31:
+LU30:
 	ret i64 4
 }
 

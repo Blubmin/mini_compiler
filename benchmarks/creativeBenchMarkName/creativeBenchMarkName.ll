@@ -84,8 +84,8 @@ LU6:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r41)
 	%r45 = add i64 %r44, 1
 	%r46 = icmp slt i64 %r45, 5
-	br i1 %r46, label %LU6, label %LU4
-LU4:
+	br i1 %r46, label %LU6, label %LU3
+LU3:
 	ret i64 %r41
 }
 
@@ -108,8 +108,8 @@ LU11:
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r59)
 	%r63 = add i64 %r62, 1
 	%r64 = icmp slt i64 %r63, 5
-	br i1 %r64, label %LU11, label %LU9
-LU9:
+	br i1 %r64, label %LU11, label %LU8
+LU8:
 	ret i64 %r59
 }
 

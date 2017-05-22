@@ -64,7 +64,7 @@ LU15:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r28 = load i64* @.read_scratch
 	%r29 = icmp sle i64 0, %r28
-	br i1 %r29, label %LU19, label %LU17
+	br i1 %r29, label %LU19, label %LU16
 LU19:
 	%r35 = phi i64 [ %r28, %LU15 ], [ %r35, %LU20 ]
 	%r30 = phi i64 [ 0, %LU15 ], [ %r34, %LU20 ]
@@ -77,8 +77,8 @@ LU21:
 LU20:
 	%r34 = add i64 %r30, 1
 	%r37 = icmp sle i64 %r34, %r35
-	br i1 %r37, label %LU19, label %LU17
-LU17:
+	br i1 %r37, label %LU19, label %LU16
+LU16:
 	ret i64 0
 }
 

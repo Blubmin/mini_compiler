@@ -15,12 +15,12 @@ declare i32 @scanf(i8*, ...)
 @global3 = common global i64 0, align 8
 
 define i64 @constantFolding () {
-LU0:
+LU1:
 	ret i64 226
 }
 
 define i64 @constantPropagation () {
-LU2:
+LU3:
 	ret i64 -654525983689197
 }
 
@@ -49,7 +49,7 @@ LU8:
 }
 
 define i64 @doesntModifyGlobals () {
-LU11:
+LU12:
 	ret i64 3
 }
 
@@ -89,34 +89,34 @@ LU15:
 }
 
 define i64 @commonSubexpressionElimination () {
-LU22:
+LU23:
 	ret i64 -48796
 }
 
 define i64 @hoisting () {
-LU24:
+LU27:
 	br label %LU28
 LU28:
-	%r238 = phi i64 [ 0, %LU24 ], [ %r239, %LU28 ]
+	%r238 = phi i64 [ 0, %LU27 ], [ %r239, %LU28 ]
 	%r239 = add i64 %r238, 1
 	%r240 = icmp slt i64 %r239, 1000000
-	br i1 %r240, label %LU28, label %LU26
-LU26:
+	br i1 %r240, label %LU28, label %LU25
+LU25:
 	ret i64 2
 }
 
 define i64 @doubleIf () {
-LU29:
+LU30:
 	ret i64 50
 }
 
 define i64 @integerDivide () {
-LU36:
+LU37:
 	ret i64 736
 }
 
 define i64 @association () {
-LU38:
+LU39:
 	ret i64 10
 }
 
@@ -143,14 +143,14 @@ LU45:
 }
 
 define i64 @unswitching () {
-LU47:
+LU50:
 	br label %LU51
 LU51:
-	%r282 = phi i64 [ 1, %LU47 ], [ %r283, %LU51 ]
+	%r282 = phi i64 [ 1, %LU50 ], [ %r283, %LU51 ]
 	%r283 = add i64 %r282, 1
 	%r286 = icmp slt i64 %r283, 1000000
-	br i1 %r286, label %LU51, label %LU49
-LU49:
+	br i1 %r286, label %LU51, label %LU48
+LU48:
 	ret i64 %r283
 }
 

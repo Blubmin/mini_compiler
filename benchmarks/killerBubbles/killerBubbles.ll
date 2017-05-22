@@ -24,10 +24,10 @@ LU0:
 }
 
 define void @deathSort (%struct.Node* %r8) {
-LU2:
+LU5:
 	br label %LU6
 LU6:
-	%r11 = phi %struct.Node* [ %r8, %LU2 ], [ %r46, %LU7 ]
+	%r11 = phi %struct.Node* [ %r8, %LU5 ], [ %r46, %LU7 ]
 	%r13 = getelementptr inbounds %struct.Node* %r11, i1 0, i32 2
 	%r14 = load %struct.Node** %r13
 	%r15 = icmp ne %struct.Node* %r14, %r11
@@ -67,8 +67,8 @@ LU7:
 	%r46 = phi %struct.Node* [ %r11, %LU6 ], [ %r39, %LU10 ]
 	%r44 = phi i64 [ 0, %LU6 ], [ %r43, %LU10 ]
 	%r45 = icmp eq i64 %r44, 1
-	br i1 %r45, label %LU6, label %LU4
-LU4:
+	br i1 %r45, label %LU6, label %LU3
+LU3:
 	ret void
 }
 
@@ -80,7 +80,7 @@ LU12:
 	%r54 = load i64* %r53
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.println, i32 0, i32 0), i64 %r54)
 	%r56 = icmp ne %struct.Node* %r52, %r50
-	br i1 %r56, label %LU16, label %LU14
+	br i1 %r56, label %LU16, label %LU13
 LU16:
 	%r57 = phi %struct.Node* [ %r52, %LU12 ], [ %r62, %LU16 ]
 	%r59 = getelementptr inbounds %struct.Node* %r57, i1 0, i32 0
@@ -89,8 +89,8 @@ LU16:
 	%r61 = getelementptr inbounds %struct.Node* %r57, i1 0, i32 2
 	%r62 = load %struct.Node** %r61
 	%r65 = icmp ne %struct.Node* %r62, %r50
-	br i1 %r65, label %LU16, label %LU14
-LU14:
+	br i1 %r65, label %LU16, label %LU13
+LU13:
 	ret void
 }
 

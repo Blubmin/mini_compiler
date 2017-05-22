@@ -20,10 +20,10 @@ LU0:
 }
 
 define void @hailstone (i64 %r6) {
-LU2:
+LU5:
 	br label %LU6
 LU6:
-	%r8 = phi i64 [ %r6, %LU2 ], [ %r14, %LU10 ]
+	%r8 = phi i64 [ %r6, %LU5 ], [ %r14, %LU10 ]
 	call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([5 x i8]*@.print, i32 0, i32 0), i64 %r8)
 	%r9 = call i64 @mod(i64 %r8, i64 2)
 	%r10 = icmp eq i64 %r9, 1

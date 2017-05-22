@@ -112,64 +112,81 @@ def sweep(f):
 
 def remove_pred(p, m, s):
     p.successors = [suc for suc in p.successors if suc != m]
-    p.successors += [s]
+    if s not in p.successors:
+        p.successors += [s]
     last = p.instructions[-1]
     last.replace(m, s)
 
 def remove_succ(p, m, s):
     s.predecessors = [pred for pred in s.predecessors if pred != m]
-    s.predecessors += [p]
+    if p not in s.predecessors:
+        s.predecessors += [p]
+
+def remove_middle(pred, m, s):
+    for p in pred:
+        p.successors = [s for s in p.successors if s != m]
+        remove_pred(p, m, s)
+        remove_succ(p, m, s)
+
     phis = [i for i in s.instructions if isinstance(i, PhiInstruction)]
     for phi in phis:
-        phi.replace(m, p)
+        temp = [s for s in phi.sources if s["location"] is m]
+        if temp:
+            for p in pred:
+                phi.add_source({"value": temp[0]["value"], "location": p})
+        phi.sources = [s for s in phi.sources if s not in temp]
 
-def remove_middle(p, m, s):
-    remove_pred(p, m, s)
-    remove_succ(p, m, s)
+def remove_empty_blocks(f):
+    for b in f.blocks:
+        b.critical = False
+        b.visited = False
+        b.should_remove = False
 
-# def remove_empty_blocks(f):
-#     for b in f.blocks:
-#         b.visited = False
-#         b.should_remove = False
-#
-#     blocks = [f.entry]
-#     while blocks:
-#         b = blocks.pop(0)
-#         b.visited = True
-#         if len(b.instructions) == 1 and isinstance(b.instructions[0], JumpInstruction) and len(b.predecessors) <= 1 and len([p for p in b.successors[0].predecessors if p) == 1:
-#             b.should_remove = True
-#             if b.predecessors:
-#                 for p in b.predecessors:
-#                     p.successors = [s for s in p.successors if s != b]
-#                     remove_middle(p, b, b.successors[0])
-#             else:
-#                 s = b.successors[0]
-#                 s.predecessors = []
-#                 phis = [i for i in s.instructions if isinstance(i, PhiInstruction)]
-#                 for phi in phis:
-#                     phi.replace(b, s)
-#
-#         blocks += [s for s in b.successors if not s.visited]
-#
-#     f.blocks = [b for b in f.blocks if not b.should_remove]
-#
-# def fix_br(f):
-#     changed = False
-#     for b in f.blocks:
-#         last = b.instructions.pop()
-#         if isinstance(last, BrInstruction) and last.true is last.false:
-#             changed = True
-#             last.cond.uses = [i for i in last.cond.uses if i is not last]
-#             last = JumpInstruction(last.true)
-#         b.instructions += [last]
-#     return changed
-#
-# def fix_phis(f):
-#     for b in f.blocks:
-#         phis = [i for i in b.instructions if isinstance(i, PhiInstruction)]
+    phis = [p for p in f.ret.instructions if isinstance(p, PhiInstruction)]
+    for phi in phis:
+        for s in phi.sources:
+            if not isinstance(s["value"], Register):
+                s["location"].critical = True
+                s["location"].visited = True
 
+    blocks = [f.entry]
+    while blocks:
+        b = blocks.pop(0)
+        b.visited = True
+        if not b.critical and len(b.instructions) == 1 and isinstance(b.instructions[0], JumpInstruction):
+            s = b.successors[0]
+
+            if not [i for i in s.instructions if isinstance(i, PhiInstruction) or isinstance(i, BrInstruction)]:
+                b.should_remove = True
+                if b.predecessors:
+                    remove_middle(b.predecessors, b, b.successors[0])
+                else:
+                    s.predecessors = []
+                    f.entry = s
+                    phis = [i for i in s.instructions if isinstance(i, PhiInstruction)]
+                    for phi in phis:
+                        phi.replace(b, s)
+
+        blocks += [s for s in b.successors if not s.visited]
+
+    f.blocks = [b for b in f.blocks if not b.should_remove]
+
+def fix_br(f):
+    changed = False
+    for b in f.blocks:
+        last = b.instructions.pop()
+        if isinstance(last, BrInstruction) and last.true is last.false:
+            changed = True
+            last.cond.uses = [i for i in last.cond.uses if i is not last]
+            last = JumpInstruction(last.true)
+            b.successors = [b.successors[0]]
+            b.successors[0].predecessors = [b]
+        b.instructions += [last]
+    return changed
 
 def stich_blocks(f):
+    changed = False
+
     for b in f.blocks:
         b.visited = False
     blocks = [f.entry]
@@ -178,6 +195,7 @@ def stich_blocks(f):
         b = blocks.pop(0)
         b.visited = True
         if len(b.successors) == 1 and len(b.successors[0].predecessors) == 1:
+            changed = True
             s = b.successors[0]
 
             if s is f.ret:
@@ -198,15 +216,17 @@ def stich_blocks(f):
             blocks += [s for s in b.successors if not s.visited]
 
     f.blocks = [b for b in f.blocks if b.visited]
+    return changed
 
 def eliminate(cfg):
     for f in [cfg[f] for f in cfg]:
-        # while True:
+        while True:
             mark(f)
             sweep(f)
-            # remove_empty_blocks(f)
-            stich_blocks(f)
-            #
-            # if not fix_br(f):
-            #     break
+            remove_empty_blocks(f)
+            changed = False
+            changed |= stich_blocks(f)
+            changed |= fix_br(f)
+            if not changed:
+              break
     return cfg

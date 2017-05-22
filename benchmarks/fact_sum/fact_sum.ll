@@ -43,7 +43,7 @@ LU3:
 }
 
 define i64 @main () {
-LU8:
+LU11:
 	br label %LU12
 LU12:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
@@ -57,8 +57,8 @@ LU12:
 	call i32 (i8*, ...)* @scanf(i8* getelementptr inbounds ([4 x i8]* @.read, i32 0, i32 0), i64* @.read_scratch)
 	%r26 = load i64* @.read_scratch
 	%r29 = icmp ne i64 %r26, -1
-	br i1 %r29, label %LU12, label %LU10
-LU10:
+	br i1 %r29, label %LU12, label %LU9
+LU9:
 	ret i64 0
 }
 

@@ -17,9 +17,7 @@ declare i32 @scanf(i8*, ...)
 define void @tailrecursive (i64 %r0) {
 LU0:
 	%r1 = icmp sle i64 %r0, 0
-	br i1 %r1, label %LU3, label %LU2
-LU3:
-	br label %LU1
+	br i1 %r1, label %LU1, label %LU2
 LU2:
 	%r4 = sub i64 %r0, 1
 	call void @tailrecursive(i64 %r4)
@@ -65,7 +63,7 @@ LU6:
 	%r32 = getelementptr inbounds %struct.simple* %r31, i1 0, i32 0
 	store i64 %r29, i64* %r32
 	%r33 = icmp sgt i64 %r10, 0
-	br i1 %r33, label %LU10, label %LU8
+	br i1 %r33, label %LU10, label %LU7
 LU10:
 	%r62 = phi i64 [ %r10, %LU6 ], [ %r63, %LU10 ]
 	%r50 = getelementptr inbounds %struct.foo* %r17, i1 0, i32 2
@@ -77,21 +75,21 @@ LU10:
 	%r56 = call i64 @add(i64 %r53, i64 %r55)
 	%r63 = sub i64 %r62, 1
 	%r64 = icmp sgt i64 %r63, 0
-	br i1 %r64, label %LU10, label %LU8
-LU8:
+	br i1 %r64, label %LU10, label %LU7
+LU7:
 	ret void
 }
 
 define void @objinstantiation (i64 %r70) {
 LU11:
 	%r71 = icmp sgt i64 %r70, 0
-	br i1 %r71, label %LU15, label %LU13
+	br i1 %r71, label %LU15, label %LU12
 LU15:
 	%r76 = phi i64 [ %r70, %LU11 ], [ %r77, %LU15 ]
 	%r77 = sub i64 %r76, 1
 	%r78 = icmp sgt i64 %r77, 0
-	br i1 %r78, label %LU15, label %LU13
-LU13:
+	br i1 %r78, label %LU15, label %LU12
+LU12:
 	ret void
 }
 

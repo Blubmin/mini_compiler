@@ -94,7 +94,7 @@ LU14:
 define void @approxSqrtAll (%struct.linkedNums* %r59) {
 LU17:
 	%r60 = icmp ne %struct.linkedNums* %r59, null
-	br i1 %r60, label %LU21, label %LU19
+	br i1 %r60, label %LU21, label %LU18
 LU21:
 	%r61 = phi %struct.linkedNums* [ %r59, %LU17 ], [ %r66, %LU21 ]
 	%r62 = getelementptr inbounds %struct.linkedNums* %r61, i1 0, i32 0
@@ -104,8 +104,8 @@ LU21:
 	%r65 = getelementptr inbounds %struct.linkedNums* %r61, i1 0, i32 1
 	%r66 = load %struct.linkedNums** %r65
 	%r67 = icmp ne %struct.linkedNums* %r66, null
-	br i1 %r67, label %LU21, label %LU19
-LU19:
+	br i1 %r67, label %LU21, label %LU18
+LU18:
 	ret void
 }
 

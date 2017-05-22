@@ -14,13 +14,13 @@ declare i32 @scanf(i8*, ...)
 define i64 @wait (i64 %r0) {
 LU0:
 	%r1 = icmp sgt i64 %r0, 0
-	br i1 %r1, label %LU4, label %LU2
+	br i1 %r1, label %LU4, label %LU1
 LU4:
 	%r2 = phi i64 [ %r0, %LU0 ], [ %r3, %LU4 ]
 	%r3 = sub i64 %r2, 1
 	%r4 = icmp sgt i64 %r3, 0
-	br i1 %r4, label %LU4, label %LU2
-LU2:
+	br i1 %r4, label %LU4, label %LU1
+LU1:
 	ret i64 0
 }
 
