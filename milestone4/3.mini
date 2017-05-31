@@ -1,4 +1,0 @@
-fun main() int {
-    print 789/-341;
-    return 0;
-}

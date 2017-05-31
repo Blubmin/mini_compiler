@@ -1,0 +1,6 @@
+fun main() int {
+    int i;
+    i = read;
+    print 3 + i endl;
+    return 0;
+}

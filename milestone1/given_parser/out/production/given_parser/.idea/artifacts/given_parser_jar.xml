@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="given_parser:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/given_parser_jar</output-path>
-    <root id="archive" name="given_parser.jar">
-      <element id="module-output" name="given_parser" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../antlr-4.7-complete.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

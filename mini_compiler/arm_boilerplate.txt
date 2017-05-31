@@ -1,0 +1,9 @@
+    .align	2
+.SCAN:
+    .ascii	"%ld\000"
+    .align  2
+.PRINT
+    .ascii	"%ld\000"
+	.align	2
+.PRINTL:
+    .ascii	"%ld\012\000"
